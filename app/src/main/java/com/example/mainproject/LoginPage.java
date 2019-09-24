@@ -3,17 +3,23 @@ package com.example.mainproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,20 +32,25 @@ public class LoginPage extends AppCompatActivity {
     EditText username,pass;
     Button in;
     Intent logIn,goToRegister ;
-
     ProgressBar progressBar;
+    TextInputLayout userLayout,passLayout;
+    SharePreferencesHelper helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
         initialize();
+        helper.clearPreferences();
         username.setText("");
         pass.setText("");
+        // f1.bringToFront();
     }
     private void initialize()
     {
         username=findViewById(R.id.username);
+        userLayout=findViewById(R.id.usernameLayout);
         pass=findViewById(R.id.password);
+        passLayout=findViewById(R.id.passwordLayout);
         in=findViewById(R.id.loginButton);
         progressBar=findViewById(R.id.loadingProgress);
         progressBar.bringToFront();
@@ -55,25 +66,30 @@ public class LoginPage extends AppCompatActivity {
                     Log.d(TAG,"User is signed out");
             }
         };
+        helper=new SharePreferencesHelper(this);
+
+
 
 
 
     }
     public void register(View view)
     {
-       // goToRegister=new Intent(getApplicationContext(),Register.class);
-        //startActivity(goToRegister);
+        goToRegister=new Intent(getApplicationContext(), Register.class);
+        startActivity(goToRegister);
 
     }
 
     public void login(View view) {
         String email=username.getText().toString();
         String password=pass.getText().toString();
+        clearAllEmptyErrorMessages();
 
         if (email.isEmpty() || password.isEmpty())
         {
-            Message.message(this,"You didn't fill all the details");
-
+           // Message.message(this,"You didn't fill all the details");
+            if(email.isEmpty())     userLayout.setError("Please enter your Email ID");
+            if(password.isEmpty())  passLayout.setError("Please enter your password");
         }
         else {
             progressBar.setVisibility(View.VISIBLE);
@@ -84,17 +100,29 @@ public class LoginPage extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Log.d("kun","Successful login");
-                                logIn=new Intent(getApplicationContext(),MainActivity.class);
-                                startActivity(logIn);
-                                finish();
+
+                                helper.clearPreferences();
+                                FirebaseUser user=mAuth.getCurrentUser();
+                                if(user.isEmailVerified()) {            //Whether the user is Email Verified
+                                    Log.d("kun","Successful login");
+                                    logIn = new Intent(LoginPage.this, MainActivity.class);
+                                    startActivity(logIn);
+                                    finish();
+                                }
+                                else{
+                                    Message.message(LoginPage.this,"This user is not verified");
+                                    userLayout.setError("This user is not verified");
+                                    progressBar.setVisibility(View.GONE);
+                                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);  //Enable user interaction
+                                    mAuth.signOut();
+                                }
 
 
 
                             } else {
                                 // If sign in fails, display a message to the user.
                                 progressBar.setVisibility(View.GONE);
-                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);  //Enable user interaction
                                 Log.d("kun","Failed signing");
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
                                 Message.message(getApplicationContext(), "Authentication failed.");
@@ -108,15 +136,31 @@ public class LoginPage extends AppCompatActivity {
 
         }
     }
+    private void clearAllEmptyErrorMessages() {
+        userLayout.setError(null);
+        passLayout.setError(null);
 
+    }
 
     public void forgotPassword(View view) {
         Log.d(TAG,"Forgot password");
-        startActivity(new Intent(this,ForgotPassword.class));
+        startActivity(new Intent(this, ForgotPassword.class));
 
 
 
 
 
     }
+
+    @Override
+    protected void onDestroy() {
+        helper.clearPreferences();
+        super.onDestroy();
+    }
+
+    /*Add:
+     *  1. Asterisk error message on all EditText.
+     *  2. Navigate to the first incorrect field
+     *  3. Reduce the margin between keyboard and EditText, also between hint and the top of EditText
+     */
 }

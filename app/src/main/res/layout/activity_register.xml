@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Register"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e0ffff"
+    android:id="@+id/registerLayout">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/registerToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextAppearance="@style/ToolBarStyle"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <LinearLayout
+        android:id="@+id/nameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/registerToolbar"
+        android:baselineAligned="false">
+        <com.example.mainproject.CustomTextInputLayout
+            android:id="@+id/firstNameLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="2"
+            app:hintTextAppearance="@style/hintStyle"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/newfname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/border_edit"
+                android:hint="@string/first"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:maxLength="15"
+                android:padding="14dp" />
+        </com.example.mainproject.CustomTextInputLayout>
+
+        <com.example.mainproject.CustomTextInputLayout
+            android:id="@+id/lastNameLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_weight="2"
+            app:hintTextAppearance="@style/hintStyle"
+
+            >
+            <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newlname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/last"
+            android:padding="14dp"
+            android:background="@drawable/border_edit"
+
+
+            android:maxLines="1"
+            android:maxLength="15"
+            />
+        </com.example.mainproject.CustomTextInputLayout>
+
+
+    </LinearLayout>
+    <com.example.mainproject.CustomTextInputLayout
+        android:id="@+id/numberLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="25dp"
+        android:layout_below="@id/nameLayout"
+        app:hintTextAppearance="@style/hintStyle"
+
+        >
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/mobileNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="14dp"
+        android:background="@drawable/border_edit"
+        android:hint="@string/mobile_number"
+        android:inputType="number"
+        android:maxLines="1"
+        android:maxLength="10"
+
+        />
+    </com.example.mainproject.CustomTextInputLayout>
+    <com.example.mainproject.CustomTextInputLayout
+        android:id="@+id/newUserLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="25dp"
+        android:layout_below="@id/numberLayout"
+        app:hintTextAppearance="@style/hintStyle"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newuser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:hint="@string/username"
+            android:padding="14dp"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:maxLength="30"
+            android:background="@drawable/border_edit"
+
+            />
+
+    </com.example.mainproject.CustomTextInputLayout>
+    <com.example.mainproject.CustomTextInputLayout
+        android:id="@+id/newPassLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/newUserLayout"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        app:hintTextAppearance="@style/hintStyle"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/pass"
+            android:background="@drawable/border_edit"
+
+
+            android:padding="14dp"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:maxLength="20"
+            />
+    </com.example.mainproject.CustomTextInputLayout>
+    <com.example.mainproject.CustomTextInputLayout
+        android:id="@+id/conPassLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="25dp"
+        android:layout_below="@id/newPassLayout"
+        app:passwordToggleDrawable="@drawable/icon_selector"
+        app:passwordToggleEnabled="true"
+        app:hintTextAppearance="@style/hintStyle"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/conpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirm"
+            android:background="@drawable/border_edit"
+
+            android:padding="14dp"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:maxLength="20"
+            />
+
+    </com.example.mainproject.CustomTextInputLayout>
+
+
+    <Button
+        android:id="@+id/regButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/conPassLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="25dp"
+        android:background="@drawable/border_edit"
+        android:onClick="signUp"
+
+
+        android:text="Register" />                                      <!--Register button-->
+
+    <ProgressBar
+        android:id="@+id/registerProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+</ScrollView>

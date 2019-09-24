@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">MainProject</string>
+    <string name="app_name">MainActivity</string>
+    <string name="username">Username</string>
+    <string name="pass">Password</string>
+    <string name="name">Name</string>
+    <string name="first">First Name</string>
+    <string name="last">Last name</string>
+    <string name="email">Email</string>
+    <string name="confirm">Confirm Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="mobile_number">Mobile Number</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account? Register</string>
+    <string name="login">login</string>
+    <string name="forgot_password">Forgot Password?</string>
+
 </resources>

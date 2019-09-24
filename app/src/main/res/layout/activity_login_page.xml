@@ -1,137 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LoginPage"
-    android:background="@drawable/chocolate"
-    android:id="@+id/loginPageLayout">
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".LoginPage"
 
-
-
-    <ProgressBar
-        android:id="@+id/loadingProgress"
-        android:layout_width="116dp"
-        android:layout_height="116dp"
-        android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
-        android:indeterminate="true"
-
-        android:visibility="invisible" />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/usernameLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="18dp"
-        app:hintTextAppearance="@style/hintStyle"
+        android:layout_height="match_parent"
+        android:background="@drawable/chocolate"
+        android:id="@+id/loginPageLayout"
+
         >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/username"
+
+
+        <ProgressBar
+            android:id="@+id/loadingProgress"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:indeterminate="true"
+            android:layout_centerInParent="true"
+
+            android:visibility="invisible" />
+        <com.example.mainproject.CustomTextInputLayout
+            android:id="@+id/usernameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="130dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="18dp"
+            app:hintTextAppearance="@style/hintStyle"
+            >
 
-            android:background="@drawable/border_edit"
-            android:hint="Username"
-            android:inputType="textEmailAddress"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-            android:maxLines="1"
-            android:maxLength="30"
-            android:padding="14dp"
-            android:textSize="20sp"
-            android:drawableLeft="@drawable/username"
-            android:drawablePadding="13dp"/></com.google.android.material.textfield.TextInputLayout>
+                android:layout_alignStart="@+id/usernameLayout"
+                android:background="@drawable/border_edit"
+                android:drawableStart="@drawable/username"
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="12dp"
+                android:drawablePadding="13dp"
+                android:hint="@string/username"
+                android:inputType="textEmailAddress"
+                android:maxLength="30"
+                android:maxLines="1"
+                android:padding="14dp"
+                android:textSize="20sp" /></com.example.mainproject.CustomTextInputLayout>
 
-        android:layout_below="@id/usernameLayout"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleDrawable="@drawable/icon_selector"
-        app:hintTextAppearance="@style/hintStyle"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password"
-
+        <com.example.mainproject.CustomTextInputLayout
+            android:id="@+id/passwordLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="12dp"
+
+            android:layout_below="@id/usernameLayout"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleDrawable="@drawable/icon_selector"
+            app:hintTextAppearance="@style/hintStyle"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
 
-            android:background="@drawable/border_edit"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:maxLength="20"
-            android:padding="14dp"
-            android:textSize="20sp"
-            android:drawableStart="@drawable/password_icon"
-            android:drawablePadding="13dp"
+                android:background="@drawable/border_edit"
+                android:hint="@string/pass"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:maxLength="20"
+                android:padding="14dp"
+                android:textSize="20sp"
+                android:drawableStart="@drawable/password_icon"
+                android:drawablePadding="13dp"
+
+                />
+        </com.example.mainproject.CustomTextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginButton"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:text="@string/forgot_password"
+            android:textColor="#D9F0DA"
+            android:textSize="18sp"
+            android:onClick="forgotPassword"
 
             />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/passwordLayout"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="30dp"
-        android:text="Forgot Password?"
-        android:textColor="#D9F0DA"
-        android:textSize="18sp"
-        android:onClick="forgotPassword"
-
-        />
 
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border_edit_btn"
-        android:layout_below="@id/passwordLayout"
-        android:layout_marginTop="68dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="10dp"
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_edit_btn"
+            android:layout_below="@id/passwordLayout"
+            android:layout_marginTop="28dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="10dp"
 
-        android:padding="12dp"
-        android:text="LogIN"
-        android:onClick="login"
-        />
+            android:padding="12dp"
+            android:text="@string/login"
+            android:onClick="login"
+            />
 
 
-    <TextView
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@id/loginButton"
-        android:text="Don't have an Account? Register"
-        android:layout_centerHorizontal="true"
-        android:textColor="#D9F0DA"
-        android:textSize="18sp"
-        android:textColorHighlight="@color/colorAccent"
-        android:onClick="register"/>
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@id/forgotPassword"
+            android:text="@string/don_t_have_an_account_register"
+            android:layout_centerHorizontal="true"
+            android:textColor="#D9F0DA"
+            android:textSize="18sp"
+            android:textColorHighlight="@color/colorAccent"
+            android:onClick="register"/>
 
-</RelativeLayout>
+    </RelativeLayout>
+
+
+
