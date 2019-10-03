@@ -1,5 +1,6 @@
-package com.example.mainproject;
+package com.example.mainproject.UserProfilePage;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -10,12 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.mainproject.R;
+
 public class GetCredentials extends DialogFragment implements View.OnClickListener {
-    Button submit;
-    EditText email,pass;
-    Communicator comm;
+    private Button submit;
+    private EditText email,pass;
+    private Communicator comm;
     private String TAG="GetCredentials";
     public GetCredentials() {
         // Required empty public constructor
@@ -23,10 +27,10 @@ public class GetCredentials extends DialogFragment implements View.OnClickListen
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_dialog, null);
+        @SuppressLint("InflateParams") View v=inflater.inflate(R.layout.fragment_dialog, null);
         submit=v.findViewById(R.id.submitButton);
         email=v.findViewById(R.id.profileChangeEmail);
         pass=v.findViewById(R.id.profileChangePassword);
@@ -56,7 +60,7 @@ public class GetCredentials extends DialogFragment implements View.OnClickListen
     }
 
 
-    interface Communicator{
+    public interface Communicator{
         void submitCredentials(String s1,String s2);
     }
 }

@@ -1,19 +1,25 @@
-package com.example.mainproject;
+package com.example.mainproject.UserProfilePage;
 
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+
+import com.example.mainproject.Message;
+import com.example.mainproject.R;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -22,16 +28,16 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
  * A simple {@link Fragment} subclass.
  */
 public class ProvideNewEmail extends DialogFragment implements View.OnClickListener {
-    ReProvideEmail reProvideEmail;
-    EditText newEmail;
-    Button submit;
+    private ReProvideEmail reProvideEmail;
+    private EditText newEmail;
+    private Button submit;
     public ProvideNewEmail() {
         // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_provide_new_email, container, false);
@@ -50,12 +56,23 @@ public class ProvideNewEmail extends DialogFragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
         Log.d(TAG, "onClick: Submit was clicked");
+        if(!isGmailAddress(newEmail.getText().toString())){
+            Message.message(getActivity(),"Enter valid email");
+            return;
+        }
+
         dismiss();
         reProvideEmail.updateEmail(newEmail.getText().toString());
     }
+    private boolean isGmailAddress(String emailAddress) {
+        String expression = "^[\\w.+\\-]+@gmail\\.com$";
 
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(emailAddress);
+        return matcher.matches();
+    }
 
-    interface ReProvideEmail{
+    public interface ReProvideEmail{
         void updateEmail(String email);
     }
 }

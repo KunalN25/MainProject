@@ -1,30 +1,35 @@
 package com.example.mainproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.mainproject.LoginAndRegistration.LoginPage;
+import com.example.mainproject.LoginAndRegistration.UserData;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AccountFragment.AccountFragmentMethods, BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG="kun";
     private FirebaseAuth mAuth;
-
+    private DatabaseReference databaseReference;
     FirebaseFirestore databaseRef;
-
+    FirebaseUser firebaseUser;
+    SharePreferencesHelper sharePreferencesHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,41 +37,25 @@ public class MainActivity extends AppCompatActivity {
         redirectToLogin();
         setContentView(R.layout.activity_main);
         initialize();
-
+        loadIntoSharedPreferences();
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
 
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.dropdown_for_main_activity,menu);
-        Log.d(TAG, "onCreateOptionsMenu: called");
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.profile:
-                Log.d(TAG, "onOptionsItemSelected: Profile selected");
-                goToProfileActivity();
-                break;
-            case R.id.logout:
-                Log.d(TAG, "onOptionsItemSelected: LogOut");
-                logOut();
-                break;
-            case R.id.settings:
-                Log.d(TAG, "onOptionsItemSelected: Settings");
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
 
     public void initialize()    //Put every variable initialization in this function
     {
+        firebaseUser=mAuth.getCurrentUser();
         databaseRef = FirebaseFirestore.getInstance();
+        if(firebaseUser!=null)
+            databaseReference=FirebaseDatabase.getInstance().getReference(firebaseUser.getUid());
+        sharePreferencesHelper = new SharePreferencesHelper(this);
+
 
     }
     public void redirectToLogin()
@@ -81,13 +70,63 @@ public class MainActivity extends AppCompatActivity {
             finish();       //This will erase the activity from the back stack
         }
     }
-    public void logOut() {
-        mAuth.signOut();
-        startActivity(new Intent(this, LoginPage.class));
-        finish();
+   
+
+    private void loadIntoSharedPreferences() {
+
+        if(databaseReference!=null){
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                UserData userData=dataSnapshot.getValue(UserData.class);
+                assert userData != null;
+                sharePreferencesHelper.addToPreference("FirstName",userData.getFirstName());
+                sharePreferencesHelper.addToPreference("LastName",userData.getLastName());
+                sharePreferencesHelper.addToPreference("MobileNumber",userData.getMobileNo()+"");
+                Log.d(TAG, "onDataChange: Data loaded");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: Data could not be loaded");
+            }
+        });}
+
+
     }
 
-    public void goToProfileActivity() {
-        startActivity(new Intent(this,UserProfileActivity.class));
+
+    @Override
+    public void logOut() {
+        mAuth.signOut();
+        sharePreferencesHelper.clearPreferences();
+        startActivity(new Intent(this,LoginPage.class));
+        finish();
+        Log.d(TAG, "logOut: Logged out");
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment selectedFragment=null;
+
+        switch (menuItem.getItemId()){
+            case R.id.nav_home:
+                selectedFragment=new HomeFragment();
+                break;
+
+            case R.id.nav_map:
+                selectedFragment=new MapFragment();
+                break;
+
+            case R.id.nav_profile:
+                selectedFragment=new AccountFragment();
+                break;
+
+        }
+        assert selectedFragment != null;
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment)
+                                                        .commit();
+        return true;
     }
 }

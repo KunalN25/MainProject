@@ -1,30 +1,28 @@
 package com.example.mainproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
 import com.example.mainproject.LoginAndRegistration.UserData;
+import com.example.mainproject.UserProfilePage.GetCredentials;
+import com.example.mainproject.UserProfilePage.ProvideNewEmail;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class UserProfileActivity extends AppCompatActivity implements GetCredentials.Communicator, ProvideNewEmail.ReProvideEmail {
@@ -165,23 +163,12 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
     //The editTexts will have the users Data
     /*Data will be loaded into SharedPreferences while logging in load from SharedPreferences whenever loading data*/
     private void setEditTextValues() {
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UserData userData=dataSnapshot.getValue(UserData.class);
-                editFirstName.setText(userData.getFirstName());
-                editLastName.setText(userData.getLastName());
-                editMobile.setText(userData.getMobileNo()+"");
-                Log.d(TAG, "onDataChange: Data loaded");
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: Data could not be loaded");
-            }
-        });
+        SharePreferencesHelper helper=new SharePreferencesHelper(this);
+        editFirstName.setText(helper.loadPreferences("FirstName"));
+        editLastName.setText(helper.loadPreferences("LastName"));
+        editMobile.setText(helper.loadPreferences("MobileNumber"));
     }
-    public void editProfile() {
+    private void editProfile() {
         enableAllEdittexts();
 
     }
@@ -234,6 +221,8 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
     public void updateEmail(final String email) {
         user = FirebaseAuth.getInstance().getCurrentUser();
 
+
+        assert user != null;
         user.updateEmail(email)
             .addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
@@ -251,12 +240,15 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
             });
     }
 
+
     //If back is pressed disable the edit operation and go back to original screen
     @Override
     public void onBackPressed() {
         if(editFlag)
         {
             editFlag=false;
+            invalidateOptionsMenu();
+            setEditTextValues();
             disableAllEditText();
         }
         else
