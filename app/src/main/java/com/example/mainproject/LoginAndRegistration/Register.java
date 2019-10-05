@@ -17,9 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.example.mainproject.Message;
+import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.R;
-import com.example.mainproject.SharePreferencesHelper;
+import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;

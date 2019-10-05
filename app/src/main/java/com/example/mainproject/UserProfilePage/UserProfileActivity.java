@@ -1,4 +1,4 @@
-package com.example.mainproject;
+package com.example.mainproject.UserProfilePage;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.mainproject.LoginAndRegistration.UserData;
-import com.example.mainproject.UserProfilePage.GetCredentials;
-import com.example.mainproject.UserProfilePage.ProvideNewEmail;
+import com.example.mainproject.UtilityClasses.Message;
+import com.example.mainproject.R;
+import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;

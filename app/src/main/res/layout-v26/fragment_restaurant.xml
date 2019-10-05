@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RestaurantOperations.RestaurantFragment"
+    android:orientation="vertical"
+    android:weightSum="105">
+    <ImageView
+        android:id="@+id/fragmentRestaurantPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="60"
+        android:src="@drawable/ic_launcher_background"
+         />
+    <TextView
+        android:id="@+id/fragmentRestaurantName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="@string/name"
+        />
+    <TextView
+        android:id="@+id/fragmentCuisine"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="@string/cuisines"
+        />
+    <TextView
+        android:id="@+id/fragmentRestaurantCity"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:text="@string/city"/>
+    <ListView
+        android:id="@+id/fragmentListViewForRestaurantProperties"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"/>
+
+
+
+</LinearLayout>

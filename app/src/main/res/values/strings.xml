@@ -28,5 +28,7 @@
     <string name="home">HOME</string>
     <string name="map">MAP</string>
     <string name="account">ACCOUNT</string>
+    <string name="cuisines">Cuisines</string>
+    <string name="city">City</string>
 
 </resources>

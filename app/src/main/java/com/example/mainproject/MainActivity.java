@@ -1,9 +1,13 @@
 package com.example.mainproject;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +15,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mainproject.LoginAndRegistration.LoginPage;
 import com.example.mainproject.LoginAndRegistration.UserData;
+import com.example.mainproject.RestaurantOperations.RestaurantActivity;
+import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
+import com.example.mainproject.RestaurantOperations.RestaurantsList.HomeFragment;
+import com.example.mainproject.UserProfilePage.AccountFragment;
+import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,19 +35,26 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class MainActivity extends AppCompatActivity implements AccountFragment.AccountFragmentMethods, BottomNavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG="kun";
+    private static final String TAG="Main";
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     FirebaseFirestore databaseRef;
     FirebaseUser firebaseUser;
     SharePreferencesHelper sharePreferencesHelper;
+    private static final int ERROR_DIALOG_REQUEST=9001;
+
+    @SuppressLint("StaticFieldLeak")
+
+    private static Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         redirectToLogin();
         setContentView(R.layout.activity_main);
+
         initialize();
+
         loadIntoSharedPreferences();
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -55,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
         if(firebaseUser!=null)
             databaseReference=FirebaseDatabase.getInstance().getReference(firebaseUser.getUid());
         sharePreferencesHelper = new SharePreferencesHelper(this);
+        context=getApplicationContext();
 
 
     }
@@ -71,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
         }
     }
    
-
+    //Load all the userData into SharedPreferences
     private void loadIntoSharedPreferences() {
 
         if(databaseReference!=null){
@@ -96,6 +115,17 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
 
     }
 
+    public  static void recyclerViewOnClick(RestaurantJSONItems restaurantJSONItems) {
+
+
+        Intent intent=new Intent(context, RestaurantActivity.class);
+        intent.putExtra("RestaurantData",restaurantJSONItems);
+        context.startActivity(intent);
+
+
+
+
+    }
 
     @Override
     public void logOut() {
@@ -116,7 +146,10 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
                 break;
 
             case R.id.nav_map:
-                selectedFragment=new MapFragment();
+                if(isServicesOK())
+                    selectedFragment=new MapFragment();
+                else
+                    selectedFragment=null;//Make an error fragment
                 break;
 
             case R.id.nav_profile:
@@ -129,4 +162,22 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
                                                         .commit();
         return true;
     }
+    public boolean isServicesOK(){
+        Log.d(TAG,"isServicesOK:checking google services version");
+        int available= GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
+        if (available== ConnectionResult.SUCCESS){
+            Log.d(TAG,"Google play services is working");
+            return true;
+        }
+        else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            Log.d(TAG,"An error occured but we can fix it");
+            Dialog dialog=GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this,available,ERROR_DIALOG_REQUEST);
+            dialog.show();
+        }else {
+            Toast.makeText(this,"We can't make map requests",Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
+
 }

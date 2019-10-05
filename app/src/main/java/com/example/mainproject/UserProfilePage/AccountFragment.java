@@ -1,4 +1,4 @@
-package com.example.mainproject;
+package com.example.mainproject.UserProfilePage;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.mainproject.R;
 
 import java.util.Objects;
 

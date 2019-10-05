@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import com.example.mainproject.Message;
+import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.R;
 
 import java.util.regex.Matcher;
