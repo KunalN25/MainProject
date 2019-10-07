@@ -8,13 +8,18 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mainproject.R;
 import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuFragment;
+import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 
-public class RestaurantActivity extends AppCompatActivity implements RestaurantFragment.RestaurantFragmentMethods {
+import java.util.List;
+
+public class RestaurantActivity extends AppCompatActivity implements RestaurantFragment.RestaurantFragmentMethods , MenuFragment.MenuFragmentMethods {
 
     private RestaurantJSONItems restaurantJSONItems;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
+    private static final String TAG="kun";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,5 +51,17 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantF
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.restaurantLAyout,menuFragment);
         fragmentTransaction.addToBackStack("MenuFragment").commit();
+    }
+
+    @Override
+    public void sendMenuItems(List<MenuItem> cart) {
+        fragmentManager=getSupportFragmentManager();
+        ConfirmFragment confirmFragment = new ConfirmFragment();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.restaurantLAyout, confirmFragment);
+        fragmentTransaction.addToBackStack("BillFragment").commit();
+        confirmFragment.getMenuItems(cart);
+
+
     }
 }

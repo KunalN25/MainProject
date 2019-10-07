@@ -30,5 +30,8 @@
     <string name="account">ACCOUNT</string>
     <string name="cuisines">Cuisines</string>
     <string name="city">City</string>
+    <string name="total">Total</string>
+    <string name="confirm_your_order">Confirm Your Order</string>
+    <string name="rs_0">Rs. 0</string>
 
 </resources>

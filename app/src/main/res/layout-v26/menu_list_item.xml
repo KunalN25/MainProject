@@ -2,12 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/listItem">
+    android:id="@+id/listItem"
+    android:clickable="false"
+    android:descendantFocusability="blocksDescendants">
+    <!--DescendantFocusability attribute is used to set the focusable for all the child views
+        so that the listView can be clickable.-->
     <ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:clickable="false"/>
     <TextView
         android:id="@+id/menuItemName"
         android:layout_width="wrap_content"
@@ -15,6 +20,7 @@
         android:text="Item"
         android:textSize="30sp"
         android:layout_toRightOf="@id/icon"
+        android:clickable="false"
         />
 
     <TextView
@@ -24,7 +30,8 @@
         android:layout_marginLeft="180dp"
         android:layout_marginRight="31dp"
         android:text="100"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:clickable="false"/>
 
     <CheckBox
         android:id="@+id/checkItem"
@@ -42,6 +49,7 @@
         android:text="Description"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="10dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:clickable="false"/>
 
 </RelativeLayout>

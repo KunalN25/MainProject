@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuFragment"
-    android:id="@+id/frameLAyout">
+    tools:context=".RestaurantOperations.RestaurantMenu.MenuFragment"
+    android:id="@+id/frameLAyout"
+    android:orientation="vertical">
+  <androidx.appcompat.widget.Toolbar
+      android:layout_width="wrap_content"
+      android:layout_height="?attr/actionBarSize">
+    <Spinner
+      android:id="@+id/selectedItems"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="330dp"/>
+  </androidx.appcompat.widget.Toolbar>
 
   <ListView
       android:id="@+id/menuList"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
-  <Button
-      android:id="@+id/show"
-      android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Show"
-      android:layout_marginTop="40dp"
-      android:layout_below="@id/menuList"
-      />
+      android:layout_weight="1"/>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ADD TO CART"
+        android:layout_weight="0"
+        />
+
+
+</LinearLayout>
