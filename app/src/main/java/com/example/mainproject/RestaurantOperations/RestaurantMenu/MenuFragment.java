@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -35,7 +34,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
     private List<MenuItem> menuItem,addToCart;
     private List<MenuItemForListView> menuItemForListViews;
     private MenuFragmentMethods menuFragmentMethods;
-    private Spinner selectedItems;
+
 
 
     public MenuFragment() {
@@ -60,12 +59,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
     private void initialize(View v){
         menuList=v.findViewById(R.id.menuList);
         menuItemForListViews=new ArrayList<>();
-        for(int i=0;i<10;i++)
+        for(int i=0;i<32;i++)
         {
             menuItemForListViews.add(new MenuItemForListView("Item "+(i+1),"100"));
         }
         menuListAdapter=new MenuListAdapter(getActivity(),menuItemForListViews);
-        selectedItems=v.findViewById(R.id.selectedItems);
+
     }
 
     @Override
@@ -90,10 +89,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                     cartItems++;
                 }
             }
+
             if(cartItems==0)
                 Message.message(getActivity(),"Please select at least one item");
             else {
-                menuFragmentMethods.sendMenuItems(addToCart);
+                int total=calculateTotalCost();
+                menuFragmentMethods.sendMenuItems(addToCart,total);
             }
 
 
@@ -106,9 +107,22 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
 
     }
 
+    private int calculateTotalCost() {
+        int total=0;
+        for(int i=0;i<addToCart.size();i++)
+        {
+            total+=Integer.parseInt(addToCart.get(i).getPrice());
+        }
+        return total;
+    }
+
     @SuppressLint("ResourceAsColor")
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        menuList.setFocusable(true);
+        int itemPositionInVisibleRegion=i-menuList.getFirstVisiblePosition();
+        int firstVisible=menuList.getFirstVisiblePosition();
+      //  Log.d(TAG, "onItemClick: visible pos"+menuList.getFirstVisiblePosition());
         CheckBox checkBox;
         TextView name,price;
         view.setSelected(true);
@@ -116,25 +130,48 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
         name=view.findViewById(R.id.menuItemName);
         price=view.findViewById(R.id.itemPrice);
         boolean checked=checkBox.isChecked();
-        checkBox.setChecked(!checked);
-        if(!checked)
-        {
-            view.setBackgroundColor(R.color.pink);
-            menuItemForListViews.get(i).setSelected(true);
-        }
-        else
-        {
-            view.setBackgroundColor(android.R.color.background_light);
-            menuItemForListViews.get(i).setSelected(false);
-        }
+        if(name.getText().toString().equals(menuItemForListViews.get(i).getName())) {
+            checkBox.setChecked(!checked);
+            if (!checked) {
+                menuItemForListViews.get(i).setSelected(true);
 
+//                spinnerList.add(menuItemForListViews.get(i).getName());
+
+            } else {
+                menuItemForListViews.get(i).setSelected(false);
+               // spinnerList.remove(menuItemForListViews.get(i).getName());
+            }
+        }
+/*
+        arrayAdapter=new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_item,spinnerList);
+        selectedItems.setAdapter(arrayAdapter);
+*/
+
+        menuListAdapter=new MenuListAdapter(getActivity(),menuItemForListViews);
+        menuList.setAdapter(menuListAdapter);
+         int j=itemPositionInVisibleRegion;
+         int k=i;
+         if(firstVisible==0) {
+             while (j >=menuList.getFirstVisiblePosition()) {
+                 menuList.setSelection(k);
+                 k--;
+                 j--;
+             }
+         }
+         else {
+             while (j >menuList.getFirstVisiblePosition()) {
+                 menuList.setSelection(k);
+                 k--;
+                 j--;
+             }
+         }
 
     }
 
 
 
     public interface MenuFragmentMethods{
-        void sendMenuItems(List<MenuItem> cart);
+        void sendMenuItems(List<MenuItem> cart,int total);
     }
 
 

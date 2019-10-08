@@ -8,15 +8,7 @@
     tools:context=".RestaurantOperations.RestaurantMenu.MenuFragment"
     android:id="@+id/frameLAyout"
     android:orientation="vertical">
-  <androidx.appcompat.widget.Toolbar
-      android:layout_width="wrap_content"
-      android:layout_height="?attr/actionBarSize">
-    <Spinner
-      android:id="@+id/selectedItems"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="330dp"/>
-  </androidx.appcompat.widget.Toolbar>
+
 
   <ListView
       android:id="@+id/menuList"

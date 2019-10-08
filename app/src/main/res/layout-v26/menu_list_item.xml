@@ -40,16 +40,8 @@
         android:layout_marginRight="2dp"
         android:layout_toRightOf="@id/itemPrice"
         android:checked="false"
-        android:clickable="false"/>
-    <TextView
-        android:id="@+id/itemDesription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/menuItemName"
-        android:text="Description"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:clickable="false"/>
+        android:clickable="false"
+       />
+
 
 </RelativeLayout>

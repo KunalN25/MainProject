@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.mainproject.PaymentsAndBalance.PaymentActivity;
 import com.example.mainproject.R;
 
 import java.util.Objects;
@@ -56,6 +57,9 @@ public class AccountFragment extends Fragment implements AdapterView.OnItemClick
         }
         else if(((TextView) view).getText().toString().equals("Add Balance"))
         {
+            Intent intent=new Intent(getActivity(), PaymentActivity.class);
+            intent.putExtra("AddBalance",true);
+            startActivity(intent);
             Log.d(TAG, "onItemClick: Add Balance");
         }
         else if(((TextView) view).getText().toString().equals("Settings"))

@@ -1,5 +1,6 @@
 package com.example.mainproject.RestaurantOperations.RestaurantMenu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ public class MenuListAdapter extends ArrayAdapter {
        this.menuItemForListViews=menuItemForListViews;
     }
 
+    @SuppressLint("ResourceAsColor")
     @NonNull
     @Override
     public View getView(final int position, final View convertView, @NonNull ViewGroup parent) {
@@ -51,6 +53,17 @@ public class MenuListAdapter extends ArrayAdapter {
 
         }
 
+        if(menuItemForListViews.get(position).isSelected()) {
+            holder.listItem.setBackgroundColor(R.color.pink);
+            holder.checkBox.setChecked(true);
+
+
+        } else {
+            holder.listItem.setBackgroundColor(android.R.color.background_light);
+            holder.checkBox.setChecked(false);
+
+        }
+
         holder.names.setText(menuItemForListViews.get(position).getName());
         holder.price.setText(menuItemForListViews.get(position).getPrice());
 
@@ -62,13 +75,12 @@ public class MenuListAdapter extends ArrayAdapter {
 }
 
 class MenuItemViewHolder{
-    TextView names,description,price;
+    TextView names,price;
     ImageView icon;
     CheckBox checkBox;
     RelativeLayout listItem;
     MenuItemViewHolder(View v){
         names=v.findViewById(R.id.menuItemName);
-        description=v.findViewById(R.id.itemDesription);
         price=v.findViewById(R.id.itemPrice);
         icon=v.findViewById(R.id.icon);
         checkBox=v.findViewById(R.id.checkItem);

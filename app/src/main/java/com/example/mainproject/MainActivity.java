@@ -15,8 +15,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mainproject.LoginAndRegistration.LoginPage;
 import com.example.mainproject.LoginAndRegistration.UserData;
-import com.example.mainproject.RestaurantOperations.RestaurantActivity;
-import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 import com.example.mainproject.RestaurantOperations.RestaurantsList.HomeFragment;
 import com.example.mainproject.UserProfilePage.AccountFragment;
 import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
@@ -115,17 +113,7 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
 
     }
 
-    public  static void recyclerViewOnClick(RestaurantJSONItems restaurantJSONItems) {
 
-
-        Intent intent=new Intent(context, RestaurantActivity.class);
-        intent.putExtra("RestaurantData",restaurantJSONItems);
-        context.startActivity(intent);
-
-
-
-
-    }
 
     @Override
     public void logOut() {

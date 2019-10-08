@@ -3,12 +3,10 @@
     package="com.example.mainproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,8 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RestaurantOperations.RestaurantActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".PaymentsAndBalance.PaymentActivity"></activity>
+        <activity
+            android:name=".RestaurantOperations.RestaurantActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserProfilePage.UserProfileActivity"
             android:parentActivityName=".MainActivity" />
@@ -37,9 +37,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyAh-VxU3UdFgLLQ2Rjn2oFFMU2zLSceAys"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAh-VxU3UdFgLLQ2Rjn2oFFMU2zLSceAys" />
     </application>
 
 </manifest>

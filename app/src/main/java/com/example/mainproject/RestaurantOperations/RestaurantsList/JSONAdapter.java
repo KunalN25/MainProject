@@ -2,6 +2,7 @@ package com.example.mainproject.RestaurantOperations.RestaurantsList;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.mainproject.MainActivity;
 import com.example.mainproject.R;
+import com.example.mainproject.RestaurantOperations.RestaurantActivity;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class JSONAdapter extends RecyclerView.Adapter<JSONAdapter.ViewHolder> {
     private Context context;
     private List <RestaurantJSONItems> restaurantsList;
     private final String TAG="Main";
-    public JSONAdapter(Context context, List<RestaurantJSONItems> list) {
+     JSONAdapter(Context context, List<RestaurantJSONItems> list) {
         this.context = context;
         this.restaurantsList = list;
     }
@@ -57,10 +58,15 @@ public class JSONAdapter extends RecyclerView.Adapter<JSONAdapter.ViewHolder> {
         }
         else
             holder.restaurantPhoto.setImageResource(R.drawable.restaurant_default);
+        final RestaurantJSONItems res=restaurantJSONItems;
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.recyclerViewOnClick(restaurantsList.get(position));
+                //MainActivity.recyclerViewOnClick(restaurantsList.get(position));
+
+                Intent intent=new Intent(context, RestaurantActivity.class);
+                intent.putExtra("RestaurantData",res);
+                context.startActivity(intent);
                 Log.d(TAG, "onClick: View clicked");
 
             }

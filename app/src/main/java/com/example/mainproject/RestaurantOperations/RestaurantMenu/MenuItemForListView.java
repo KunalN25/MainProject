@@ -3,7 +3,7 @@ package com.example.mainproject.RestaurantOperations.RestaurantMenu;
 public class MenuItemForListView {
 
     private String name,price;
-    private boolean selected;
+    private boolean selected=false;
 
     public MenuItemForListView(String name, String price) {
         this.name = name;

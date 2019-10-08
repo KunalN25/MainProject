@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/totalText"
+        android:layout_width="50dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="24dp"
+        android:gravity="center"
+        android:text="@string/total"
+        />
+
+    <TextView
+        android:id="@+id/totalValue"
+        android:layout_width="54dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="128dp"
+        android:gravity="center"
+        android:text="@string/rs_0"
+        />
+    <Button
+        android:id="@+id/confirmYourOrderButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/totalText"
+        android:layout_marginHorizontal="40dp"
+        android:text="Confirm"/>
+
+</RelativeLayout>

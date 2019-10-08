@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentsAndBalance.ProceedToPayFragment">
+    <TextView
+        android:id="@+id/gst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="52dp"
+        android:text="GST"
+        android:layout_below="@id/subTotal"/>
+
+    <TextView
+        android:id="@+id/subTotal"
+        android:layout_width="88dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="88dp"
+        android:text="SubTotal"
+        />
+
+    <TextView
+        android:id="@+id/subTotalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="Rs 0"
+        android:layout_toRightOf="@id/subTotal"
+        android:layout_marginLeft="70dp"
+        />
+
+    <TextView
+        android:id="@+id/gstValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="64dp"
+        android:text="Rs 0"
+        android:layout_toRightOf="@id/gst"
+        android:layout_below="@id/subTotalValue"
+        />
+
+    <TextView
+        android:id="@+id/grandTotalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="72dp"
+        android:text="Grand Total"
+        android:layout_below="@id/gst"
+        />
+
+    <TextView
+        android:id="@+id/grandTotalValue"
+        android:layout_width="62dp"
+        android:layout_height="30dp"
+        android:text="Rs 0"
+        android:layout_toRightOf="@id/grandTotalText"
+        android:layout_below="@id/gstValue"
+        android:layout_marginTop="72dp"
+        android:layout_marginStart="60dp"
+        />
+
+    <Button
+        android:id="@+id/payButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pay"
+        android:layout_below="@id/grandTotalText"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="40dp"
+        android:background="@drawable/border_edit_btn"
+
+
+        />
+    <Button
+        android:id="@+id/cancelPaymentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:background="@drawable/border_edit_btn"
+        android:layout_below="@id/payButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+
+</RelativeLayout>
