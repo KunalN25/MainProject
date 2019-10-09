@@ -52,6 +52,23 @@
         android:text="Grand Total"
         android:layout_below="@id/gst"
         />
+    <TextView
+        android:id="@+id/balanceText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/grandTotalText"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="40dp"
+        android:text="Balance"/>
+    <TextView
+        android:id="@+id/balanceValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/balanceText"
+        android:layout_below="@id/grandTotalValue"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="40dp"
+        android:text="Rs.0"/>
 
     <TextView
         android:id="@+id/grandTotalValue"
@@ -69,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pay"
-        android:layout_below="@id/grandTotalText"
+        android:layout_below="@id/balanceText"
         android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="40dp"

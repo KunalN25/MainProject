@@ -2,6 +2,7 @@ package com.example.mainproject.PaymentsAndBalance;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -16,7 +17,8 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
     private double userBalance;
     private FragmentManager manager;
     private FragmentTransaction transaction;
-    boolean paymentSuccess,iscanceled;
+    boolean paymentSuccess,iscanceled,addBalanceFromMainActivity;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
             transaction=manager.beginTransaction();
             if(getIntent().getBooleanExtra("AddBalance",false))
             {
+                addBalanceFromMainActivity=true;
                 startAddBalanceFragment();
             }
             else {
@@ -55,6 +58,7 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
         manager=getSupportFragmentManager();
         userBalance=getUserBalance();
         paymentSuccess=false;
+        addBalanceFromMainActivity=false;
 
 
     }
@@ -80,6 +84,17 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if(AddBalance.listenToTouchEvents)
+        {
+            AddBalance.updateBalance.cancel(true);
+            AddBalance.listenToTouchEvents=false;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void setPaymentCanceled(boolean cancel) {
         iscanceled=cancel;
         onBackPressed();
@@ -88,7 +103,7 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
     @Override
     public void onBackPressed() {
 
-        if(paymentSuccess || iscanceled)
+        if(paymentSuccess || iscanceled || addBalanceFromMainActivity)
             super.onBackPressed();
         else
         {
@@ -103,3 +118,7 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
         Log.d(TAG, "setSuccessful: Success : "+paymentSuccess);
     }
 }
+/*ADD
+* 1.Balance field in database
+* 2.Load balance into the variable
+* 3.Keep a separate class with a balance field especially for BALANCE and the balance will be stored in this throughout the session*/

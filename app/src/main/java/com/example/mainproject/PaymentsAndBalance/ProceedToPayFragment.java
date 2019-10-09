@@ -20,7 +20,7 @@ import com.example.mainproject.R;
 public class ProceedToPayFragment extends Fragment implements View.OnClickListener {
     int totalPrice;
     private static final String TAG="kun";
-    private TextView subTotalText,subTotalValue,gstText,gstValue,grandTotalText,grandTotalValue;
+    private TextView subTotalText,subTotalValue,gstText,gstValue,grandTotalText,grandTotalValue,balanceValue;
     double grandTotal;
     Button payButton,cancelButton;
     ProceedToPayFragmentMethods proceed;
@@ -49,6 +49,8 @@ public class ProceedToPayFragment extends Fragment implements View.OnClickListen
         grandTotal=(totalPrice+gst);
         grandTotalValue.setText("Rs."+grandTotal);
         payButton.setText("Proceed to pay Rs."+grandTotal);
+        balanceValue.setText("Rs."+900+"");//Get Balance from sharedPreferences
+
     }
 
     private void initialize(View v) {
@@ -60,6 +62,7 @@ public class ProceedToPayFragment extends Fragment implements View.OnClickListen
         grandTotalValue=v.findViewById(R.id.grandTotalValue);
         payButton=v.findViewById(R.id.payButton);
         cancelButton=v.findViewById(R.id.cancelPaymentButton);
+        balanceValue=v.findViewById(R.id.balanceValue);
 
     }
 

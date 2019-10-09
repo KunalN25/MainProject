@@ -33,5 +33,6 @@
     <string name="total">Total</string>
     <string name="confirm_your_order">Confirm Your Order</string>
     <string name="rs_0">Rs. 0</string>
+    <string name="add_balance">Add Balance</string>
 
 </resources>

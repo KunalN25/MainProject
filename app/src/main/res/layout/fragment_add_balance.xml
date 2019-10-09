@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PaymentsAndBalance.AddBalance">
-
-    <!-- TODO: Update blank fragment layout -->
+    <ProgressBar
+        android:id="@+id/addBalanceProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/addBalance"
+        android:indeterminate="true"
+        android:visibility="gone"
+        />
     <TextView
+        android:id="@+id/addBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_balance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:textSize="24sp"/>
+    <EditText
+        android:id="@+id/baclanceInPut"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addBalance"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="20dp"
+        android:hint="100"
+        android:inputType="number"
+        />
+    <Button
+        android:id="@+id/addBalanceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_balance"
+        android:background="@drawable/border_edit_btn"
+        android:layout_below="@id/baclanceInPut"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="20dp"/>
 
-</FrameLayout>
+</RelativeLayout>
