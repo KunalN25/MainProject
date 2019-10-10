@@ -19,6 +19,8 @@ import com.bumptech.glide.Glide;
 import com.example.mainproject.R;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 
+import org.json.JSONArray;
+
 
 public class RestaurantFragment extends Fragment implements AdapterView.OnItemClickListener {
 
@@ -28,7 +30,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
 
 
     private  ImageView imageView;
-    private  TextView name,cuisine,city;
+    private  TextView name,/*cuisine,*/city,phone_numbers,ratings;
     ListView listView;
     private  final String TAG="Main";
     private  Context context;
@@ -36,6 +38,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
     private String[] listItems={"Order Now","Reviews"};
     private RestaurantJSONItems restaurantJSONItems;
     private RestaurantFragmentMethods restaurantFragmentMethods;
+    private String reviews;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -53,8 +56,10 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
     private void initialize(View v) {
         imageView=v.findViewById(R.id.fragmentRestaurantPhoto);
         name=v.findViewById(R.id.fragmentRestaurantName);
-        cuisine=v.findViewById(R.id.fragmentCuisine);
+       // cuisine=v.findViewById(R.id.fragmentCuisine);
         city=v.findViewById(R.id.fragmentRestaurantCity);
+        ratings=v.findViewById(R.id.ratings);
+        phone_numbers=v.findViewById(R.id.phoneNumbers);
         listView=v.findViewById(R.id.fragmentListViewForRestaurantProperties);
         context=getActivity();
         if (context != null) {
@@ -80,7 +85,11 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
 
         name.setText(restaurantJSONItems.getName());
         city.setText(restaurantJSONItems.getLocation().getCity());
-        cuisine.setText(restaurantJSONItems.getCuisines());
+        ratings.setText(restaurantJSONItems.getRatings());
+        phone_numbers.setText(restaurantJSONItems.getPhone_numbers());
+        reviews=restaurantJSONItems.getReviews();
+      //  Log.d(TAG, "Restaurant Fragment loadRestaurantIntoFragment: "+reviews);
+       // cuisine.setText(restaurantJSONItems.getCuisines());
         Log.d(TAG, "loadRestaurantIntoFragment: Data loaded into restaurant fragment");
     }
 
@@ -100,10 +109,14 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         else if(((TextView) view).getText().toString().equals("Reviews"))
         {
             Log.d(TAG, "onItemClick: Display Reviews");
+            //Log.d(TAG, "onItemClick: "+reviews);
+            restaurantFragmentMethods.startReviewFragment(reviews);
+
         }
     }
 
     interface RestaurantFragmentMethods{
         void loadMenuList();
+        void startReviewFragment(String reviews);
     }
 }

@@ -7,6 +7,7 @@ public class UserData {
     private String FirstName;
     private String LastName;
     private long MobileNo;
+    private double Balance;
     public  UserData()  //Always declare an empty constructor while taking data from firebase in the form of an object
     {
 
@@ -42,5 +43,13 @@ public class UserData {
 
     public void setMobileNo(long mobileNo) {
         MobileNo = mobileNo;
+    }
+
+    public double getBalance() {
+        return Balance;
+    }
+
+    public void setBalance(double balance) {
+        Balance = balance;
     }
 }

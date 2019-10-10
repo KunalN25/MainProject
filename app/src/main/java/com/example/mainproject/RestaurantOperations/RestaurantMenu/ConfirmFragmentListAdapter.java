@@ -1,4 +1,4 @@
-package com.example.mainproject.RestaurantOperations;
+package com.example.mainproject.RestaurantOperations.RestaurantMenu;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.mainproject.R;
-import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 
 import java.util.List;
 

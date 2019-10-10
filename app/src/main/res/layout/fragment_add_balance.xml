@@ -19,8 +19,9 @@
         android:layout_height="wrap_content"
         android:text="@string/add_balance"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="40dp"
         android:textSize="24sp"/>
+
     <EditText
         android:id="@+id/baclanceInPut"
         android:layout_width="match_parent"
@@ -40,5 +41,15 @@
         android:layout_below="@id/baclanceInPut"
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/yourBalanceinAddBalanceFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/addBalance"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="-44dp"
+
+        android:text="Your Balance:" />
 
 </RelativeLayout>

@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.mainproject.LoginAndRegistration.LoginPage;
 import com.example.mainproject.LoginAndRegistration.UserData;
 import com.example.mainproject.RestaurantOperations.RestaurantsList.HomeFragment;
+import com.example.mainproject.PaymentsAndBalance.UserAccountBalance;
 import com.example.mainproject.UserProfilePage.AccountFragment;
 import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
 import com.google.android.gms.common.ConnectionResult;
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
                 sharePreferencesHelper.addToPreference("FirstName",userData.getFirstName());
                 sharePreferencesHelper.addToPreference("LastName",userData.getLastName());
                 sharePreferencesHelper.addToPreference("MobileNumber",userData.getMobileNo()+"");
+                UserAccountBalance.USER_BALANCE=userData.getBalance();
                 Log.d(TAG, "onDataChange: Data loaded");
             }
 

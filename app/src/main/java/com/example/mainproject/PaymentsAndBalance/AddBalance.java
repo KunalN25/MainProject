@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -27,8 +28,10 @@ public class AddBalance extends Fragment implements View.OnClickListener {
     private EditText balanceIn;
     private Button addBtn;
     private double balance;
+    private TextView yourBal;
     static UpdateBalance updateBalance;
     static boolean listenToTouchEvents;
+    private AddBalanceMethods addBalanceMethods;
     public AddBalance() {
         // Required empty public constructor
     }
@@ -41,6 +44,7 @@ public class AddBalance extends Fragment implements View.OnClickListener {
         View v=inflater.inflate(R.layout.fragment_add_balance, container, false);
         initialize(v);
         addBtn.setOnClickListener(this);
+        yourBal.setText("Your Balance :Rs. "+balance);
 
         return v;
     }
@@ -50,11 +54,17 @@ public class AddBalance extends Fragment implements View.OnClickListener {
         addBtn=v.findViewById(R.id.addBalanceButton);
         progressBar=v.findViewById(R.id.addBalanceProgress);
         listenToTouchEvents=false;
-        balance=500;
+        balance= UserAccountBalance.USER_BALANCE;
+        yourBal=v.findViewById(R.id.yourBalanceinAddBalanceFragment);
 
         //balance=load balance from sharedpreferences
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        addBalanceMethods=(AddBalanceMethods)context;
+    }
 
     @Override
     public void onClick(View view) {
@@ -75,6 +85,11 @@ public class AddBalance extends Fragment implements View.OnClickListener {
             try {
 
                 balance=updateBalance.get();
+                UserAccountBalance.USER_BALANCE=balance;
+                addBalanceMethods.updateBalanceInDatabase();
+                yourBal.setText("Your Balance :Rs. "+balance);
+
+
             } catch (ExecutionException e) {
                 Log.d("tag", "onClick: "+e.toString());
             } catch (InterruptedException e) {
@@ -84,10 +99,12 @@ public class AddBalance extends Fragment implements View.OnClickListener {
         }
 
     }
-
-    private void updateBalance() {
+    interface AddBalanceMethods{
+        void updateBalanceInDatabase();
     }
-     static class UpdateBalance extends AsyncTask<Double,Void,Double>{
+
+
+    static class UpdateBalance extends AsyncTask<Double,Void,Double>{
         Context context;
 
          public UpdateBalance(Context context) {
@@ -122,4 +139,5 @@ public class AddBalance extends Fragment implements View.OnClickListener {
             return balance;
         }
     }
+
 }

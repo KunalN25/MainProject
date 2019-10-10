@@ -1,5 +1,6 @@
 package com.example.mainproject.RestaurantOperations.RestaurantsList;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,7 +63,6 @@ public class HomeFragment extends Fragment  {
 
 
 
-
     public  void showView(String jsonData)
     {
         restaurantJSONItemsList=new ArrayList<>();      //We re-initialize the arraylist everytime the search button is clicked
@@ -90,13 +90,15 @@ public class HomeFragment extends Fragment  {
                 JSONObject location=restaurantData.getJSONObject("location");
                 restaurantJSONItemsList.add(new RestaurantJSONItems(restaurantData.getString("name"),
                         restaurantData.getString("featured_image"),
-                        restaurantData.getString("id"),
                         restaurantData.getInt("average_cost_for_two"),
                         new RestaurantLocation(location.getString("city"),
                                 location.getString("address"),
                                 location.getString("locality_verbose")),
-                        restaurantData.getString("cuisines")
-                ));
+                        restaurantData.getString("cuisines"),
+                        restaurantData.getString("phone_numbers"),
+                        restaurantData.getJSONObject("user_rating").getString("aggregate_rating"),
+                        restaurantData.getJSONObject("all_reviews").getJSONArray("reviews").toString()));
+
 
 
             }
@@ -104,7 +106,6 @@ public class HomeFragment extends Fragment  {
             e.printStackTrace();
         }
 
-        Log.d(TAG, "loadFromMumbaiRestaurants: "+restaurantJSONItemsList.get(0).getName());
     }
 
 
@@ -114,7 +115,7 @@ public class HomeFragment extends Fragment  {
         String latitude="19.1511";//lat.getText().toString();
         String longitude="72.9372";//longit.getText().toString();
         Log.d(TAG, "onClick: Submit clicked");
-        String URL = basicURL+"/search?lat="+latitude+"&lon="+longitude+"&radius=5000&sort=real_distance";
+        String URL = basicURL+"/search?lat="+latitude+"&lon="+longitude;//+"&radius=5000&sort=real_distance";
         GetZomatoData getZomatoData=new GetZomatoData(getActivity());
         getZomatoData.execute(URL);
         String jsonData=null;
@@ -126,7 +127,9 @@ public class HomeFragment extends Fragment  {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if(jsonData!=null)
+        if(jsonData!=null){
             showView(jsonData);
+        }
     }
+
 }

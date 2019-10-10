@@ -212,6 +212,7 @@ public class Register extends AppCompatActivity implements OnCompleteListener {
                 userData.setLastName(last);
                 userData.setEmail(email);
                 userData.setMobileNo(nu);
+                userData.setBalance(100);
                 addToDatabase(userData);       //Add the additional data to the database corresponding to the user
 
                 Message.message(getApplicationContext(), "Registered Successfully\nProceed to login");
