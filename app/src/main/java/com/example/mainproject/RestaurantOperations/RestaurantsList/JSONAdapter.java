@@ -24,7 +24,7 @@ import java.util.List;
 public class JSONAdapter extends RecyclerView.Adapter<JSONAdapter.ViewHolder> {
     private Context context;
     private List <RestaurantJSONItems> restaurantsList;
-    private final String TAG="Main";
+    private final String TAG="kun";
      JSONAdapter(Context context, List<RestaurantJSONItems> list) {
         this.context = context;
         this.restaurantsList = list;
@@ -45,11 +45,10 @@ public class JSONAdapter extends RecyclerView.Adapter<JSONAdapter.ViewHolder> {
         Log.d(TAG, "onBindViewHolder: Called");
         RestaurantJSONItems restaurantJSONItems=restaurantsList.get(position);
         holder.restaurantName.setText(restaurantJSONItems.getName());
-        holder.cuisines.setText("Cuisines: "+restaurantJSONItems.getCuisines());
-        holder.city.setText("City: "+restaurantJSONItems.getLocation().getCity());
-        holder.address.setText("Address: "+restaurantJSONItems.getLocation().getAddress());
-        holder.local.setText("Locality: "+restaurantJSONItems.getLocation().getLocality_verbose());
-        if(!restaurantJSONItems.getPhotos_url().isEmpty()) {
+        holder.cuisines.setText(restaurantJSONItems.getCuisines());
+        holder.rating.setText(restaurantJSONItems.getRatings());
+        Log.d(TAG, "onBindViewHolder: "+restaurantJSONItems.getRatings());
+          if(!restaurantJSONItems.getPhotos_url().isEmpty()) {
             Glide.with(context)
                     .asBitmap()
                     .fitCenter()
@@ -83,17 +82,15 @@ public class JSONAdapter extends RecyclerView.Adapter<JSONAdapter.ViewHolder> {
 
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView restaurantName,city,cuisines,address,local;
+        private TextView restaurantName,cuisines,rating;
         private ImageView restaurantPhoto;
         LinearLayout linearLayout;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             restaurantPhoto=itemView.findViewById(R.id.photo);
             restaurantName=itemView.findViewById(R.id.name);
-            local=itemView.findViewById(R.id.locality);
-            city=itemView.findViewById(R.id.city);
+            rating=itemView.findViewById(R.id.ratingOnRecyclerView);
             cuisines=itemView.findViewById(R.id.cuisines);
-            address=itemView.findViewById(R.id.address);
             linearLayout=itemView.findViewById(R.id.restaurantCardViewLayout);
         }
     }

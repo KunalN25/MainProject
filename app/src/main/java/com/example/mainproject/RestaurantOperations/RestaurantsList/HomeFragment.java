@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment  {
     }
 
 
-    public void loadJSONDataFromZomato() {
+    private void loadJSONDataFromZomato() {
         final String basicURL="https://developers.zomato.com/api/v2.1";
 
         String latitude="19.1511";//lat.getText().toString();

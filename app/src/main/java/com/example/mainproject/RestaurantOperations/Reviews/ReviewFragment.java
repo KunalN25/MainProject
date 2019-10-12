@@ -30,7 +30,7 @@ import java.util.List;
 public class ReviewFragment extends Fragment {
     private RecyclerView recyclerView;
     private String TAG="Main";
-    List<ReviewData> reviewDataList;
+    private List<ReviewData> reviewDataList;
     private String reviewsString;
 
 
@@ -56,7 +56,7 @@ public class ReviewFragment extends Fragment {
 
 
     }
-    public  void showView()
+    private  void showView()
     {
         reviewDataList=new ArrayList<>();      //We re-initialize the arraylist everytime the search button is clicked
         //as it should reload the list when new item is searched.

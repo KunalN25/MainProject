@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.borjabravo.readmoretextview.ReadMoreTextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.example.mainproject.R;
@@ -69,13 +70,14 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.Vi
 
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView name,rating,text;
+        private TextView name,rating;
+        private ReadMoreTextView text;
         private ImageView customerPhoto;
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.reviewUserName);
             rating=itemView.findViewById(R.id.ratingText);
-            text=itemView.findViewById(R.id.reviewText);
+            text=itemView.findViewById(R.id.reviewTextExpand);
             customerPhoto=itemView.findViewById(R.id.reviewProfilePhoto);
         }
     }

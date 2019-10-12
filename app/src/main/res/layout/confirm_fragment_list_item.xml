@@ -6,7 +6,7 @@
         android:id="@+id/confirmName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="30dp"
         android:text="Name"
         android:textSize="17sp"/>
     <TextView
@@ -14,6 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price"
-        android:layout_marginLeft="140dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginEnd="40dp"
         android:textSize="17sp"/>
 </LinearLayout>

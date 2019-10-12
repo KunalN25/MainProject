@@ -65,7 +65,7 @@ public class MenuListAdapter extends ArrayAdapter {
         }
 
         holder.names.setText(menuItemForListViews.get(position).getName());
-        holder.price.setText(menuItemForListViews.get(position).getPrice());
+        holder.price.setText(menuItemForListViews.get(position).getPrice()+"");
 
         return row;
     }
@@ -76,7 +76,7 @@ public class MenuListAdapter extends ArrayAdapter {
 
 class MenuItemViewHolder{
     TextView names,price;
-    ImageView icon;
+    private ImageView icon;
     CheckBox checkBox;
     RelativeLayout listItem;
     MenuItemViewHolder(View v){

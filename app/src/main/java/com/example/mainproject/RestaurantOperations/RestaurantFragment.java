@@ -17,9 +17,12 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.mainproject.R;
+import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 
 import org.json.JSONArray;
+
+import java.util.List;
 
 
 public class RestaurantFragment extends Fragment implements AdapterView.OnItemClickListener {
@@ -88,10 +91,12 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         ratings.setText(restaurantJSONItems.getRatings());
         phone_numbers.setText(restaurantJSONItems.getPhone_numbers());
         reviews=restaurantJSONItems.getReviews();
-      //  Log.d(TAG, "Restaurant Fragment loadRestaurantIntoFragment: "+reviews);
+       Log.d(TAG, "Restaurant Fragment loadRestaurantIntoFragment: "+restaurantJSONItems.getCuisines());
        // cuisine.setText(restaurantJSONItems.getCuisines());
         Log.d(TAG, "loadRestaurantIntoFragment: Data loaded into restaurant fragment");
     }
+
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -104,7 +109,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         if(((TextView) view).getText().toString().equals("Order Now"))
         {
             Log.d(TAG, "onItemClick: Display Menu");
-            restaurantFragmentMethods.loadMenuList();
+            restaurantFragmentMethods.loadMenuList(restaurantJSONItems.getCuisines());
         }
         else if(((TextView) view).getText().toString().equals("Reviews"))
         {
@@ -115,8 +120,9 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         }
     }
 
+
     interface RestaurantFragmentMethods{
-        void loadMenuList();
+        void loadMenuList(String cuisines);
         void startReviewFragment(String reviews);
     }
 }

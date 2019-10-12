@@ -2,20 +2,22 @@ package com.example.mainproject.RestaurantOperations.RestaurantMenu;
 
 public class MenuItemForListView {
 
-    private String name,price;
-    private boolean selected=false;
+    private String name;
+    private int price;
+    private boolean selected=false,type;
 
-    public MenuItemForListView(String name, String price) {
+    public MenuItemForListView(String name, int price, boolean type) {
         this.name = name;
         this.price = price;
 
+        this.type = type;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -25,5 +27,9 @@ public class MenuItemForListView {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+
+    public boolean isType() {
+        return type;
     }
 }

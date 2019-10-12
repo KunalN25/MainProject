@@ -24,8 +24,6 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantF
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private static final String TAG = "kun";
-    ConfirmFragment confirmFragment;
-    MenuFragment menuFragment;
 
 
     @Override
@@ -52,11 +50,12 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantF
 
 
     @Override
-    public void loadMenuList() {
-        menuFragment = new MenuFragment();
+    public void loadMenuList(String cuisines) {
+        MenuFragment menuFragment = new MenuFragment();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.restaurantLAyout, menuFragment);
         fragmentTransaction.addToBackStack("MenuFragment").commit();
+        menuFragment.setCuisines(cuisines);
     }
 
 
@@ -75,7 +74,7 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantF
     @Override
     public void sendMenuItems(List<MenuItem> cart, int totalPrice) {
         fragmentManager = getSupportFragmentManager();
-        confirmFragment = new ConfirmFragment();
+        ConfirmFragment confirmFragment = new ConfirmFragment();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.restaurantLAyout, confirmFragment);
         fragmentTransaction.addToBackStack("BillFragment").commit();
