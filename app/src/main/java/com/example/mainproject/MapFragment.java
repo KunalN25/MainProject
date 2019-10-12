@@ -1,6 +1,8 @@
 package com.example.mainproject;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -38,27 +40,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapFragment extends Fragment  implements OnMapReadyCallback {
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        //makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "onMapReady: map is ready");
-        mMap = googleMap;
-
-        if (mLocationPermissionsGranted) {
-            getDeviceLocation();
-
-            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
-                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            mMap.setMyLocationEnabled(true);
-            mMap.getUiSettings().setMyLocationButtonEnabled(false);
-
-            init();
-        }
-    }
+public class MapFragment extends Fragment   {
 
     private static final String TAG = "MapActivity";
 
@@ -66,6 +48,17 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
+    private SupportMapFragment mapFragment;
+
+    //data to be passed in web request stored in below declared variables
+    private String myLocation;
+    private double myLocationLat;
+    private double myLocationLng;
+    private String searchedPlace;
+    private double searchedLat;
+    private double searchedLng;
+
+
 
     //widgets
     private EditText mSearchText;
@@ -82,6 +75,7 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
         View v=inflater.inflate(R.layout.fragment_map,container,false);
         mSearchText =v.findViewById(R.id.input_search);
         mGps = v.findViewById(R.id.ic_gps);
+        mapFragment=(SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
 
         getLocationPermission();
 
@@ -89,7 +83,7 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
         //    Places.initialize(getApplicationContext(), "AIzaSyD_t1wQGD1YmHz4ZaAYIroY8UPpJrOurDE");
         //}
 
-        // Initialize the AutocompleteSupportFragment.
+        // Initialize the AutocompleteSupportFragment.ed
         /*AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
@@ -165,13 +159,15 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
 
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,
                     address.getAddressLine(0));
+            searchedLat=address.getLatitude();
+            searchedLng=address.getLongitude();
         }
     }
 
     private void getDeviceLocation () {
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
         try {
             if (mLocationPermissionsGranted) {
@@ -212,7 +208,9 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
                                     DEFAULT_ZOOM,
                                     "My Location");
                             Log.d(TAG, String.valueOf(currentLocation.getLatitude())+String.valueOf(currentLocation.getLongitude()));
-
+                            myLocationLat=currentLocation.getLatitude();
+                            myLocationLng=currentLocation.getLongitude();
+                            //put intent here and pass above two values
                         } else {
                             Log.d(TAG, "onComplete: current location is null");
                             //makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
@@ -240,20 +238,44 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
     }
 
     private void initMap () {
-        Log.d(TAG, "initMap: initializing map");
-        SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
 
-        mapFragment.getMapAsync((OnMapReadyCallback) getActivity());
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                //makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onMapReady: map is ready");
+                mMap = googleMap;
+
+                if (mLocationPermissionsGranted) {
+                    getDeviceLocation();
+
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
+                            Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    mMap.setMyLocationEnabled(true);
+                    mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
+                    init();
+                }
+            }
+
+        });
+        Log.d(TAG, "initMap: initializing map");
+
     }
+
+
 
     private void getLocationPermission () {
         Log.d(TAG, "getLocationPermission: getting location permissions");
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION};
 
-        if (ContextCompat.checkSelfPermission(this.getActivity(),
+        if (ContextCompat.checkSelfPermission(getActivity(),
                 FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            if (ContextCompat.checkSelfPermission(this.getActivity(),
+            if (ContextCompat.checkSelfPermission(getActivity(),
                     COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 mLocationPermissionsGranted = true;
                 initMap();
