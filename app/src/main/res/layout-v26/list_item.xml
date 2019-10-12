@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:background="@drawable/border_edit"
 
 
@@ -17,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="10dp"
         android:weightSum="5.5"
 
 
@@ -64,7 +64,8 @@
             android:text="0.0"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="20dp"
-            android:layout_weight="0.5"
+            android:layout_weight="0.6"
+            android:gravity="center"
             android:background="@drawable/border_edit_for_rating"/>
     </LinearLayout>
 
