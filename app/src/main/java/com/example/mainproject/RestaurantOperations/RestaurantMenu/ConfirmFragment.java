@@ -1,4 +1,4 @@
-package com.example.mainproject.RestaurantOperations;
+package com.example.mainproject.RestaurantOperations.RestaurantMenu;
 
 
 import android.content.Context;
@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.mainproject.R;
-import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 
 import java.util.List;
 
@@ -64,7 +63,7 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    void getMenuItems(List<com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem> cart, int totalPrice) {
+    public void getMenuItems(List<com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem> cart, int totalPrice) {
         this.cart=cart;
         this.totalPrice=totalPrice;
 
@@ -74,7 +73,7 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         confirmFragmentMethods.startPaymentActivity(totalPrice);
     }
-    interface ConfirmFragmentMethods{
+    public interface ConfirmFragmentMethods{
         void startPaymentActivity(int total);
     }
 }

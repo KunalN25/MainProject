@@ -49,7 +49,7 @@ public class ProceedToPayFragment extends Fragment implements View.OnClickListen
         grandTotal=(totalPrice+gst);
         grandTotalValue.setText("Rs."+grandTotal);
         payButton.setText("Proceed to pay Rs."+grandTotal);
-        balanceValue.setText("Rs."+900+"");//Get Balance from sharedPreferences
+        balanceValue.setText("Rs."+ UserAccountBalance.USER_BALANCE +"");//Get Balance from sharedPreferences
 
     }
 

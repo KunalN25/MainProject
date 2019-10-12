@@ -1,5 +1,6 @@
-package com.example.mainproject.RestaurantOperations;
+package com.example.mainproject.RestaurantOperations.RestaurantMenu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.mainproject.R;
-import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 
 import java.util.List;
 
@@ -24,6 +24,7 @@ public class ConfirmFragmentListAdapter extends ArrayAdapter {
         this.menuItems=menuItems;
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView( int position,  View convertView, @NonNull ViewGroup parent) {
@@ -51,7 +52,8 @@ public class ConfirmFragmentListAdapter extends ArrayAdapter {
 
 
         holder.names.setText(menuItems.get(position).getName());
-        holder.price.setText(menuItems.get(position).getPrice());
+
+        holder.price.setText(menuItems.get(position).getPrice()+"");
 
         return row;
     }

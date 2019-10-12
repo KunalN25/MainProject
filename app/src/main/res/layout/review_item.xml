@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/reviewCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+
+    >
+<RelativeLayout
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_edit"
+
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/reviewProfilePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/reviewUserName"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="56dp"
+        android:layout_toRightOf="@id/reviewProfilePhoto"
+
+        android:text="TextView"
+         />
+
+    <com.borjabravo.readmoretextview.ReadMoreTextView
+        android:id="@+id/reviewTextExpand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reviewUserName"
+        android:layout_toRightOf="@id/reviewProfilePhoto"
+        app:trimLength="2"
+        app:trimMode="trimModeLine"
+        app:trimExpandedText="Show less"
+        app:trimCollapsedText="Show more"
+
+
+        />
+
+
+    <TextView
+        android:id="@+id/ratingText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="48dp"
+        android:text="TextView"
+        android:layout_toRightOf="@id/reviewUserName"
+
+        />
+
+
+
+
+</RelativeLayout>
+</androidx.cardview.widget.CardView>

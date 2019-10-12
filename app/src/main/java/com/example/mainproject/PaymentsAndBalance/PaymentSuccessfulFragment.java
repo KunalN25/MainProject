@@ -41,6 +41,7 @@ public class PaymentSuccessfulFragment extends Fragment {
 
     interface PaymentSuccessfullMethods{
         void setSuccessful(boolean success);
+        void notifyOrderPlaced();
     }
 
 }

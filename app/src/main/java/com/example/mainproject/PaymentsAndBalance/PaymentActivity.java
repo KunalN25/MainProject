@@ -10,8 +10,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.mainproject.R;
 import com.example.mainproject.UtilityClasses.Message;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-public class PaymentActivity extends AppCompatActivity implements ProceedToPayFragment.ProceedToPayFragmentMethods, PaymentSuccessfulFragment.PaymentSuccessfullMethods {
+public class PaymentActivity extends AppCompatActivity implements AddBalance.AddBalanceMethods,ProceedToPayFragment.ProceedToPayFragmentMethods, PaymentSuccessfulFragment.PaymentSuccessfullMethods {
     private static final String TAG="kun";
     private int totalPrice;
     private double userBalance;
@@ -64,12 +68,11 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
     }
 
     private double getUserBalance(){
-        return 900;//Get the balance stored in sharedPreferences
+        return UserAccountBalance.USER_BALANCE;//Get the balance stored in sharedPreferences
     }
     @Override
     public void proceedToPay(double grandTotal) {
         if(grandTotal>getUserBalance()){
-            //Create a Dialog fragmetn showing not sufficient balance and ADD balance button
             Message.message(this,"Not enough balance");
         }
         else{
@@ -79,9 +82,24 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
             Message.message(this,"payment successful\nBalance left: "+userBalance);
             transaction=manager.beginTransaction();
             transaction.replace(R.id.paymentPage,new PaymentSuccessfulFragment()).commit();
+            UserAccountBalance.USER_BALANCE=userBalance;
+            updateBalanceInDatabase();
 
         }
     }
+    @Override
+    public  void updateBalanceInDatabase() {
+        Log.d(TAG, "updateBalanceInDatabase: called");
+        FirebaseAuth auth=FirebaseAuth.getInstance();
+        FirebaseUser user=auth.getCurrentUser();
+        try {
+            DatabaseReference dRef = FirebaseDatabase.getInstance().getReference(user.getUid());
+            dRef.child("balance").setValue(UserAccountBalance.USER_BALANCE);
+        }catch (NullPointerException ne){
+            Message.message(this,ne.toString());
+        }
+    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -116,6 +134,11 @@ public class PaymentActivity extends AppCompatActivity implements ProceedToPayFr
     public void setSuccessful(boolean success) {
         paymentSuccess=success;
         Log.d(TAG, "setSuccessful: Success : "+paymentSuccess);
+    }
+
+    @Override
+    public void notifyOrderPlaced() {
+
     }
 }
 /*ADD
