@@ -31,13 +31,7 @@
         <activity
             android:name=".LoginAndRegistration.Register"
             android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
         <activity android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
 
