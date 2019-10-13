@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">Crave Better</string>
     <string name="username">Username</string>
     <string name="pass">Password</string>
     <string name="last">Last name</string>

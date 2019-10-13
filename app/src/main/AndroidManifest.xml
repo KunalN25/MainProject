@@ -31,17 +31,27 @@
         <activity
             android:name=".LoginAndRegistration.Register"
             android:windowSoftInputMode="stateVisible|adjustPan" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAh-VxU3UdFgLLQ2Rjn2oFFMU2zLSceAys" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
