@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PaymentsAndBalance.ProceedToPayFragment">
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         >
         <TextView
-            android:id="@+id/gst"
+            android:id="@+id/subTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="52dp"
-            android:text="GST"
-            android:layout_below="@id/subTotal"/>
-
-        <TextView
-            android:id="@+id/subTotal"
-            android:layout_width="88dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="88dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="88dp"
             android:text="SubTotal"
+            android:textSize="19sp"
             />
 
         <TextView
@@ -34,57 +25,79 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="88dp"
             android:text="Rs 0"
-            android:layout_toRightOf="@id/subTotal"
-            android:layout_marginLeft="70dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="90dp"
+            android:layout_alignBaseline="@id/subTotal"
+            android:textSize="19sp"
             />
+
+        <TextView
+            android:id="@+id/gst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="52dp"
+            android:text="GST"
+            android:layout_below="@id/subTotal"
+            android:textSize="19sp" />
+
 
         <TextView
             android:id="@+id/gstValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
             android:layout_marginTop="64dp"
             android:text="Rs 0"
-            android:layout_toRightOf="@id/gst"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="90dp"
+
             android:layout_below="@id/subTotalValue"
+            android:layout_alignBaseline="@id/gst"
+            android:textSize="19sp"
             />
+
 
         <TextView
             android:id="@+id/grandTotalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="88dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="72dp"
             android:text="Grand Total"
             android:layout_below="@id/gst"
-            />
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/grandTotalValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs 0"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="90dp"
+            android:layout_below="@id/gstValue"
+            android:layout_marginTop="72dp"
+            android:textSize="19sp" />
         <TextView
             android:id="@+id/balanceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/grandTotalText"
-            android:layout_marginStart="88dp"
+            android:layout_marginStart="48dp"
             android:layout_marginTop="40dp"
-            android:text="Balance"/>
+            android:text="Balance"
+            android:textSize="19sp" />
         <TextView
             android:id="@+id/balanceValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/balanceText"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="90dp"
             android:layout_below="@id/grandTotalValue"
-            android:layout_marginStart="120dp"
             android:layout_marginTop="40dp"
-            android:text="Rs.0"/>
+            android:textSize="19sp"
+            android:text="Rs.0"
+            android:layout_alignBaseline="@id/balanceText"
 
-        <TextView
-            android:id="@+id/grandTotalValue"
-            android:layout_width="62dp"
-            android:layout_height="30dp"
-            android:text="Rs 0"
-            android:layout_toRightOf="@id/grandTotalText"
-            android:layout_below="@id/gstValue"
-            android:layout_marginTop="72dp"
-            android:layout_marginStart="60dp"
             />
 
         <Button
@@ -113,4 +126,3 @@
 
     </RelativeLayout>
 </ScrollView>
-

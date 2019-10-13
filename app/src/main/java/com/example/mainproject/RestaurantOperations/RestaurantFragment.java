@@ -33,8 +33,9 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
 
 
     private  ImageView imageView;
-    private  TextView name,/*cuisine,*/city,phone_numbers,ratings;
-    ListView listView;
+    private TextView name,/*cuisine,*/
+            address, phone_numbers, ratings;
+    private ListView listView;
     private  final String TAG="Main";
     private  Context context;
     private ArrayAdapter<String> arrayAdapter;
@@ -60,7 +61,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         imageView=v.findViewById(R.id.fragmentRestaurantPhoto);
         name=v.findViewById(R.id.fragmentRestaurantName);
        // cuisine=v.findViewById(R.id.fragmentCuisine);
-        city=v.findViewById(R.id.fragmentRestaurantCity);
+        address = v.findViewById(R.id.fragmentRestaurantAddress);
         ratings=v.findViewById(R.id.ratings);
         phone_numbers=v.findViewById(R.id.phoneNumbers);
         listView=v.findViewById(R.id.fragmentListViewForRestaurantProperties);
@@ -87,7 +88,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
             imageView.setImageResource(R.drawable.restaurant_default);
 
         name.setText(restaurantJSONItems.getName());
-        city.setText(restaurantJSONItems.getLocation().getCity());
+        address.setText(restaurantJSONItems.getLocation().getAddress());
         ratings.setText(restaurantJSONItems.getRatings());
         phone_numbers.setText(restaurantJSONItems.getPhone_numbers());
         reviews=restaurantJSONItems.getReviews();

@@ -32,8 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-
-public class MainActivity extends AppCompatActivity implements AccountFragment.AccountFragmentMethods, BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements MapFragment.MapFragmentMethods, AccountFragment.AccountFragmentMethods, BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG="Main";
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
@@ -41,28 +40,32 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
     FirebaseUser firebaseUser;
     SharePreferencesHelper sharePreferencesHelper;
     private static final int ERROR_DIALOG_REQUEST=9001;
+    HomeFragment homeFragment;
+    MapFragment mapFragment;
 
     @SuppressLint("StaticFieldLeak")
 
     private static Context context;
+    private static boolean animationFlag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startAnimation();
         redirectToLogin();
         setContentView(R.layout.activity_main);
 
         initialize();
 
         loadIntoSharedPreferences();
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
-
+        if (isServicesOK()) {
+            BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+            bottomNavigationView.setSelectedItemId(R.id.nav_map);
+            bottomNavigationView.setOnNavigationItemSelectedListener(this);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mapFragment).commit();
+        }
 
     }
-
-
 
 
     public void initialize()    //Put every variable initialization in this function
@@ -73,8 +76,18 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
             databaseReference=FirebaseDatabase.getInstance().getReference(firebaseUser.getUid());
         sharePreferencesHelper = new SharePreferencesHelper(this);
         context=getApplicationContext();
+        homeFragment = new HomeFragment();
+        mapFragment = new MapFragment();
 
 
+    }
+
+    private void startAnimation() {
+        if (animationFlag) {
+            startActivity(new Intent(this, SplashActivity.class));
+            finish();
+            animationFlag = false;
+        }
     }
     public void redirectToLogin()
     {
@@ -132,12 +145,12 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
 
         switch (menuItem.getItemId()){
             case R.id.nav_home:
-                selectedFragment=new HomeFragment();
+                selectedFragment = homeFragment;
                 break;
 
             case R.id.nav_map:
                 if(isServicesOK())
-                    selectedFragment=new MapFragment();
+                    selectedFragment = mapFragment;
                 else
                     selectedFragment=null;//Make an error fragment
                 break;
@@ -169,5 +182,9 @@ public class MainActivity extends AppCompatActivity implements AccountFragment.A
         return false;
     }
 
-
+    @Override
+    public void sendLocationDetails(double latitude, double longitude) {
+        Log.d("MapTest", "sendLocationDetails: in MainActivty latitude " + latitude + " longit " + longitude);
+        homeFragment.getLocationDetails(latitude, longitude);
+    }
 }

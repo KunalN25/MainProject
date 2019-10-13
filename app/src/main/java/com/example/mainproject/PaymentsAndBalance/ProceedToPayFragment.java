@@ -21,9 +21,9 @@ public class ProceedToPayFragment extends Fragment implements View.OnClickListen
     int totalPrice;
     private static final String TAG="kun";
     private TextView subTotalText,subTotalValue,gstText,gstValue,grandTotalText,grandTotalValue,balanceValue;
-    double grandTotal;
-    Button payButton,cancelButton;
-    ProceedToPayFragmentMethods proceed;
+    private double grandTotal;
+    private Button payButton, cancelButton;
+    private ProceedToPayFragmentMethods proceed;
     public ProceedToPayFragment() {
         // Required empty public constructor
     }
@@ -45,11 +45,11 @@ public class ProceedToPayFragment extends Fragment implements View.OnClickListen
     private void setTextFieldValues() {
         subTotalValue.setText("Rs."+totalPrice);
         double gst=0.15*totalPrice;
-        gstValue.setText("Rs."+gst);
+        gstValue.setText("Rs." + String.format("%.2f", gst));
         grandTotal=(totalPrice+gst);
-        grandTotalValue.setText("Rs."+grandTotal);
-        payButton.setText("Proceed to pay Rs."+grandTotal);
-        balanceValue.setText("Rs."+ UserAccountBalance.USER_BALANCE +"");//Get Balance from sharedPreferences
+        grandTotalValue.setText("Rs." + String.format("%.2f", grandTotal));
+        payButton.setText("Proceed to pay Rs." + String.format("%.2f", grandTotal));
+        balanceValue.setText("Rs." + String.format("%.2f", UserAccountBalance.USER_BALANCE) + "");//Get Balance from sharedPreferences
 
     }
 

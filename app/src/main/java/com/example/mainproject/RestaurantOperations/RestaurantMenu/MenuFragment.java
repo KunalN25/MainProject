@@ -30,6 +30,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
+
+import io.opencensus.internal.StringUtils;
 
 
 /**
@@ -58,9 +61,13 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_menu, container, false);
-        compareCuisines();
-
         initialize(v);
+
+        compareCuisines();
+        Log.d(TAG, "onCreateView: Size:" + menuItemForListViews.size());
+
+
+
         show=v.findViewById(R.id.show);
         show.setOnClickListener(this);
         menuList.setOnItemClickListener(this);
@@ -73,11 +80,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
     private void initialize(View v){
         progressBar=v.findViewById(R.id.menuProgressBar);
         menuList=v.findViewById(R.id.menuList);
-        menuItemForListViews=new ArrayList<>();
       //  Log.d(TAG, "initialize: "+menuItems.get(0).getName());
 
        // Log.d(TAG, "initialize: "+menuItemForListViews.get(0).getName());
-        menuListAdapter=new MenuListAdapter(getActivity(),menuItemForListViews);
 
     }
 
@@ -187,18 +192,21 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
     }
 
     private void compareCuisines() {
-        //if(cuisines.contains("BENGALI")){
-            loadFromDatabase();
-        //}
+        if (cuisines.contains("Bengali")) {
+            loadFromDatabase("BENGALI");
+        } else
+            loadFromDatabase("BENGALI");
     }
 
-    private void loadFromDatabase() {
+    private void loadFromDatabase(String cuisine) {
         menuItems=new ArrayList<>();
+        menuItemForListViews = new ArrayList<>();
+
         Log.d(TAG, "loadFromDatabase: called");
 
 
         FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
-        firebaseFirestore.collection("BENGALI")
+        firebaseFirestore.collection(cuisine)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -208,20 +216,25 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                     for(DocumentSnapshot snapshot: task.getResult())
                     {
                         MenuItem menuItem=snapshot.toObject(MenuItem.class);
-                       // Log.d(TAG, "onComplete: \n"+menuItem.getName());
+                        //Log.d(TAG, "onComplete: \n"+menuItem.getName());
                         menuItems.add(menuItem);
 
-                        if(!menuItems.isEmpty()) {
-                            for (int i = 0; i < menuItems.size(); i++) {
-                                menuItemForListViews.add(new MenuItemForListView(menuItems.get(i).getName(),
-                                        menuItems.get(i).getPrice(),
-                                        menuItems.get(i).isType()));
-                            }
+
+                    }
+                    if (!menuItems.isEmpty()) {
+                        for (int i = 0; i < menuItems.size(); i++) {
+                            menuItemForListViews.add(new MenuItemForListView(menuItems.get(i).getName(),
+                                    menuItems.get(i).getPrice(),
+                                    menuItems.get(i).isType()));
                         }
+                    }
+                    menuListAdapter = new MenuListAdapter(getActivity(), menuItemForListViews);
 
-                        menuList.setAdapter(menuListAdapter);
-                        progressBar.setVisibility(View.GONE);
 
+                    menuList.setAdapter(menuListAdapter);
+                    progressBar.setVisibility(View.GONE);
+                    for (int i = 0; i < menuItemForListViews.size(); i++) {
+                        Log.d(TAG, "onComplete: \n\t\t\t" + menuItemForListViews.get(i).getName());
                     }
                 }
                 else
@@ -231,6 +244,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
 
 
     }
+
 
     public interface MenuFragmentMethods{
         void sendMenuItems(List<MenuItem> cart,int total);

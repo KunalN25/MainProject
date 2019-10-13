@@ -1,6 +1,8 @@
 package com.example.mainproject;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -38,34 +40,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapFragment extends Fragment  implements OnMapReadyCallback {
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        //makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
-        Log.d(TAG, "onMapReady: map is ready");
-        mMap = googleMap;
+public class MapFragment extends Fragment {
 
-        if (mLocationPermissionsGranted) {
-            getDeviceLocation();
-
-            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
-                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            mMap.setMyLocationEnabled(true);
-            mMap.getUiSettings().setMyLocationButtonEnabled(false);
-
-            init();
-        }
-    }
-
-    private static final String TAG = "MapActivity";
-
+    private static final String TAG = "MapTest";
+    private MapFragmentMethods mapFragmentMethods;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
+    private SupportMapFragment mapFragment;
+
+    //data to be passed in web request stored in below declared variables
+    private String myLocation;
+    private double myLocationLat;
+    private double myLocationLng;
+    private String searchedPlace;
+    private double searchedLat;
+    private double searchedLng;
+
+
 
     //widgets
     private EditText mSearchText;
@@ -81,20 +74,26 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_map,container,false);
         mSearchText =v.findViewById(R.id.input_search);
+        mSearchText.setText("");
         mGps = v.findViewById(R.id.ic_gps);
-
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        searchedLat = LatAndLongTrack.SEARCHED_LAT;
+        searchedLng = LatAndLongTrack.SEARCHED_LONG;
+        Log.d(TAG, "onCreateView in MapFragment: " + LatAndLongTrack.SEARCHED_LAT + "  " + LatAndLongTrack.SEARCHED_LONG);
+        Log.d(TAG, "onCreateView: Searched Place" + searchedPlace);
         getLocationPermission();
+        if (searchedLat != 0 && searchedLng != 0) {
+            moveCamera(new LatLng(searchedLat, searchedLng), DEFAULT_ZOOM, "Location");
+        }
 
         //if (!Places.isInitialized()) {
         //    Places.initialize(getApplicationContext(), "AIzaSyD_t1wQGD1YmHz4ZaAYIroY8UPpJrOurDE");
         //}
 
-        // Initialize the AutocompleteSupportFragment.
+        // Initialize the AutocompleteSupportFragment.ed
         /*AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
@@ -102,9 +101,7 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
                 // TODO: Get info about the selected place.
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 moveCamera(Objects.requireNonNull(place.getLatLng()),DEFAULT_ZOOM,"Selected Location");
-
             }
-
             @Override
             public void onError(Status status) {
                 // TODO: Handle the error.Log.i(TAG, "An error occurred: " + status);
@@ -114,7 +111,6 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
         return v;
     }
     private void init () {
-        Log.d(TAG, "init: initializing");
 
         mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -126,6 +122,7 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
 
 
                     geoLocate();
+                    hideSoftKeyboard();
                     return true;
                 }
 
@@ -136,7 +133,8 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
         mGps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: clicked gps icon");
+                LatAndLongTrack.SEARCHED_LAT = 0.0;
+                LatAndLongTrack.SEARCHED_LONG = 0.0;
                 getDeviceLocation();
             }
         });
@@ -144,8 +142,14 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
         hideSoftKeyboard();
     }
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mapFragmentMethods = (MapFragmentMethods) context;
+    }
+
     private void geoLocate () {
-        Log.d(TAG, "geoLocate: geolocating");
 
         String searchString = mSearchText.getText().toString();
 
@@ -160,18 +164,22 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
         if (list.size() > 0) {
             Address address = list.get(0);
 
-            Log.d(TAG, "geoLocate: found a location: " + address.toString());
+//            Log.d(TAG, "geoLocate: found a location: " + address.toString());
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
 
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,
                     address.getAddressLine(0));
+
+            LatAndLongTrack.SEARCHED_LAT = address.getLatitude();
+            LatAndLongTrack.SEARCHED_LONG = address.getLongitude();
+
         }
     }
 
     private void getDeviceLocation () {
-        Log.d(TAG, "getDeviceLocation: getting the devices current location");
+        // Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
         try {
             if (mLocationPermissionsGranted) {
@@ -211,8 +219,10 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
                                     DEFAULT_ZOOM,
                                     "My Location");
-                            Log.d(TAG, String.valueOf(currentLocation.getLatitude())+String.valueOf(currentLocation.getLongitude()));
-
+//                            Log.d(TAG, String.valueOf(currentLocation.getLatitude())+String.valueOf(currentLocation.getLongitude()));
+                            myLocationLat = currentLocation.getLatitude();
+                            myLocationLng = currentLocation.getLongitude();
+                            //put intent here and pass above two values
                         } else {
                             Log.d(TAG, "onComplete: current location is null");
                             //makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
@@ -236,24 +246,50 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
             mMap.addMarker(options);
         }
 
+        mapFragmentMethods.sendLocationDetails(latLng.latitude, latLng.longitude);
+
+
         hideSoftKeyboard();
     }
 
     private void initMap () {
-        Log.d(TAG, "initMap: initializing map");
-        SupportMapFragment mapFragment = (SupportMapFragment) getFragmentManager().findFragmentById(R.id.map);
 
-        mapFragment.getMapAsync((OnMapReadyCallback) getActivity());
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                //makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
+                //   Log.d(TAG, "onMapReady: map is ready");
+                mMap = googleMap;
+
+                if (mLocationPermissionsGranted) {
+                    getDeviceLocation();
+
+                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
+                            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
+                            Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        return;
+                    }
+                    mMap.setMyLocationEnabled(true);
+                    mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
+                    init();
+                }
+            }
+
+        });
+        Log.d(TAG, "initMap: initializing map");
+
     }
+
 
     private void getLocationPermission () {
         Log.d(TAG, "getLocationPermission: getting location permissions");
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION};
 
-        if (ContextCompat.checkSelfPermission(this.getActivity(),
+        if (ContextCompat.checkSelfPermission(getActivity(),
                 FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            if (ContextCompat.checkSelfPermission(this.getActivity(),
+            if (ContextCompat.checkSelfPermission(getActivity(),
                     COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 mLocationPermissionsGranted = true;
                 initMap();
@@ -295,5 +331,9 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback {
 
     private void hideSoftKeyboard () {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    interface MapFragmentMethods {
+        void sendLocationDetails(double latitude, double longitude);
     }
 }

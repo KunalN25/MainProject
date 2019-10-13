@@ -1,6 +1,7 @@
 package com.example.mainproject.PaymentsAndBalance;
 
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,7 +45,7 @@ public class AddBalance extends Fragment implements View.OnClickListener {
         View v=inflater.inflate(R.layout.fragment_add_balance, container, false);
         initialize(v);
         addBtn.setOnClickListener(this);
-        yourBal.setText("Your Balance :Rs. "+balance);
+        yourBal.setText("Your Balance :Rs. " + String.format("%.2f", balance));
 
         return v;
     }
@@ -87,7 +88,7 @@ public class AddBalance extends Fragment implements View.OnClickListener {
                 balance=updateBalance.get();
                 UserAccountBalance.USER_BALANCE=balance;
                 addBalanceMethods.updateBalanceInDatabase();
-                yourBal.setText("Your Balance :Rs. "+balance);
+                yourBal.setText("Your Balance :Rs. " + String.format("%.2f", balance));
 
 
             } catch (ExecutionException e) {

@@ -1,5 +1,6 @@
 package com.example.mainproject.PaymentsAndBalance;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class PaymentActivity extends AppCompatActivity implements AddBalance.AddBalanceMethods,ProceedToPayFragment.ProceedToPayFragmentMethods, PaymentSuccessfulFragment.PaymentSuccessfullMethods {
     private static final String TAG="kun";
     private int totalPrice;
+    ActionBar actionBar;
+
     private double userBalance;
     private FragmentManager manager;
     private FragmentTransaction transaction;
@@ -50,6 +53,7 @@ public class PaymentActivity extends AppCompatActivity implements AddBalance.Add
 
     private void startAddBalanceFragment() {
         transaction.replace(R.id.paymentPage,new AddBalance()).commit();
+
     }
 
     private void initialize() {
@@ -63,6 +67,8 @@ public class PaymentActivity extends AppCompatActivity implements AddBalance.Add
         userBalance=getUserBalance();
         paymentSuccess=false;
         addBalanceFromMainActivity=false;
+        actionBar = getActionBar();
+
 
 
     }
@@ -79,7 +85,7 @@ public class PaymentActivity extends AppCompatActivity implements AddBalance.Add
             //Paying dialog fragment with progress Bar and the balance is deducted in background using AsyncTask
             //Store the new balance in sharedPreferences and database
             userBalance-=grandTotal;
-            Message.message(this,"payment successful\nBalance left: "+userBalance);
+            Message.message(this, "payment successful\nBalance left: " + String.format("%.2f", userBalance));
             transaction=manager.beginTransaction();
             transaction.replace(R.id.paymentPage,new PaymentSuccessfulFragment()).commit();
             UserAccountBalance.USER_BALANCE=userBalance;

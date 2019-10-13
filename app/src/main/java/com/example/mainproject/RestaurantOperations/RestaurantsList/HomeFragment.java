@@ -33,12 +33,13 @@ public class HomeFragment extends Fragment  {
 
     private String TAG="Main";
     private TextView location;
+    private String latitude, longitude;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_home,container,false);
         initialize(v);
-
+        Log.d(TAG, "onCreateView: " + latitude + " " + longitude);
         //Add longitude and latitude
         Log.d(TAG, "onCreateView: Home Fragment");
         loadJSONDataFromZomato();
@@ -110,12 +111,8 @@ public class HomeFragment extends Fragment  {
 
 
     private void loadJSONDataFromZomato() {
-        final String basicURL="https://developers.zomato.com/api/v2.1";
-
-        String latitude="19.1511";//lat.getText().toString();
-        String longitude="72.9372";//longit.getText().toString();
-        Log.d(TAG, "onClick: Submit clicked");
-        String URL = basicURL+"/search?lat="+latitude+"&lon="+longitude;//+"&radius=5000&sort=real_distance";
+        final String basicURL = "https://developers.zomato.com/api/v2.1"; //Basic URL add all attahcments
+        String URL = basicURL + "/search?lat=" + latitude + "&lon=" + longitude + "&radius=5000&sort=real_distance";
         GetZomatoData getZomatoData=new GetZomatoData(getActivity());
         getZomatoData.execute(URL);
         String jsonData=null;
@@ -132,4 +129,10 @@ public class HomeFragment extends Fragment  {
         }
     }
 
+    public void getLocationDetails(double latitude, double longitude) {
+        this.latitude = latitude + "";
+        this.longitude = longitude + "";
+        Log.d("kun", "getLocationDetails: lat:" + this.latitude + " long:" + this.longitude);
+
+    }
 }
