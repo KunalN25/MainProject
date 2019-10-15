@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.mainproject.LoginAndRegistration.InternetConnection;
 import com.example.mainproject.R;
+import com.example.mainproject.UtilityClasses.Message;
+import com.example.mainproject.UtilityClasses.NoInternetString;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,13 +81,19 @@ public class ProceedToPayFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.payButton:            proceed.proceedToPay(grandTotal);
-                                            break;
-            case R.id.cancelPaymentButton:  proceed.setPaymentCanceled(true);
-                Log.d(TAG, "onClick: cancel is clicked ");
-                                            break;
-        }
+           switch (view.getId()){
+               case R.id.payButton:
+                   if(InternetConnection.isInternetConnected(getActivity()))
+                       proceed.proceedToPay(grandTotal);
+                   else
+                       Message.message(getActivity(), NoInternetString.NO_INTERNET_CONNECTION);
+                   break;
+               case R.id.cancelPaymentButton:  proceed.setPaymentCanceled(true);
+                   Log.d(TAG, "onClick: cancel is clicked ");
+                   break;
+           }
+
+
     }
     interface ProceedToPayFragmentMethods{
         void proceedToPay(double grandTotal);

@@ -19,8 +19,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.mainproject.LoginAndRegistration.InternetConnection;
 import com.example.mainproject.R;
 import com.example.mainproject.UtilityClasses.Message;
+import com.example.mainproject.UtilityClasses.NoInternetString;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
@@ -95,34 +97,33 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
     @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View view) {
-
-        addToCart=new ArrayList<>();
-        int cartItems=0;
-        try{
-            for(int i=0;i<menuItemForListViews.size();i++)
-            {
-                if(menuItemForListViews.get(i).isSelected())
-                {
-                    Log.d(TAG, "onClick: "+menuItemForListViews);
-                    addToCart.add(new MenuItem(menuItemForListViews.get(i).getName(),menuItemForListViews.get(i).getPrice(), false));
-                    cartItems++;
+        if(InternetConnection.isInternetConnected(getActivity())) {
+            addToCart = new ArrayList<>();
+            int cartItems = 0;
+            try {
+                for (int i = 0; i < menuItemForListViews.size(); i++) {
+                    if (menuItemForListViews.get(i).isSelected()) {
+                        Log.d(TAG, "onClick: " + menuItemForListViews);
+                        addToCart.add(new MenuItem(menuItemForListViews.get(i).getName(), menuItemForListViews.get(i).getPrice(), false));
+                        cartItems++;
+                    }
                 }
+
+                if (cartItems == 0)
+                    Message.message(getActivity(), "Please select at least one item");
+                else {
+                    int total = calculateTotalCost();
+                    menuFragmentMethods.sendMenuItems(addToCart, total);
+                }
+
+
+            } catch (NullPointerException e) {
+                Message.message(getActivity(), e.toString(), 1);
+                Log.d(TAG, "onClick: " + e.toString());
             }
-
-            if(cartItems==0)
-                Message.message(getActivity(),"Please select at least one item");
-            else {
-                int total=calculateTotalCost();
-                menuFragmentMethods.sendMenuItems(addToCart,total);
-            }
-
-
-
-        }catch (NullPointerException e)
-        {
-            Message.message(getActivity(),e.toString(), 1);
-            Log.d(TAG, "onClick: "+e.toString());
         }
+        else
+            Message.message(getActivity(), NoInternetString.NO_INTERNET_CONNECTION);
 
     }
 
@@ -233,12 +234,19 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
 
                     menuList.setAdapter(menuListAdapter);
                     progressBar.setVisibility(View.GONE);
+                    show.setVisibility(View.VISIBLE);
+
                     for (int i = 0; i < menuItemForListViews.size(); i++) {
                         Log.d(TAG, "onComplete: \n\t\t\t" + menuItemForListViews.get(i).getName());
                     }
                 }
                 else
+                {
                     Log.d(TAG, "onComplete: Could not load");
+                    progressBar.setVisibility(View.GONE);
+                    menuFragmentMethods.startConnectionErrorFragment();
+
+                }
             }
         });
 
@@ -248,6 +256,8 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
 
     public interface MenuFragmentMethods{
         void sendMenuItems(List<MenuItem> cart,int total);
+
+        void startConnectionErrorFragment();
     }
 
 

@@ -12,7 +12,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.mainproject.LoginAndRegistration.InternetConnection;
 import com.example.mainproject.R;
+import com.example.mainproject.UtilityClasses.Message;
+import com.example.mainproject.UtilityClasses.NoInternetString;
 
 import java.util.List;
 
@@ -71,7 +74,12 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        confirmFragmentMethods.startPaymentActivity(totalPrice);
+
+        if(InternetConnection.isInternetConnected(getActivity())){
+            confirmFragmentMethods.startPaymentActivity(totalPrice);
+        }
+        else
+            Message.message(getActivity(), NoInternetString.NO_INTERNET_CONNECTION);
     }
     public interface ConfirmFragmentMethods{
         void startPaymentActivity(int total);

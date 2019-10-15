@@ -155,7 +155,7 @@ public class LoginPage extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        helper.clearPreferences();
+        Log.d("share", "onDestroy: of loginPage");
         super.onDestroy();
     }
 

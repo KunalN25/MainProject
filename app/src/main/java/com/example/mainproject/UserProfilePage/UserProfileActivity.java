@@ -40,6 +40,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        Message.message(getApplicationContext(), new SharePreferencesHelper(this).loadPreferences("FirstName"));
         initialize();
         setEditTextValues();
         actionBar.setTitle("Profile");
@@ -55,6 +56,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
 
         reference=FirebaseDatabase.getInstance().getReference(user.getUid());
         actionBar=getSupportActionBar();
+
 
     }
 

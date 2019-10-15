@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.mainproject.LoginAndRegistration.InternetConnection;
 import com.example.mainproject.R;
 import com.example.mainproject.UtilityClasses.Message;
+import com.example.mainproject.UtilityClasses.NoInternetString;
 
 import java.util.concurrent.ExecutionException;
 
@@ -69,36 +71,40 @@ public class AddBalance extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        double tempbal=Double.parseDouble(balanceIn.getText().toString());
-        if(tempbal==0){
-            Message.message(getActivity(),"Please enter the amount");
-            return;
-        }
+        if (InternetConnection.isInternetConnected(getActivity())){
+            double tempbal=Double.parseDouble(balanceIn.getText().toString());
+            if(tempbal==0){
+                Message.message(getActivity(),"Please enter the amount");
+                return;
+            }
 
-        if(balance+tempbal>10000)
-            Message.message(getActivity(),"You cannot add more than 10000");
-        else{
-            updateBalance=new UpdateBalance(getActivity());
-            listenToTouchEvents=true;
+            if(balance+tempbal>10000)
+                Message.message(getActivity(),"You cannot add more than 10000");
+            else{
+                updateBalance=new UpdateBalance(getActivity());
+                listenToTouchEvents=true;
 
-            updateBalance.execute(balance,tempbal);
+                updateBalance.execute(balance,tempbal);
 
-            try {
+                try {
 
-                balance=updateBalance.get();
-                UserAccountBalance.USER_BALANCE=balance;
-                addBalanceMethods.updateBalanceInDatabase();
-                yourBal.setText("Your Balance :Rs. " + String.format("%.2f", balance));
+                    balance=updateBalance.get();
+                    UserAccountBalance.USER_BALANCE=balance;
+                    addBalanceMethods.updateBalanceInDatabase();
+                    yourBal.setText(String.format("%.2f", balance));
 
 
-            } catch (ExecutionException e) {
-                Log.d("tag", "onClick: "+e.toString());
-            } catch (InterruptedException e) {
-                Log.d("tag", "onClick: "+e.toString());
+                } catch (ExecutionException e) {
+                    Log.d("tag", "onClick: "+e.toString());
+                } catch (InterruptedException e) {
+                    Log.d("tag", "onClick: "+e.toString());
+                }
+
             }
 
         }
-
+        else
+            Message.message(getActivity(), NoInternetString.NO_INTERNET_CONNECTION);
     }
     interface AddBalanceMethods{
         void updateBalanceInDatabase();

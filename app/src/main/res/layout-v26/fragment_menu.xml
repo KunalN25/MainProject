@@ -34,6 +34,7 @@
         android:background="@drawable/border_edit_btn"
         android:text="ADD TO CART"
         android:layout_weight="0"
+        android:visibility="gone"
         />
   </LinearLayout>
 

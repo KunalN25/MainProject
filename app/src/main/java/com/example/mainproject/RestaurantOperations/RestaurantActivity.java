@@ -15,6 +15,7 @@ import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuFragment;
 import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 import com.example.mainproject.RestaurantOperations.Reviews.ReviewFragment;
+import com.example.mainproject.UtilityClasses.ConnectionTimedOut;
 
 import java.util.List;
 
@@ -81,6 +82,12 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantF
         confirmFragment.getMenuItems(cart, totalPrice);
 
 
+    }
+
+    @Override
+    public void startConnectionErrorFragment() {
+        fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.restaurantLAyout,new ConnectionTimedOut()).commit();
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mainproject.MainActivity;
 import com.example.mainproject.R;
+import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantLocation;
 
@@ -26,19 +29,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import static android.view.View.GONE;
+
 public class HomeFragment extends Fragment  {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
     private List<RestaurantJSONItems> restaurantJSONItemsList;
-
     private String TAG="Main";
     private TextView location;
+    private ProgressBar progressBar;
     private String latitude, longitude;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_home,container,false);
         initialize(v);
+        progressBar.setVisibility(View.VISIBLE);
         Log.d(TAG, "onCreateView: " + latitude + " " + longitude);
         //Add longitude and latitude
         Log.d(TAG, "onCreateView: Home Fragment");
@@ -49,6 +54,7 @@ public class HomeFragment extends Fragment  {
         initRecyclerView(v);
 
         location=v.findViewById(R.id.location);
+        progressBar=v.findViewById(R.id.restaurantViewProgressBar);
         // search=findViewById(R.id.search);
         // button=findViewById(R.id.btn);
         //   show=v.findViewById(R.id.showAll);
@@ -64,11 +70,11 @@ public class HomeFragment extends Fragment  {
 
 
 
-    public  void showView(String jsonData)
+    private void showView(String jsonData)
     {
         restaurantJSONItemsList=new ArrayList<>();      //We re-initialize the arraylist everytime the search button is clicked
         //as it should reload the list when new item is searched.
-        adapter=new JSONAdapter(getActivity(),restaurantJSONItemsList);
+        RecyclerView.Adapter adapter = new JSONAdapter(getActivity(), restaurantJSONItemsList);
 
 
 
@@ -119,13 +125,15 @@ public class HomeFragment extends Fragment  {
 
         try {
             jsonData = getZomatoData.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
         if(jsonData!=null){
+            progressBar.setVisibility(GONE);
             showView(jsonData);
+        }
+        else{
+            MainActivity.getInstance().getProgressBar(progressBar);
         }
     }
 
@@ -135,4 +143,6 @@ public class HomeFragment extends Fragment  {
         Log.d("kun", "getLocationDetails: lat:" + this.latitude + " long:" + this.longitude);
 
     }
+
+
 }

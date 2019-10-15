@@ -17,8 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.mainproject.LoginAndRegistration.InternetConnection;
 import com.example.mainproject.PaymentsAndBalance.PaymentActivity;
 import com.example.mainproject.R;
+import com.example.mainproject.UtilityClasses.Message;
+import com.example.mainproject.UtilityClasses.NoInternetString;
+import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
 
 import java.util.Objects;
 
@@ -52,7 +56,7 @@ public class AccountFragment extends Fragment implements AdapterView.OnItemClick
 
         if(((TextView) view).getText().toString().equals("Profile"))
         {
-            startActivity(new Intent(getActivity(),UserProfileActivity.class));
+            accountFragmentMethods.startProfileActivity();
             Log.d(TAG, "onItemClick: Profile clicked");
         }
         else if(((TextView) view).getText().toString().equals("Add Balance"))
@@ -69,11 +73,17 @@ public class AccountFragment extends Fragment implements AdapterView.OnItemClick
         else if(((TextView) view).getText().toString().equals("Log Out"))
         {
             Log.d(TAG, "onItemClick: LogOut clicked");
-            accountFragmentMethods.logOut();
+            if(InternetConnection.isInternetConnected(getActivity())) {
+                accountFragmentMethods.logOut();
+            }
+            else
+                Message.message(getActivity(), NoInternetString.NO_INTERNET_CONNECTION);
+
         }
 
     }
     public interface AccountFragmentMethods{
          void logOut();
+         void startProfileActivity();
     }
 }

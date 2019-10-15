@@ -55,7 +55,7 @@ public class Register extends AppCompatActivity implements OnCompleteListener {
         setContentView(R.layout.activity_register);
         initialize();
         loadFromSharedPreference();
-        actionBar.setTitle("Register");
+//        actionBar.setTitle("Register");
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setSelection();     //Set the selection such that the cursor directly navigates to the end of  edittext
 

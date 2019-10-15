@@ -1,23 +1,31 @@
 package com.example.mainproject;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.mainproject.LoginAndRegistration.LoginPage;
 import com.example.mainproject.LoginAndRegistration.UserData;
 import com.example.mainproject.RestaurantOperations.RestaurantsList.HomeFragment;
 import com.example.mainproject.PaymentsAndBalance.UserAccountBalance;
 import com.example.mainproject.UserProfilePage.AccountFragment;
+import com.example.mainproject.UserProfilePage.UserProfileActivity;
+import com.example.mainproject.UtilityClasses.ConnectionTimedOut;
+import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -31,8 +39,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 
-public class MainActivity extends AppCompatActivity implements MapFragment.MapFragmentMethods, AccountFragment.AccountFragmentMethods, BottomNavigationView.OnNavigationItemSelectedListener {
+
+public class MainActivity extends AppCompatActivity implements  MapFragment.MapFragmentMethods, AccountFragment.AccountFragmentMethods, BottomNavigationView.OnNavigationItemSelectedListener {
     private static final String TAG="Main";
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
@@ -42,11 +52,14 @@ public class MainActivity extends AppCompatActivity implements MapFragment.MapFr
     private static final int ERROR_DIALOG_REQUEST=9001;
     HomeFragment homeFragment;
     MapFragment mapFragment;
+    Intent profileIntent;
+    static MainActivity activity;
 
     @SuppressLint("StaticFieldLeak")
 
     private static Context context;
     private static boolean animationFlag = true;
+    private ProgressBar ProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +80,12 @@ public class MainActivity extends AppCompatActivity implements MapFragment.MapFr
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("share", "Mainacitvity000 onResume: ");
+        loadIntoSharedPreferences();
+    }
 
     public void initialize()    //Put every variable initialization in this function
     {
@@ -78,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements MapFragment.MapFr
         context=getApplicationContext();
         homeFragment = new HomeFragment();
         mapFragment = new MapFragment();
+        activity=this;
+        profileIntent=new Intent(MainActivity.this, UserProfileActivity.class);
 
 
     }
@@ -117,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements MapFragment.MapFr
                 sharePreferencesHelper.addToPreference("MobileNumber",userData.getMobileNo()+"");
                 UserAccountBalance.USER_BALANCE=userData.getBalance();
                 Log.d(TAG, "onDataChange: Data loaded");
+                Message.message(getApplicationContext(),sharePreferencesHelper.loadPreferences("FirstName"));
+
             }
 
             @Override
@@ -140,9 +163,14 @@ public class MainActivity extends AppCompatActivity implements MapFragment.MapFr
     }
 
     @Override
+    public void startProfileActivity() {
+        startActivity(profileIntent);
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment selectedFragment=null;
-
+        FragmentManager manager=getSupportFragmentManager();
         switch (menuItem.getItemId()){
             case R.id.nav_home:
                 selectedFragment = homeFragment;
@@ -160,8 +188,9 @@ public class MainActivity extends AppCompatActivity implements MapFragment.MapFr
                 break;
 
         }
+        manager.popBackStack("ConnectionError", FragmentManager.POP_BACK_STACK_INCLUSIVE);
         assert selectedFragment != null;
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment)
+        manager.beginTransaction().replace(R.id.fragment_container,selectedFragment)
                                                         .commit();
         return true;
     }
@@ -187,4 +216,15 @@ public class MainActivity extends AppCompatActivity implements MapFragment.MapFr
         Log.d("MapTest", "sendLocationDetails: in MainActivty latitude " + latitude + " longit " + longitude);
         homeFragment.getLocationDetails(latitude, longitude);
     }
+    public static MainActivity getInstance(){
+        return activity;
+    }
+    public void startConnectionErrorFragment() {
+        ProgressBar.setVisibility(View.GONE);
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainPage,new ConnectionTimedOut()).addToBackStack("ConnectionError").commit();
+    }
+    public void getProgressBar(ProgressBar progressBar){
+        this.ProgressBar =progressBar;
+    }
+
 }
