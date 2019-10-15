@@ -28,10 +28,11 @@
         android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="48dp"
         android:layout_toRightOf="@id/reviewProfilePhoto"
 
         android:text="TextView"
+        android:fontFamily="@font/salsa"
          />
 
     <com.borjabravo.readmoretextview.ReadMoreTextView
@@ -42,6 +43,7 @@
         android:layout_toRightOf="@id/reviewProfilePhoto"
         app:trimLength="2"
         app:trimMode="trimModeLine"
+        android:fontFamily="@font/salsa"
         app:trimExpandedText="Show less"
         app:trimCollapsedText="Show more"
 
@@ -59,6 +61,7 @@
         android:layout_marginTop="48dp"
         android:text="TextView"
         android:layout_toRightOf="@id/reviewUserName"
+        android:fontFamily="@font/salsa"
 
         />
 

@@ -17,20 +17,23 @@
         android:id="@+id/addBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_balance"
+        android:text="My Wallet"
+        android:textColor="#000"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/salsa"
         android:textSize="24sp"/>
 
     <EditText
         android:id="@+id/baclanceInPut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/addBalance"
+        android:layout_below="@id/yourBalanceinAddBalanceFragment"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="200dp"
         android:hint="100"
         android:inputType="number"
+        android:fontFamily="@font/salsa"
         />
     <Button
         android:id="@+id/addBalanceButton"
@@ -46,10 +49,13 @@
         android:id="@+id/yourBalanceinAddBalanceFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/addBalance"
-        android:layout_marginTop="30dp"
+        android:layout_below="@+id/addBalance"
+        android:layout_marginTop="125dp"
         android:layout_marginBottom="-44dp"
+        android:layout_centerHorizontal="true"
 
-        android:text="Your Balance:" />
+        android:text="Your Balance:"
+        android:textSize="40sp"
+        android:fontFamily="@font/salsa"/>
 
 </RelativeLayout>

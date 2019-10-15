@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:fontFamily="@font/salsa"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:layout_marginHorizontal="40dp"
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/profileChangeEmail"
         android:inputType="textPassword"
+        android:fontFamily="@font/salsa"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="30dp"
         android:hint="@string/pass"
@@ -42,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
+        android:background="@drawable/border_edit_btn"
         android:layout_below="@id/profileChangePassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"/>

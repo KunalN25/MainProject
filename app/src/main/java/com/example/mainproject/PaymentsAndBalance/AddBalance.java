@@ -45,7 +45,7 @@ public class AddBalance extends Fragment implements View.OnClickListener {
         View v=inflater.inflate(R.layout.fragment_add_balance, container, false);
         initialize(v);
         addBtn.setOnClickListener(this);
-        yourBal.setText("Your Balance :Rs. " + String.format("%.2f", balance));
+        yourBal.setText(String.format("%.2f", balance));
 
         return v;
     }

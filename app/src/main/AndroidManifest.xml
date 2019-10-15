@@ -15,25 +15,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"></activity>
-        <activity android:name=".PaymentsAndBalance.PaymentActivity" />
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".PaymentsAndBalance.PaymentActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".RestaurantOperations.RestaurantActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserProfilePage.UserProfileActivity"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".LoginAndRegistration.ForgotPassword" />
+        <activity android:name=".LoginAndRegistration.ForgotPassword"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".LoginAndRegistration.LoginPage"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
             android:name=".LoginAndRegistration.Register"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateVisible|adjustPan" />
 
         <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
+        </activity>
 
 
         <meta-data

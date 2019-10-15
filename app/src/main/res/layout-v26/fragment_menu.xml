@@ -31,6 +31,7 @@
         android:id="@+id/show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/border_edit_btn"
         android:text="ADD TO CART"
         android:layout_weight="0"
         />

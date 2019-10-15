@@ -6,22 +6,46 @@
     tools:context=".UserProfilePage.ProvideNewEmail">
 
     <!-- TODO: Update blank fragment layout -->
-    <EditText
-        android:id="@+id/newEmail"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Please Enter new Email"
+        android:text="Update Email"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:textColor="#000"
         android:layout_centerHorizontal="true"
+        android:fontFamily="@font/salsa"
+        android:layout_marginTop="50dp"
+        android:id="@+id/update_email_title"/>
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@drawable/ic_update_mail"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/img_mail"
+        android:layout_marginTop="120dp"
+        />
+    <EditText
+        android:layout_below="@id/img_mail"
+        android:id="@+id/newEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter new Email"
+        android:layout_marginHorizontal="40dp"
+        android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:maxLength="30"
+        android:fontFamily="@font/salsa"
         />
+
     <Button
         android:id="@+id/submitNewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit"
+        android:text="CONTINUE"
+        android:background="@drawable/border_edit_btn"
         android:layout_below="@id/newEmail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>

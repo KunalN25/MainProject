@@ -26,6 +26,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="268dp"
         android:text="@string/first"
+        android:fontFamily="@font/salsa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +38,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="96dp"
+        android:fontFamily="@font/salsa"
         android:ems="10"
         android:maxLength="15"
         android:maxLines="1"
@@ -55,6 +57,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="32dp"
         android:text="@string/last"
+        android:fontFamily="@font/salsa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FirstNameInProfile" />
 
@@ -68,6 +71,7 @@
         android:ems="10"
         android:maxLength="15"
         android:maxLines="1"
+        android:fontFamily="@font/salsa"
         android:text="@string/last"
         android:enabled="false"
         android:inputType="textPersonName"
@@ -84,6 +88,7 @@
         android:layout_marginTop="68dp"
         android:text="@string/mobile_number"
         app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/salsa"
         app:layout_constraintTop_toBottomOf="@+id/LastNameInProfile" />
 
     <EditText
@@ -97,6 +102,7 @@
         android:inputType="number"
         android:text="@string/test_number"
         android:maxLength="10"
+        android:fontFamily="@font/salsa"
         android:maxLines="1"
         android:enabled="false"
         app:layout_constraintEnd_toEndOf="parent"

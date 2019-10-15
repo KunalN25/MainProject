@@ -43,6 +43,7 @@
             android:layout_alignStart="@+id/usernameLayout"
             android:background="@drawable/border_edit"
             android:drawableStart="@drawable/username"
+            android:fontFamily="@font/salsa"
 
             android:drawablePadding="13dp"
             android:hint="@string/username"
@@ -76,8 +77,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-
+            android:fontFamily="@font/salsa"
             android:background="@drawable/border_edit"
             android:hint="@string/pass"
             android:inputType="textPassword"
@@ -99,6 +99,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="30dp"
         android:text="@string/forgot_password"
+        android:fontFamily="@font/salsa"
         android:textColor="#D9F0DA"
         android:textSize="18sp"
         android:onClick="forgotPassword"
@@ -127,13 +128,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="20dp"
         android:layout_below="@id/forgotPassword"
         android:text="@string/don_t_have_an_account_register"
         android:layout_centerHorizontal="true"
         android:textColor="#D9F0DA"
         android:textSize="18sp"
+        android:fontFamily="@font/salsa"
         android:textColorHighlight="@color/colorAccent"
         android:onClick="register" />
 
