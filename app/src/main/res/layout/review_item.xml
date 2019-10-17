@@ -30,7 +30,7 @@
         android:layout_marginStart="42dp"
         android:layout_marginTop="48dp"
         android:layout_toRightOf="@id/reviewProfilePhoto"
-
+        android:textColor="#000"
         android:text="TextView"
         android:fontFamily="@font/salsa"
          />
@@ -43,7 +43,7 @@
         android:layout_toRightOf="@id/reviewProfilePhoto"
         app:trimLength="2"
         app:trimMode="trimModeLine"
-        android:fontFamily="@font/salsa"
+        style="@style/DefaultAppFont"
         app:trimExpandedText="Show less"
         app:trimCollapsedText="Show more"
 
@@ -60,6 +60,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="48dp"
         android:text="TextView"
+        android:textColor="#000"
         android:layout_toRightOf="@id/reviewUserName"
         android:fontFamily="@font/salsa"
 

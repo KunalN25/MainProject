@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 
+import com.example.mainproject.AnimationClass;
 import com.example.mainproject.MainActivity;
+import com.example.mainproject.SplashActivity;
 import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.R;
 import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
@@ -36,9 +38,12 @@ public class LoginPage extends AppCompatActivity {
     ProgressBar progressBar;
     TextInputLayout userLayout,passLayout;
     SharePreferencesHelper helper;
+    private static boolean animationFlag = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //startAnimation();
+
         setContentView(R.layout.activity_login_page);
         initialize();
         helper.clearPreferences();
@@ -152,6 +157,15 @@ public class LoginPage extends AppCompatActivity {
 
 
     }
+    private void startAnimation() {
+        if (AnimationClass.ANIMATION_FLAG) {
+            startActivity(new Intent(this, SplashActivity.class));
+            finish();
+            Log.d(TAG, "startAnimation: from login ");
+
+        }
+    }
+
 
     @Override
     protected void onDestroy() {

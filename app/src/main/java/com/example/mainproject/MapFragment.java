@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -63,6 +64,7 @@ public class MapFragment extends Fragment {
     //widgets
     private EditText mSearchText;
     private ImageView mGps;
+    private ImageView mSearchButton;
 
     //vars
     private Boolean mLocationPermissionsGranted = false;
@@ -76,6 +78,7 @@ public class MapFragment extends Fragment {
         mSearchText =v.findViewById(R.id.input_search);
         mSearchText.setText("");
         mGps = v.findViewById(R.id.ic_gps);
+        mSearchButton=v.findViewById(R.id.ic_magnify);
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         searchedLat = LatAndLongTrack.SEARCHED_LAT;
         searchedLng = LatAndLongTrack.SEARCHED_LONG;
@@ -88,7 +91,7 @@ public class MapFragment extends Fragment {
 
         //if (!Places.isInitialized()) {
         //    Places.initialize(getApplicationContext(), "AIzaSyD_t1wQGD1YmHz4ZaAYIroY8UPpJrOurDE");
-        //}
+        //}t
 
         // Initialize the AutocompleteSupportFragment.ed
         /*AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
@@ -141,6 +144,7 @@ public class MapFragment extends Fragment {
 
         hideSoftKeyboard();
     }
+
 
 
     @Override
@@ -223,6 +227,17 @@ public class MapFragment extends Fragment {
                             myLocationLat = currentLocation.getLatitude();
                             myLocationLng = currentLocation.getLongitude();
                             //put intent here and pass above two values
+                            Geocoder geocoder=new Geocoder(getActivity());
+                            List <Address> addresses=new ArrayList<>();
+                            try {
+                                addresses=geocoder.getFromLocation(myLocationLat,myLocationLng,1);
+                            } catch (IOException e) {
+                                Log.d(TAG,e.getMessage());
+                            }
+                            if (addresses.size()>0){
+                                myLocation=addresses.get(0).getAddressLine(0).toString();
+                            }
+
                         } else {
                             Log.d(TAG, "onComplete: current location is null");
                             //makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
@@ -330,7 +345,8 @@ public class MapFragment extends Fragment {
     }
 
     private void hideSoftKeyboard () {
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(),0);
     }
 
     interface MapFragmentMethods {

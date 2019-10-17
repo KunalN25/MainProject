@@ -10,17 +10,20 @@
         so that the listView can be clickable.-->
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
         android:clickable="false"
-        android:contentDescription="TODO" />
+        android:contentDescription="TODO"
+        android:src="@drawable/veg_icon"/>
     <TextView
         android:id="@+id/menuItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Item"
         android:textSize="20sp"
+        android:layout_marginStart="20dp"
         android:layout_toEndOf="@id/icon"
         android:clickable="false"
         android:gravity="center"
@@ -31,8 +34,8 @@
         android:id="@+id/itemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="21dp"
-        android:layout_toStartOf="@id/checkItem"
+        android:layout_marginStart="40dp"
+        android:layout_below="@id/menuItemName"
         android:text="100"
         android:fontFamily="@font/salsa"
         android:gravity="center"
@@ -48,6 +51,14 @@
         android:checked="false"
         android:clickable="false"
         android:gravity="center" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/checkItem"
+        android:layout_marginStart="310dp"
+        android:background="@drawable/border_edit"
+        android:text="ADD  +"
+        android:fontFamily="@font/salsa"/>
 
 
 </RelativeLayout>

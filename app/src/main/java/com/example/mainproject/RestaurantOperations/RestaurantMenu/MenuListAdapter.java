@@ -2,6 +2,7 @@ package com.example.mainproject.RestaurantOperations.RestaurantMenu;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.List;
 
 public class MenuListAdapter extends ArrayAdapter {
     Context context;
-    List<MenuItemForListView> menuItemForListViews;
+    private List<MenuItemForListView> menuItemForListViews;
 
     private static final String TAG="kun";
      MenuListAdapter(Context context, List<MenuItemForListView> menuItemForListViews) {
@@ -66,6 +67,14 @@ public class MenuListAdapter extends ArrayAdapter {
 
         holder.names.setText(menuItemForListViews.get(position).getName());
         holder.price.setText(menuItemForListViews.get(position).getPrice()+"");
+        if(menuItemForListViews.get(position).isType()){
+            Log.d(TAG, "getView: The item is veg");
+            holder.icon.setImageResource(R.drawable.veg_icon);
+        }
+        else{
+            Log.d(TAG, "getView: item is nonveg");
+            holder.icon.setImageResource(R.drawable.non_veg_icon);
+        }
 
         return row;
     }
@@ -76,7 +85,7 @@ public class MenuListAdapter extends ArrayAdapter {
 
 class MenuItemViewHolder{
     TextView names,price;
-    private ImageView icon;
+     ImageView icon;
     CheckBox checkBox;
     RelativeLayout listItem;
     MenuItemViewHolder(View v){

@@ -46,7 +46,8 @@
                 android:inputType="textPersonName"
                 android:maxLines="1"
                 android:maxLength="15"
-                android:padding="14dp" />
+                android:padding="14dp"
+                />
         </com.example.mainproject.UtilityClasses.CustomTextInputLayout>
 
         <com.example.mainproject.UtilityClasses.CustomTextInputLayout

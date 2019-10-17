@@ -19,6 +19,7 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:text="@string/name"
+        android:fontFamily="@font/salsa"
         />
    <TextView
        android:id="@+id/phoneNumbers"
@@ -26,19 +27,22 @@
        android:layout_height="0dp"
        android:layout_weight="10"
 
-       android:text="@string/phone" />
+       android:text="@string/phone"
+       android:fontFamily="@font/salsa"/>
     <TextView
         android:id="@+id/fragmentRestaurantAddress"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="@string/address" />
+        android:text="@string/address"
+        android:fontFamily="@font/salsa"/>
     <TextView
         android:id="@+id/ratings"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="10"
-        android:text="Ratings"/>
+        android:text="Ratings"
+        android:fontFamily="@font/salsa"/>
 
     <ListView
         android:id="@+id/fragmentListViewForRestaurantProperties"

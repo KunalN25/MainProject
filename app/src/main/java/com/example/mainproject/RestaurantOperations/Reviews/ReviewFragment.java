@@ -1,8 +1,10 @@
 package com.example.mainproject.RestaurantOperations.Reviews;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +13,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.borjabravo.readmoretextview.ReadMoreTextView;
 import com.example.mainproject.R;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantLocation;
@@ -29,9 +34,10 @@ import java.util.List;
  */
 public class ReviewFragment extends Fragment {
     private RecyclerView recyclerView;
-    private String TAG="Main";
+    private String TAG="kun";
     private List<ReviewData> reviewDataList;
     private String reviewsString;
+    TextView noReviewsText;
 
 
     public ReviewFragment() {
@@ -45,9 +51,11 @@ public class ReviewFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_review, container, false);
         initRecyclerView(v);
+
         return v;
     }
     private void initRecyclerView(View v){
+        noReviewsText=v.findViewById(R.id.noReviewsText);
         recyclerView=v.findViewById(R.id.reviewList);
         Log.d(TAG, "Review fragment initRecyclerView: Recycler View is initialized");
         recyclerView.setHasFixedSize(true);
@@ -78,7 +86,6 @@ public class ReviewFragment extends Fragment {
             for(int i=0;i<reviews.length();i++)
             {
                 JSONObject singleReview=reviews.getJSONObject(i).getJSONObject("review");
-                Log.d(TAG, "loadReviewsFromJSON: "+singleReview.getString("review_text"));
                 reviewDataList.add(new ReviewData(singleReview.getJSONObject("user").getString("name"),
                                 singleReview.getJSONObject("user").getString("profile_image"),
                                 singleReview.getString("review_text"),
@@ -92,6 +99,11 @@ public class ReviewFragment extends Fragment {
 
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        if(reviewDataList.isEmpty())
+        {
+            noReviewsText.setVisibility(View.VISIBLE);
+            Log.d(TAG, "loadReviewsFromJSON: No reviews in this restaurant");
         }
 
     }

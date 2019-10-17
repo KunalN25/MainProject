@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border_edit_btn"
         android:text="ADD TO CART"
+        android:layout_marginBottom="10dp"
         android:layout_weight="0"
         android:visibility="gone"
         />

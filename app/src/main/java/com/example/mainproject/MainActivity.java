@@ -43,7 +43,7 @@ import java.io.Serializable;
 
 
 public class MainActivity extends AppCompatActivity implements  MapFragment.MapFragmentMethods, AccountFragment.AccountFragmentMethods, BottomNavigationView.OnNavigationItemSelectedListener {
-    private static final String TAG="Main";
+    private static final String TAG="kun";
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
     FirebaseFirestore databaseRef;
@@ -104,25 +104,27 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
     }
 
     private void startAnimation() {
-        if (animationFlag) {
+        if (AnimationClass.ANIMATION_FLAG) {
             startActivity(new Intent(this, SplashActivity.class));
             finish();
-            animationFlag = false;
+            Log.d(TAG, "startAnimation: from mainactivity ");
         }
     }
     public void redirectToLogin()
     {
+        Log.d(TAG, "redirectToLogin: animaflag"+AnimationClass.ANIMATION_FLAG);
         mAuth = FirebaseAuth.getInstance();
 
 
         FirebaseUser user=mAuth.getCurrentUser();
-        if(user==null)
-        {
-            startActivity(new Intent(this, LoginPage.class));
-            finish();       //This will erase the activity from the back stack
+        if(user==null) {
+               if(!AnimationClass.ANIMATION_FLAG) {
+                   startActivity(new Intent(this, LoginPage.class));
+                   finish();       //This will erase the activity from the back stack
+               }
         }
     }
-   
+
     //Load all the userData into SharedPreferences
     private void loadIntoSharedPreferences() {
 
@@ -138,7 +140,6 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
                 sharePreferencesHelper.addToPreference("MobileNumber",userData.getMobileNo()+"");
                 UserAccountBalance.USER_BALANCE=userData.getBalance();
                 Log.d(TAG, "onDataChange: Data loaded");
-                Message.message(getApplicationContext(),sharePreferencesHelper.loadPreferences("FirstName"));
 
             }
 

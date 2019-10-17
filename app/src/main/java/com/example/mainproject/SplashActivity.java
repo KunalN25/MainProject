@@ -3,6 +3,7 @@ package com.example.mainproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -17,10 +18,13 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         TextView textView = findViewById(R.id.title1);
-        int splashTimeOut = 3500;
+        int splashTimeOut = 4000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.d("kun", "run: splash is running");
+                AnimationClass.ANIMATION_FLAG = false;
+
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();

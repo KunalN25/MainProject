@@ -6,12 +6,22 @@
     tools:context=".UtilityClasses.ConnectionTimedOut">
 
     <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_warning"
+        android:layout_marginTop="300dp"
+        android:layout_centerHorizontal="true"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Connection Timed Out"
-        android:layout_centerInParent="true"
+        android:text="Connection Timed Out !"
         android:padding="20dp"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:fontFamily="@font/salsa"
+        android:id="@+id/warning_text"
         />
 
 </RelativeLayout>
