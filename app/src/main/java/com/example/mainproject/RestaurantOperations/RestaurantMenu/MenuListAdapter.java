@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.example.mainproject.R;
 
@@ -57,11 +59,16 @@ public class MenuListAdapter extends ArrayAdapter {
         if(menuItemForListViews.get(position).isSelected()) {
             holder.listItem.setBackgroundColor(R.color.pink);
             holder.checkBox.setChecked(true);
+            holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit_for_rating_green));
+            holder.addBtn.setText("Selected");
 
 
         } else {
             holder.listItem.setBackgroundColor(android.R.color.background_light);
             holder.checkBox.setChecked(false);
+            holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit_btn));
+            holder.addBtn.setText("Add   +");
+
 
         }
 
@@ -86,6 +93,7 @@ public class MenuListAdapter extends ArrayAdapter {
 class MenuItemViewHolder{
     TextView names,price;
      ImageView icon;
+    Button addBtn;
     CheckBox checkBox;
     RelativeLayout listItem;
     MenuItemViewHolder(View v){
@@ -93,6 +101,7 @@ class MenuItemViewHolder{
         price=v.findViewById(R.id.itemPrice);
         icon=v.findViewById(R.id.icon);
         checkBox=v.findViewById(R.id.checkItem);
+        addBtn=v.findViewById(R.id.MenuAddBtn);
         listItem=v.findViewById(R.id.listItem);
     }
 }
