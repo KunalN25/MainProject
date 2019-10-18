@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mainproject.LatAndLongTrack;
 import com.example.mainproject.MainActivity;
 import com.example.mainproject.R;
 import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
@@ -37,7 +38,7 @@ public class HomeFragment extends Fragment  {
     private String TAG="Main";
     private TextView location;
     private ProgressBar progressBar;
-    private String latitude, longitude;
+    private String latitude, longitude, address;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class HomeFragment extends Fragment  {
         //Add longitude and latitude
         Log.d(TAG, "onCreateView: Home Fragment");
         loadJSONDataFromZomato();
+        location.setText(LatAndLongTrack.ADDRESS);
         return v;
     }
     private void initialize(View v) {
@@ -137,9 +139,10 @@ public class HomeFragment extends Fragment  {
         }
     }
 
-    public void getLocationDetails(double latitude, double longitude) {
+    public void getLocationDetails(double latitude, double longitude, String address) {
         this.latitude = latitude + "";
         this.longitude = longitude + "";
+        this.address = address;
         Log.d("kun", "getLocationDetails: lat:" + this.latitude + " long:" + this.longitude);
 
     }

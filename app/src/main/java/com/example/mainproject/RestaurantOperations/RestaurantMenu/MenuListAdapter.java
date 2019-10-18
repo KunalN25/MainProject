@@ -76,11 +76,11 @@ public class MenuListAdapter extends ArrayAdapter {
         holder.price.setText(menuItemForListViews.get(position).getPrice()+"");
         if(menuItemForListViews.get(position).isType()){
             Log.d(TAG, "getView: The item is veg");
-            holder.icon.setImageResource(R.drawable.veg_icon);
+            holder.icon.setImageResource(R.drawable.ic_home);
         }
         else{
             Log.d(TAG, "getView: item is nonveg");
-            holder.icon.setImageResource(R.drawable.non_veg_icon);
+            holder.icon.setImageResource(R.drawable.ic_warning);
         }
 
         return row;

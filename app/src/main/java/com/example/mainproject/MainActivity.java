@@ -213,9 +213,9 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
     }
 
     @Override
-    public void sendLocationDetails(double latitude, double longitude) {
+    public void sendLocationDetails(double latitude, double longitude, String address) {
         Log.d("MapTest", "sendLocationDetails: in MainActivty latitude " + latitude + " longit " + longitude);
-        homeFragment.getLocationDetails(latitude, longitude);
+        homeFragment.getLocationDetails(latitude, longitude, address);
     }
     public static MainActivity getInstance(){
         return activity;

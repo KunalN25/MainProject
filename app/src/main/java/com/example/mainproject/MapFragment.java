@@ -40,6 +40,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MapFragment extends Fragment {
 
@@ -110,7 +111,7 @@ public class MapFragment extends Fragment {
                 // TODO: Handle the error.Log.i(TAG, "An error occurred: " + status);
             }
         });*/
-
+        LatAndLongTrack.ADDRESS = myLocation;
         return v;
     }
     private void init () {
@@ -235,7 +236,8 @@ public class MapFragment extends Fragment {
                                 Log.d(TAG,e.getMessage());
                             }
                             if (addresses.size()>0){
-                                myLocation=addresses.get(0).getAddressLine(0).toString();
+                                LatAndLongTrack.ADDRESS = addresses.get(0).getAddressLine(0);
+                                Log.d(TAG, "onComplete for lonlang: address " + LatAndLongTrack.ADDRESS);
                             }
 
                         } else {
@@ -260,8 +262,8 @@ public class MapFragment extends Fragment {
                     .title(title);
             mMap.addMarker(options);
         }
-
-        mapFragmentMethods.sendLocationDetails(latLng.latitude, latLng.longitude);
+        Log.d(TAG, "moveCamera: address is  " + LatAndLongTrack.ADDRESS);
+        mapFragmentMethods.sendLocationDetails(latLng.latitude, latLng.longitude, myLocation);
 
 
         hideSoftKeyboard();
@@ -345,11 +347,17 @@ public class MapFragment extends Fragment {
     }
 
     private void hideSoftKeyboard () {
-        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getView().getWindowToken(),0);
+        InputMethodManager imm = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
+        }
+    }
+
+    private void getAddress() {
+
     }
 
     interface MapFragmentMethods {
-        void sendLocationDetails(double latitude, double longitude);
+        void sendLocationDetails(double latitude, double longitude, String address);
     }
 }

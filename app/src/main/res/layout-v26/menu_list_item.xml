@@ -16,7 +16,7 @@
         android:layout_marginTop="10dp"
         android:clickable="false"
         android:contentDescription="TODO"
-        android:src="@drawable/veg_icon"/>
+        android:src="@drawable/ic_home" />
     <TextView
         android:id="@+id/menuItemName"
         android:layout_width="wrap_content"
@@ -60,6 +60,7 @@
         android:layout_marginStart="310dp"
         android:background="@drawable/border_edit"
         android:text="ADD  +"
+        android:clickable="false"
         android:fontFamily="@font/salsa"/>
 
 

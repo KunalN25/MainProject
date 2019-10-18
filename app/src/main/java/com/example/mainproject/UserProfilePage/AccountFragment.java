@@ -38,7 +38,7 @@ public class AccountFragment extends Fragment implements AdapterView.OnItemClick
         View v=inflater.inflate(R.layout.fragment_account,container,false);
         String[] listItems={"Profile","Add Balance","Settings","Log Out"};
         listView=v.findViewById(R.id.accountList);
-        arrayAdapter=new ArrayAdapter<>(Objects.requireNonNull(getActivity()),android.R.layout.simple_list_item_1,listItems);
+        arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), R.layout.textview_for_lists, listItems);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(this);
         return v;

@@ -67,7 +67,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         listView=v.findViewById(R.id.fragmentListViewForRestaurantProperties);
         context=getActivity();
         if (context != null) {
-            arrayAdapter=new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,listItems);
+            arrayAdapter = new ArrayAdapter<>(context, R.layout.textview_for_lists, listItems);
         }
     }
 
