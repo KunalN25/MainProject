@@ -33,7 +33,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
 
 
     private  ImageView imageView;
-    private TextView name,/*cuisine,*/
+    private TextView name,cuisine,
             address, phone_numbers, ratings;
     private ListView listView;
     private  final String TAG="Main";
@@ -60,7 +60,7 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
     private void initialize(View v) {
         imageView=v.findViewById(R.id.fragmentRestaurantPhoto);
         name=v.findViewById(R.id.fragmentRestaurantName);
-       // cuisine=v.findViewById(R.id.fragmentCuisine);
+        cuisine=v.findViewById(R.id.fragmentCuisine);
         address = v.findViewById(R.id.fragmentRestaurantAddress);
         ratings=v.findViewById(R.id.ratings);
         phone_numbers=v.findViewById(R.id.phoneNumbers);
@@ -88,12 +88,12 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
             imageView.setImageResource(R.drawable.restaurant_default);
 
         name.setText(restaurantJSONItems.getName());
-        address.setText(restaurantJSONItems.getLocation().getAddress());
+        address.setText("Address : "+restaurantJSONItems.getLocation().getAddress());
         ratings.setText(restaurantJSONItems.getRatings());
-        phone_numbers.setText(restaurantJSONItems.getPhone_numbers());
+        phone_numbers.setText("Contacts : "+restaurantJSONItems.getPhone_numbers());
         reviews=restaurantJSONItems.getReviews();
        Log.d(TAG, "Restaurant Fragment loadRestaurantIntoFragment: "+restaurantJSONItems.getCuisines());
-       // cuisine.setText(restaurantJSONItems.getCuisines());
+        cuisine.setText(restaurantJSONItems.getCuisines());
         Log.d(TAG, "loadRestaurantIntoFragment: Data loaded into restaurant fragment");
     }
 

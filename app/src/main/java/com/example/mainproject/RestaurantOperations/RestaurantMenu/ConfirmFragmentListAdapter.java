@@ -53,7 +53,7 @@ public class ConfirmFragmentListAdapter extends ArrayAdapter {
 
         holder.names.setText(menuItems.get(position).getName());
 
-        holder.price.setText(menuItems.get(position).getPrice()+"");
+        holder.price.setText("Rs."+menuItems.get(position).getPrice()+"");
 
         return row;
     }

@@ -8,7 +8,7 @@
     android:layout_width="match_parent">
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fffafa"
+    android:background="@drawable/gradient_4"
     android:id="@+id/registerLayout">
 
     <androidx.appcompat.widget.Toolbar
@@ -193,7 +193,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginVertical="25dp"
         android:background="@drawable/border_edit"
-        android:backgroundTint="#00bfff"
         android:onClick="signUp"
 
 

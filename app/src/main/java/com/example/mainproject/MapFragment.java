@@ -344,10 +344,9 @@ public class MapFragment extends Fragment {
     }
 
     private void hideSoftKeyboard () {
-        InputMethodManager imm = (InputMethodManager) Objects.requireNonNull(getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) {
-            imm.hideSoftInputFromWindow(Objects.requireNonNull(getView()).getWindowToken(), 0);
-        }
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        View anyView = new View(getContext());
+        imm.hideSoftInputFromWindow(anyView.getWindowToken(),0);
     }
 
     private void getAddress() {

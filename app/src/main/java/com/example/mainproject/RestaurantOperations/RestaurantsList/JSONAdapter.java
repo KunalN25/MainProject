@@ -55,6 +55,7 @@ public class JSONAdapter extends RecyclerView.Adapter<JSONAdapter.ViewHolder> {
             Glide.with(context)
                     .asBitmap()
                     .fitCenter()
+                    .centerCrop()
                     .load(restaurantJSONItems.getPhotos_url())
                     .into(holder.restaurantPhoto);        //Load the imageURL into the imageView
         }

@@ -47,7 +47,7 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
 
         cartItemsListView.addHeaderView(header);
         totalPriceValue=footer.findViewById(R.id.totalValue);
-        totalPriceValue.setText(totalPrice+"");
+        totalPriceValue.setText("Rs "+totalPrice+"");
         cartItemsListView.addFooterView(footer);
         confirmButton=footer.findViewById(R.id.confirmYourOrderButton);
         confirmButton.setOnClickListener(this);

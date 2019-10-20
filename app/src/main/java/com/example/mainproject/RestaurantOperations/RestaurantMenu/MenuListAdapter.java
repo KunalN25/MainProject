@@ -59,21 +59,21 @@ public class MenuListAdapter extends ArrayAdapter {
         if(menuItemForListViews.get(position).isSelected()) {
             holder.listItem.setBackgroundColor(R.color.pink);
             holder.checkBox.setChecked(true);
-            holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit_for_rating_green));
+            holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit));
             holder.addBtn.setText("Selected");
 
 
         } else {
             holder.listItem.setBackgroundColor(android.R.color.background_light);
             holder.checkBox.setChecked(false);
-            holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit_btn));
+            holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit));
             holder.addBtn.setText("Add   +");
 
 
         }
 
         holder.names.setText(menuItemForListViews.get(position).getName());
-        holder.price.setText(menuItemForListViews.get(position).getPrice()+"");
+        holder.price.setText("Rs."+menuItemForListViews.get(position).getPrice()+"");
         if(menuItemForListViews.get(position).isType()){
             Log.d(TAG, "getView: The item is veg");
             holder.icon.setImageResource(R.drawable.veg_icon);

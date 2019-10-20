@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crave\nBetter"
+        android:fontFamily="@font/salsa"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/eat_drink_live"
+        android:id="@+id/img_view_in_profile"/>
     <ListView
         android:id="@+id/accountList"
+        android:layout_below="@id/img_view_in_profile"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:background="@drawable/border_edit_for_res_photo"/>
 
 </RelativeLayout>

@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".RestaurantOperations.RestaurantMenu.MenuFragment"
     android:id="@+id/frameLAyout"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
 
   <ProgressBar
       android:id="@+id/menuProgressBar"
@@ -20,11 +21,24 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:orientation="vertical"
-      android:weightSum="1">
+      android:weightSum="1"
+      android:background="@drawable/gradient_3">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:paddingBottom="20dp"
+        android:includeFontPadding="true"
+        android:textSize="30sp"
+        android:textAppearance="@style/DefaultAppFont"
+        android:textAlignment="center"
+        android:textColor="#fff"
+        />
     <ListView
         android:id="@+id/menuList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/border_edit_for_menu"
         android:layout_weight="1"/>
 
     <Button
