@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,16 +24,12 @@ import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.UtilityClasses.NoInternetString;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
-
-import io.opencensus.internal.StringUtils;
 
 
 /**
@@ -67,9 +62,10 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
 
         compareCuisines();
         Log.d(TAG, "onCreateView: Size:" + menuItemForListViews.size());
+        if (getContext() == null)
+            Log.d(TAG, "onCreateView: getcontezt is null");
 
-
-
+        progressBar.bringToFront();
         show=v.findViewById(R.id.show);
         show.setOnClickListener(this);
         menuList.setOnItemClickListener(this);
@@ -229,7 +225,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                                     menuItems.get(i).isType()));
                         }
                     }
-                    menuListAdapter = new MenuListAdapter(getActivity(), menuItemForListViews);
+                    menuListAdapter = new MenuListAdapter(getContext(), menuItemForListViews);
 
 
                     menuList.setAdapter(menuListAdapter);

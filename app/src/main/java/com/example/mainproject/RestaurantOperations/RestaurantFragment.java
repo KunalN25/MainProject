@@ -6,10 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,15 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.mainproject.R;
-import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 
-import org.json.JSONArray;
 
-import java.util.List;
-
-
-public class RestaurantFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class RestaurantFragment extends Fragment implements View.OnClickListener {
 
     public RestaurantFragment() {
         // Required empty public constructor
@@ -34,12 +26,9 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
 
     private  ImageView imageView;
     private TextView name,cuisine,
-            address, phone_numbers, ratings;
-    private ListView listView;
+            address, phone_numbers, ratings, orderNow, reviewTextView;
     private  final String TAG="Main";
     private  Context context;
-    private ArrayAdapter<String> arrayAdapter;
-    private String[] listItems={"Order Now","Reviews"};
     private RestaurantJSONItems restaurantJSONItems;
     private RestaurantFragmentMethods restaurantFragmentMethods;
     private String reviews;
@@ -51,9 +40,8 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         View v=inflater.inflate(R.layout.fragment_restaurant, container, false);
         initialize(v);
         loadRestaurantIntoFragment();
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener(this);
-
+        orderNow.setOnClickListener(this);
+        reviewTextView.setOnClickListener(this);
         return v;
     }
 
@@ -64,11 +52,10 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         address = v.findViewById(R.id.fragmentRestaurantAddress);
         ratings=v.findViewById(R.id.ratings);
         phone_numbers=v.findViewById(R.id.phoneNumbers);
-        listView=v.findViewById(R.id.fragmentListViewForRestaurantProperties);
+        orderNow = v.findViewById(R.id.orderNow);
+        reviewTextView = v.findViewById(R.id.reviewsLoad);
         context=getActivity();
-        if (context != null) {
-            arrayAdapter = new ArrayAdapter<>(context, R.layout.textview_for_lists, listItems);
-        }
+
     }
 
     void setRestaurantObject(RestaurantJSONItems restaurantJSONItems)
@@ -105,18 +92,20 @@ public class RestaurantFragment extends Fragment implements AdapterView.OnItemCl
         restaurantFragmentMethods=(RestaurantFragmentMethods)context;
     }
 
+
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(((TextView) view).getText().toString().equals("Order Now"))
+    public void onClick(View v) {
+        switch (v.getId())
         {
-            Log.d(TAG, "onItemClick: Display Menu");
-            restaurantFragmentMethods.loadMenuList(restaurantJSONItems.getCuisines());
-        }
-        else if(((TextView) view).getText().toString().equals("Reviews"))
-        {
-            Log.d(TAG, "onItemClick: Display Reviews");
-            //Log.d(TAG, "onItemClick: "+reviews);
-            restaurantFragmentMethods.startReviewFragment(reviews);
+            case R.id.orderNow:
+                Log.d(TAG, "onItemClick: Display Menu");
+                restaurantFragmentMethods.loadMenuList(restaurantJSONItems.getCuisines());
+                break;
+            case R.id.reviewsLoad:
+                Log.d(TAG, "onItemClick: Display Reviews");
+                //Log.d(TAG, "onItemClick: "+reviews);
+                restaurantFragmentMethods.startReviewFragment(reviews);
+                break;
 
         }
     }

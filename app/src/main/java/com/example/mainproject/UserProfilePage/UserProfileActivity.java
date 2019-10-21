@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.mainproject.LoginAndRegistration.UserData;
+import com.example.mainproject.PaymentsAndBalance.UserAccountBalance;
 import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.R;
 import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
@@ -40,7 +41,6 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-        Message.message(getApplicationContext(), new SharePreferencesHelper(this).loadPreferences("FirstName"));
         initialize();
         setEditTextValues();
         actionBar.setTitle("Profile");
@@ -130,6 +130,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
         userData.setLastName(last);
         userData.setMobileNo(Long.parseLong(phone));
         userData.setEmail(user.getEmail());
+        userData.setBalance(UserAccountBalance.USER_BALANCE);
 
         reference.setValue(userData);
         Log.d(TAG, "saveDetails: Details saved");

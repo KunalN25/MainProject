@@ -1,7 +1,6 @@
 package com.example.mainproject.PaymentsAndBalance;
 
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -92,6 +91,7 @@ public class AddBalance extends Fragment implements View.OnClickListener {
                     UserAccountBalance.USER_BALANCE=balance;
                     addBalanceMethods.updateBalanceInDatabase();
                     yourBal.setText(String.format("%.2f", balance));
+                    balanceIn.setText("");
 
 
                 } catch (ExecutionException e) {
@@ -130,7 +130,7 @@ public class AddBalance extends Fragment implements View.OnClickListener {
             //Update balance in sharedPreferences
             progressBar.setVisibility(View.GONE);
             Log.d("tag" , "onPostVsible: progress not  viisble");
-            Message.message(context,"Updated Balance: "+s);
+            Message.message(context, "Updated Balance: " + String.format("%.2f", s));
 
 
         }

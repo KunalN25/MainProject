@@ -20,8 +20,8 @@ import com.example.mainproject.R;
 
 import java.util.List;
 
-public class MenuListAdapter extends ArrayAdapter {
-    Context context;
+public class MenuListAdapter extends ArrayAdapter<MenuItemForListView> {
+    private Context context;
     private List<MenuItemForListView> menuItemForListViews;
 
     private static final String TAG="kun";
