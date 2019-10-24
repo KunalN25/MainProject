@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Menu"
+        android:paddingTop="15dp"
         android:paddingBottom="20dp"
         android:includeFontPadding="true"
         android:textSize="30sp"
@@ -38,6 +39,8 @@
         android:id="@+id/menuList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="@drawable/gradient_3"
+        android:dividerHeight="10dp"
         android:background="@drawable/border_edit_for_menu"
         android:layout_weight="1"/>
 

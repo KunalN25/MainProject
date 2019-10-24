@@ -7,21 +7,21 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/salsa"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="80dp"
         android:text="@string/crave_nbetter"
         android:textColor="@color/colorPrimary"
-        android:textSize="30sp"/>
+        android:textSize="35sp"/>
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="300dp"
         android:layout_below="@id/craveBetterTeextView"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/eat_drink_live"
         android:id="@+id/img_view_in_profile"/>
     <ListView
         android:id="@+id/accountList"
         android:layout_below="@id/img_view_in_profile"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/border_edit_for_res_photo"/>

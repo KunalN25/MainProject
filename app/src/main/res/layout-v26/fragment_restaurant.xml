@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".RestaurantOperations.RestaurantFragment"
     android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_below="@id/ratings"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
@@ -29,7 +29,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/fragmentRestaurantPhoto"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
+            android:maxLines="2"
+            android:layout_marginTop="45dp"
+            android:paddingHorizontal="10dp"
+            android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/salsa"
             android:text="@string/name"
             android:textSize="35sp"
@@ -42,6 +45,8 @@
             android:layout_below="@id/fragmentRestaurantName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="3dp"
+            android:maxLines="2"
+            android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/salsa"
             android:text="Cuisine"
             android:textSize="25sp" />
@@ -55,8 +60,8 @@
             android:layout_marginTop="6dp"
             android:background="@drawable/border_edit_for_address"
             android:fontFamily="@font/salsa"
-            android:paddingVertical="5dp"
-            android:paddingStart="10dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
             android:text="@string/phone"
             android:textSize="15sp" />
 
@@ -67,11 +72,11 @@
             android:layout_below="@id/fragmentCuisine"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="56dp"
             android:background="@drawable/border_edit_for_address"
             android:fontFamily="@font/salsa"
-            android:paddingVertical="5dp"
-            android:paddingStart="10dp"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
             android:text="@string/address"
             android:textSize="15sp" />
 
@@ -80,27 +85,30 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="125dp"
             android:background="@drawable/layout_for_edit"
             android:fontFamily="@font/salsa"
             android:gravity="center"
+            android:padding="8dp"
             android:text="@string/ratings"
             android:textColor="#fff"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/orderNow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_below="@id/phoneNumbers"
+            android:layout_above="@id/reviewsLoad"
             android:drawableRight="@drawable/ic_arrow"
             android:fontFamily="@font/salsa"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
             android:text="@string/order_now"
             android:textSize="20sp"
+            android:textColor="#000"
 
 
             />
@@ -109,20 +117,20 @@
             android:id="@+id/reviewsLoad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:layout_below="@id/orderNow"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="10dp"
+            android:textColor="#000"
             android:drawableRight="@drawable/ic_arrow"
             android:fontFamily="@font/salsa"
-            android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="5dp"
             android:text="@string/reviews"
             android:textSize="20sp"
+            android:layout_alignParentBottom="true"
 
 
             />
 
 
     </RelativeLayout>
-</ScrollView>
+</RelativeLayout>
 

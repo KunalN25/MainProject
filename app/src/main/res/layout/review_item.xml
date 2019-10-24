@@ -11,7 +11,7 @@
 <RelativeLayout
      android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/border_edit"
+    android:background="@drawable/border_edit_for_review"
 
     >
 

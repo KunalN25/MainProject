@@ -5,7 +5,10 @@
     android:id="@+id/listItem"
     android:clickable="false"
     android:descendantFocusability="blocksDescendants"
-    android:layout_marginVertical="10dp">
+    android:layout_marginVertical="10dp"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="10dp"
+    android:background="@drawable/border_edit_for_menu">
     <!--DescendantFocusability attribute is used to set the focusable for all the child views
         so that the listView can be clickable.-->
     <ImageView

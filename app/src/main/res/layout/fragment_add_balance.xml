@@ -20,7 +20,7 @@
         android:text="My Wallet"
         android:textColor="#000"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/salsa"
         android:textSize="24sp"/>
 

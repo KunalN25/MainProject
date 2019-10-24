@@ -17,20 +17,23 @@
         android:layout_width="50dp"
         android:layout_height="32dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="180dp"
         android:gravity="center"
         android:text="@string/total"
+        android:textSize="20sp"
         android:fontFamily="@font/salsa"
         />
 
     <TextView
         android:id="@+id/totalValue"
-        android:layout_width="54dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="130dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
         android:layout_marginStart="295dp"
+
         android:gravity="center"
         android:text="@string/rs_0"
+        android:textSize="20sp"
         android:fontFamily="@font/salsa"
         />
     <Button
@@ -38,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
         android:text="Confirm"
         android:background="@drawable/border_edit_btn"/>
 
