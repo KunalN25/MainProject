@@ -43,6 +43,7 @@ public class PaymentActivity extends AppCompatActivity implements AddBalance.Add
                 startAddBalanceFragment();
             }
             else {
+                /*START PROCEED TO PAY FRAGMENT*/
                 ProceedToPayFragment proceedToPayFragment = new ProceedToPayFragment();
                 transaction.add(R.id.paymentPage, proceedToPayFragment).commit();
                 proceedToPayFragment.getTotalPrice(totalPrice);
@@ -51,6 +52,7 @@ public class PaymentActivity extends AppCompatActivity implements AddBalance.Add
 
     }
 
+    /*START ADD BALANCE FRAGMENT*/
     private void startAddBalanceFragment() {
         transaction.replace(R.id.paymentPage,new AddBalance()).commit();
 

@@ -3,7 +3,6 @@ package com.example.mainproject.RestaurantOperations.RestaurantsList;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.YuvImage;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -84,7 +82,7 @@ public class JSONAdapter extends RecyclerView.Adapter<JSONAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 //MainActivity.recyclerViewOnClick(restaurantsList.get(position));
-
+                /*START RESTAURANT ACTIVITY*/
                 Intent intent=new Intent(context, RestaurantActivity.class);
                 intent.putExtra("RestaurantData",res);
                 context.startActivity(intent);

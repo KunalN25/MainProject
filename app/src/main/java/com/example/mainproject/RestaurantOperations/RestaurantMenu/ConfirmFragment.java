@@ -74,7 +74,7 @@ public class ConfirmFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+        /*START PAYMENTS ACTIVITY (code in restaurant activity)*/
         if(InternetConnection.isInternetConnected(getActivity())){
             confirmFragmentMethods.startPaymentActivity(totalPrice);
         }

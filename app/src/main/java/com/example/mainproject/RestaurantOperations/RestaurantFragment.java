@@ -97,10 +97,12 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId())
         {
+            /*START MENUFRAGMENT*/
             case R.id.orderNow:
                 Log.d(TAG, "onItemClick: Display Menu");
                 restaurantFragmentMethods.loadMenuList(restaurantJSONItems.getCuisines());
                 break;
+            /*START REVIEW FRAGMENT*/
             case R.id.reviewsLoad:
                 Log.d(TAG, "onItemClick: Display Reviews");
                 //Log.d(TAG, "onItemClick: "+reviews);

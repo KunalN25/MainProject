@@ -110,6 +110,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                 else {
                     int total = calculateTotalCost();
                     menuFragmentMethods.sendMenuItems(addToCart, total);
+                    /*START CONFIRM FRAGMENT*/
                 }
 
 
@@ -225,16 +226,14 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                                     menuItems.get(i).isType()));
                         }
                     }
-                    menuListAdapter = new MenuListAdapter(getContext(), menuItemForListViews);
-
-
-                    menuList.setAdapter(menuListAdapter);
+                    if (getActivity() != null) {
+                        menuListAdapter = new MenuListAdapter(getActivity(), menuItemForListViews);
+                        menuList.setAdapter(menuListAdapter);
+                    }
                     progressBar.setVisibility(View.GONE);
                     show.setVisibility(View.VISIBLE);
 
-                    for (int i = 0; i < menuItemForListViews.size(); i++) {
-                        Log.d(TAG, "onComplete: \n\t\t\t" + menuItemForListViews.get(i).getName());
-                    }
+
                 }
                 else
                 {

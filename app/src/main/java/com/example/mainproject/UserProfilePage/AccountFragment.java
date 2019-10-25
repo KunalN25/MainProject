@@ -22,7 +22,6 @@ import com.example.mainproject.PaymentsAndBalance.PaymentActivity;
 import com.example.mainproject.R;
 import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.UtilityClasses.NoInternetString;
-import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
 
 import java.util.Objects;
 
@@ -36,7 +35,7 @@ public class AccountFragment extends Fragment implements AdapterView.OnItemClick
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_account,container,false);
-        String[] listItems={"Profile","Add Balance","Settings","Log Out"};
+        String[] listItems = {"Profile", "Add Balance", "Log Out"};
         listView=v.findViewById(R.id.accountList);
         arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), R.layout.textview_for_lists, listItems);
         listView.setAdapter(arrayAdapter);
@@ -56,6 +55,7 @@ public class AccountFragment extends Fragment implements AdapterView.OnItemClick
 
         if(((TextView) view).getText().toString().equals("Profile"))
         {
+            /*START PAYMENT ACTIVITY'S ADD BALANCE FRAGMENT*/
             accountFragmentMethods.startProfileActivity();
             Log.d(TAG, "onItemClick: Profile clicked");
         }
@@ -65,12 +65,7 @@ public class AccountFragment extends Fragment implements AdapterView.OnItemClick
             intent.putExtra("AddBalance",true);
             startActivity(intent);
             Log.d(TAG, "onItemClick: Add Balance");
-        }
-        else if(((TextView) view).getText().toString().equals("Settings"))
-        {
-            Log.d(TAG, "onItemClick: Settings clicked");
-        }
-        else if(((TextView) view).getText().toString().equals("Log Out"))
+        } else if(((TextView) view).getText().toString().equals("Log Out"))
         {
             Log.d(TAG, "onItemClick: LogOut clicked");
             if(InternetConnection.isInternetConnected(getActivity())) {

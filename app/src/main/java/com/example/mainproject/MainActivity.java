@@ -1,13 +1,11 @@
 package com.example.mainproject;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -20,12 +18,11 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.mainproject.LoginAndRegistration.LoginPage;
 import com.example.mainproject.LoginAndRegistration.UserData;
-import com.example.mainproject.RestaurantOperations.RestaurantsList.HomeFragment;
 import com.example.mainproject.PaymentsAndBalance.UserAccountBalance;
+import com.example.mainproject.RestaurantOperations.RestaurantsList.HomeFragment;
 import com.example.mainproject.UserProfilePage.AccountFragment;
 import com.example.mainproject.UserProfilePage.UserProfileActivity;
 import com.example.mainproject.UtilityClasses.ConnectionTimedOut;
-import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -38,8 +35,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.io.Serializable;
 
 
 public class MainActivity extends AppCompatActivity implements  MapFragment.MapFragmentMethods, AccountFragment.AccountFragmentMethods, BottomNavigationView.OnNavigationItemSelectedListener {
@@ -103,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
 
     }
 
+    /*START ANIMATION ACTIVITY*/
     private void startAnimation() {
         if (AnimationClass.ANIMATION_FLAG) {
             startActivity(new Intent(this, SplashActivity.class));
@@ -110,18 +106,19 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
             Log.d(TAG, "startAnimation: from mainactivity ");
         }
     }
-    public void redirectToLogin()
-    {
+
+    /*START LOGIN ACTIVITY*/
+    public void redirectToLogin() {
         Log.d(TAG, "redirectToLogin: animaflag"+AnimationClass.ANIMATION_FLAG);
         mAuth = FirebaseAuth.getInstance();
 
 
         FirebaseUser user=mAuth.getCurrentUser();
         if(user==null) {
-               if(!AnimationClass.ANIMATION_FLAG) {
-                   startActivity(new Intent(this, LoginPage.class));
-                   finish();       //This will erase the activity from the back stack
-               }
+            if(!AnimationClass.ANIMATION_FLAG) {
+                startActivity(new Intent(this, LoginPage.class));
+                finish();       //This will erase the activity from the back stack
+            }
         }
     }
 
@@ -163,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
         Log.d(TAG, "logOut: Logged out");
     }
 
+    /*START PROFILE ACTIVITY*/
     @Override
     public void startProfileActivity() {
         startActivity(profileIntent);
@@ -227,5 +225,5 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
     public void getProgressBar(ProgressBar progressBar){
         this.ProgressBar =progressBar;
     }
-
+    /*RESTAURANT ACTIVITY IS STARTED FROM JSONADAPTER CLASS*/
 }
