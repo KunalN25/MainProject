@@ -57,7 +57,7 @@ public class MenuListAdapter extends ArrayAdapter<MenuItemForListView> {
         }
 
         if(menuItemForListViews.get(position).isSelected()) {
-            holder.listItem.setBackgroundColor(R.color.pink);
+            holder.listItem.setBackgroundColor(R.color.indicator);
             holder.checkBox.setChecked(true);
             holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit));
             holder.addBtn.setText("Selected");

@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone"
-        android:text="This place has no reviews"
+        android:textSize="15sp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="@string/this_place_has_no_reviews"
         android:fontFamily="@font/salsa"/>
 
     <androidx.recyclerview.widget.RecyclerView

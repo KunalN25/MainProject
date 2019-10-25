@@ -40,6 +40,7 @@
     <string name="order_now">Order Now</string>
     <string name="reviews">Reviews</string>
     <string name="crave_nbetter">Crave Better</string>
+    <string name="this_place_has_no_reviews">This place has no reviews</string>
 
 
 </resources>

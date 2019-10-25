@@ -18,9 +18,9 @@
     <ImageView
         android:id="@+id/img_view_in_profile"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="300dp"
         android:layout_below="@id/craveBetterTeextView"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/eat_drink_live" />
 
     <ListView
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/img_view_in_profile"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/border_edit_for_res_photo" />
 
 </RelativeLayout>

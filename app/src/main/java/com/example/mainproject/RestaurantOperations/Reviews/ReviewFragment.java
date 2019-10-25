@@ -1,6 +1,7 @@
 package com.example.mainproject.RestaurantOperations.Reviews;
 
 
+import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -104,6 +105,8 @@ public class ReviewFragment extends Fragment {
         {
             noReviewsText.setVisibility(View.VISIBLE);
             Log.d(TAG, "loadReviewsFromJSON: No reviews in this restaurant");
+            noReviewsText.setText("No Reviews for this Restaurant");
+            //noReviewsText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
     }
