@@ -18,7 +18,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         TextView textView = findViewById(R.id.title1);
-        int splashTimeOut = 3000;
+        int splashTimeOut = 2500;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

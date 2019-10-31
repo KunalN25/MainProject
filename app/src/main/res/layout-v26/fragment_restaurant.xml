@@ -30,7 +30,7 @@
             android:layout_below="@id/fragmentRestaurantPhoto"
             android:layout_centerHorizontal="true"
             android:maxLines="2"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="30dp"
             android:paddingHorizontal="10dp"
             android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/salsa"
@@ -60,8 +60,8 @@
             android:layout_marginTop="6dp"
             android:background="@drawable/border_edit_for_address"
             android:fontFamily="@font/salsa"
-            android:paddingVertical="10dp"
-            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="20dp"
             android:text="@string/phone"
             android:textSize="15sp" />
 
@@ -72,11 +72,11 @@
             android:layout_below="@id/fragmentCuisine"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="5dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="42dp"
             android:background="@drawable/border_edit_for_address"
             android:fontFamily="@font/salsa"
-            android:paddingVertical="10dp"
-            android:paddingHorizontal="10dp"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="20dp"
             android:text="@string/address"
             android:textSize="15sp" />
 

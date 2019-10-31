@@ -74,7 +74,7 @@
             android:textColor="#fff"
             android:layout_marginHorizontal="15dp"
             android:layout_marginTop="25dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="10dp"
             android:layout_weight="0.6"
             android:gravity="center"
             android:background="@drawable/border_edit_for_rating_green"/>

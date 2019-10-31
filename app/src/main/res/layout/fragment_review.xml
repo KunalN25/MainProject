@@ -5,11 +5,19 @@
     android:layout_height="match_parent"
     tools:context=".RestaurantOperations.Reviews.ReviewFragment"
     android:id="@+id/reviewPage">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_sentiment_dissatisfied_black_24dp"
+        android:id="@+id/noReviewsEmoji"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
     <TextView
         android:id="@+id/noReviewsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/noReviewsEmoji"
         android:visibility="gone"
         android:textSize="15sp"
         android:textColor="@color/colorPrimaryDark"
@@ -20,6 +28,6 @@
         android:id="@+id/reviewList"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:background="#98fb98"/>
+        android:background="#c1ffc1"/>
 
 </RelativeLayout>

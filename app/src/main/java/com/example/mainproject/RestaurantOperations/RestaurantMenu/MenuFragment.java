@@ -204,6 +204,15 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
             loadFromDatabase("CHINESE");
             Log.d(TAG, "compareCuisines: load from chinese");
         }
+        if (cuisines.contains("North Indian")) {
+            loadFromDatabase("NORTH INDIAN");
+        }
+        if (cuisines.contains("Fast Food")) {
+            loadFromDatabase("FAST FOOD");
+        }
+        if (cuisines.contains("Cafe")) {
+            loadFromDatabase("cafe");
+        }
 
         if (cuisines.contains("Burger")) {
             loadFromDatabase("JUMBO KING");

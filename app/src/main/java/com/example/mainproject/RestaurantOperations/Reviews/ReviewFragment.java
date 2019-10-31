@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -30,6 +31,7 @@ public class ReviewFragment extends Fragment {
     private List<ReviewData> reviewDataList;
     private String reviewsString;
     TextView noReviewsText;
+    ImageView noReviewsPic;
 
 
     public ReviewFragment() {
@@ -48,6 +50,7 @@ public class ReviewFragment extends Fragment {
     }
     private void initRecyclerView(View v){
         noReviewsText=v.findViewById(R.id.noReviewsText);
+        noReviewsPic=v.findViewById(R.id.noReviewsEmoji);
         recyclerView=v.findViewById(R.id.reviewList);
         Log.d(TAG, "Review fragment initRecyclerView: Recycler View is initialized");
         recyclerView.setHasFixedSize(true);
@@ -94,10 +97,12 @@ public class ReviewFragment extends Fragment {
         }
         if(reviewDataList.isEmpty())
         {
+            noReviewsPic.setVisibility(View.VISIBLE);
             noReviewsText.setVisibility(View.VISIBLE);
             Log.d(TAG, "loadReviewsFromJSON: No reviews in this restaurant");
             noReviewsText.setText("No Reviews for this Restaurant");
             noReviewsText.bringToFront();
+            noReviewsPic.bringToFront();
             //noReviewsText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
