@@ -1,27 +1,18 @@
 package com.example.mainproject.RestaurantOperations.Reviews;
 
 
-import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.borjabravo.readmoretextview.ReadMoreTextView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.mainproject.R;
-import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
-import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantLocation;
-import com.example.mainproject.RestaurantOperations.RestaurantsList.JSONAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -106,6 +97,7 @@ public class ReviewFragment extends Fragment {
             noReviewsText.setVisibility(View.VISIBLE);
             Log.d(TAG, "loadReviewsFromJSON: No reviews in this restaurant");
             noReviewsText.setText("No Reviews for this Restaurant");
+            noReviewsText.bringToFront();
             //noReviewsText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 

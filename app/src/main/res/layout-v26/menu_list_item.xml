@@ -31,7 +31,7 @@
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@id/icon"
         android:clickable="false"
-        android:gravity="center"
+        android:gravity="left"
         android:fontFamily="@font/salsa"
         />
 
@@ -63,12 +63,12 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_below="@id/checkItem"
-        android:layout_marginStart="310dp"
+        android:layout_marginStart="290dp"
         android:layout_marginTop="4dp"
-        android:background="@drawable/border_edit"
+        android:background="@drawable/border_edit_for_addbtn"
         android:textColor="#32cd32"
         android:text="ADD  +"
-        android:textSize="15dp"
+        android:textSize="11dp"
         android:clickable="false" />
 
 

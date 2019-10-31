@@ -36,7 +36,7 @@ import java.util.List;
  * A simple {@link Fragment} subclass.menu
  */
 public class MenuFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
-    private static final String TAG="kun";
+    private static final String TAG = "ole";
     private ListView menuList;
     private MenuListAdapter menuListAdapter;
     private Button show;
@@ -45,6 +45,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
     private List<MenuItemForListView> menuItemForListViews;
     private MenuFragmentMethods menuFragmentMethods;
     private ProgressBar progressBar;
+    private int prevItem = 0;
 
 
 
@@ -61,7 +62,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
         initialize(v);
 
         compareCuisines();
-        Log.d(TAG, "onCreateView: Size:" + menuItemForListViews.size());
+        //Log.d(TAG, "onCreateView: Size:" + menuItemForListViews.size());
         if (getContext() == null)
             Log.d(TAG, "onCreateView: getcontezt is null");
 
@@ -190,17 +191,37 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
     }
 
     private void compareCuisines() {
+        //  Message.message(getActivity(),cuisines,1);
         if (cuisines.contains("Bengali")) {
             loadFromDatabase("BENGALI");
-        } else
-            loadFromDatabase("BENGALI");
+            Log.d(TAG, "compareCuisines: load from bengali");
+        }
+        if (cuisines.contains("South Indian")) {
+            loadFromDatabase("SOUTH INDIAN");
+            Log.d(TAG, "compareCuisines: load from south india");
+        }
+        if (cuisines.contains("Chinese")) {
+            loadFromDatabase("CHINESE");
+            Log.d(TAG, "compareCuisines: load from chinese");
+        }
+
+        if (cuisines.contains("Burger")) {
+            loadFromDatabase("JUMBO KING");
+            Log.d(TAG, "compareCuisines: load from jumbo king");
+
+        }
+       /* else{
+              loadFromDatabase("BENGALI");
+              Log.d(TAG, "compareCuisines: load from bengali 2");
+          }*/
+
     }
 
     private void loadFromDatabase(String cuisine) {
         menuItems=new ArrayList<>();
         menuItemForListViews = new ArrayList<>();
 
-        Log.d(TAG, "loadFromDatabase: called");
+        //  Log.d(TAG, "loadFromDatabase: called");
 
 
         FirebaseFirestore firebaseFirestore=FirebaseFirestore.getInstance();
@@ -208,19 +229,19 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Log.d(TAG, "onComplete: called");
+                //  Log.d(TAG, "onComplete: called");
                 if(task.isSuccessful())
                 {
                     for(DocumentSnapshot snapshot: task.getResult())
                     {
                         MenuItem menuItem=snapshot.toObject(MenuItem.class);
-                        //Log.d(TAG, "onComplete: \n"+menuItem.getName());
+                        Log.d(TAG, "onComplete: \n" + menuItem.getName());
                         menuItems.add(menuItem);
 
 
                     }
                     if (!menuItems.isEmpty()) {
-                        for (int i = 0; i < menuItems.size(); i++) {
+                        for (int i = prevItem; i < menuItems.size(); i++) {
                             menuItemForListViews.add(new MenuItemForListView(menuItems.get(i).getName(),
                                     menuItems.get(i).getPrice(),
                                     menuItems.get(i).isType()));
@@ -229,7 +250,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                     if (getActivity() != null) {
                         menuListAdapter = new MenuListAdapter(getActivity(), menuItemForListViews);
                         menuList.setAdapter(menuListAdapter);
+
                     }
+                    prevItem = menuItems.size();
                     progressBar.setVisibility(View.GONE);
                     show.setVisibility(View.VISIBLE);
 

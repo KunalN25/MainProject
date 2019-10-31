@@ -59,14 +59,14 @@ public class MenuListAdapter extends ArrayAdapter<MenuItemForListView> {
         if(menuItemForListViews.get(position).isSelected()) {
             holder.listItem.setBackgroundColor(R.color.indicator);
             holder.checkBox.setChecked(true);
-            holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit));
-            holder.addBtn.setText("Selected");
+            holder.addBtn.setBackground(ContextCompat.getDrawable(context, R.drawable.border_edit_for_addbtn));
+            holder.addBtn.setText("✔");
 
 
         } else {
             holder.listItem.setBackgroundColor(android.R.color.background_light);
             holder.checkBox.setChecked(false);
-            holder.addBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.border_edit));
+            holder.addBtn.setBackground(ContextCompat.getDrawable(context, R.drawable.border_edit_for_addbtn));
             holder.addBtn.setText("Add   +");
 
 
