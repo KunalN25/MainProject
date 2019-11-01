@@ -208,7 +208,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
             loadFromDatabase("NORTH INDIAN");
         }
         if (cuisines.contains("Fast Food")) {
-            loadFromDatabase("FAST FOOD");
+            loadFromDatabase("FAST FOODS");
         }
         if (cuisines.contains("Cafe")) {
             loadFromDatabase("cafe");
