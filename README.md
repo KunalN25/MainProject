@@ -4,4 +4,4 @@ It can show 20 restaurants around any location that you type in the search box.
 
 * Login And Registration
 This app uses Firebase Authentication for user login and registration. UserData is stored in hierarchical manner as shown:
-![Firebase Image](https://drive.google.com/drive/folders/1LmR22OgFC3BpyCpj0qCWru_UteZShIb9.png)
+![](https://github.com/KunalN25/Screenshot_Crave_Better/blob/master/Screenshot%20from%202019-11-01%2011-14-10%20(1).png?raw=true)
