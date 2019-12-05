@@ -22,6 +22,7 @@ import com.example.mainproject.PaymentsAndBalance.PaymentActivity;
 import com.example.mainproject.R;
 import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.UtilityClasses.NoInternetString;
+import com.example.mainproject.UtilityClasses.UIUtils;
 
 import java.util.Objects;
 
@@ -39,6 +40,12 @@ public class AccountFragment extends Fragment implements AdapterView.OnItemClick
         listView=v.findViewById(R.id.accountList);
         arrayAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), R.layout.textview_for_lists, listItems);
         listView.setAdapter(arrayAdapter);
+        //initializing the adapter
+        UIUtils.setListViewHeightBasedOnItems(listView);
+
+//whenever the data changes
+        arrayAdapter.notifyDataSetChanged();
+        UIUtils.setListViewHeightBasedOnItems(listView);
         listView.setOnItemClickListener(this);
         return v;
     }

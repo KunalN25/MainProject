@@ -26,12 +26,12 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
 
     private  ImageView imageView;
     private TextView name,cuisine,
-            address, phone_numbers, ratings, orderNow, reviewTextView;
+            address, phone_numbers, ratings, orderNow, reviewTextView, addReview;
     private  final String TAG="Main";
     private  Context context;
     private RestaurantJSONItems restaurantJSONItems;
     private RestaurantFragmentMethods restaurantFragmentMethods;
-    private String reviews;
+    private String resId;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -42,6 +42,7 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
         loadRestaurantIntoFragment();
         orderNow.setOnClickListener(this);
         reviewTextView.setOnClickListener(this);
+        addReview.setOnClickListener(this);
         return v;
     }
 
@@ -54,6 +55,7 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
         phone_numbers=v.findViewById(R.id.phoneNumbers);
         orderNow = v.findViewById(R.id.orderNow);
         reviewTextView = v.findViewById(R.id.reviewsLoad);
+        addReview = v.findViewById(R.id.reviewNow);
         context=getActivity();
 
     }
@@ -78,7 +80,7 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
         address.setText("Address : "+restaurantJSONItems.getLocation().getAddress());
         ratings.setText(restaurantJSONItems.getRatings());
         phone_numbers.setText("Contacts : "+restaurantJSONItems.getPhone_numbers());
-        reviews=restaurantJSONItems.getReviews();
+        resId = restaurantJSONItems.getResId();
        Log.d(TAG, "Restaurant Fragment loadRestaurantIntoFragment: "+restaurantJSONItems.getCuisines());
         cuisine.setText(restaurantJSONItems.getCuisines());
         Log.d(TAG, "loadRestaurantIntoFragment: Data loaded into restaurant fragment");
@@ -106,8 +108,11 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
             case R.id.reviewsLoad:
                 Log.d(TAG, "onItemClick: Display Reviews");
                 //Log.d(TAG, "onItemClick: "+reviews);
-                restaurantFragmentMethods.startReviewFragment(reviews);
+                restaurantFragmentMethods.startReviewFragment(resId, name.getText().toString());
                 break;
+            case R.id.reviewNow:
+                Log.d(TAG, "onClick: Add a review");
+                restaurantFragmentMethods.startAddReviewFragment(name.getText().toString());
 
         }
     }
@@ -115,6 +120,9 @@ public class RestaurantFragment extends Fragment implements View.OnClickListener
 
     interface RestaurantFragmentMethods{
         void loadMenuList(String cuisines);
-        void startReviewFragment(String reviews);
+
+        void startReviewFragment(String reviews, String resName);
+
+        void startAddReviewFragment(String n);
     }
 }

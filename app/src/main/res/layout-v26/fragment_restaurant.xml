@@ -1,26 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".RestaurantOperations.RestaurantFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     >
-
     <RelativeLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/gradient_3">
 
+
+        <TextView
+            android:id="@+id/ratings"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/layout_for_edit"
+            android:fontFamily="@font/salsa"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="@string/ratings"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
         <ImageView
             android:id="@+id/fragmentRestaurantPhoto"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/ratings"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="50dp"
+            android:contentDescription="@string/todo"
             android:src="@drawable/ic_launcher_background" />
 
         <TextView
@@ -48,7 +63,7 @@
             android:maxLines="2"
             android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/salsa"
-            android:text="Cuisine"
+            android:text="@string/cuisine"
             android:textSize="25sp" />
 
         <TextView
@@ -81,26 +96,12 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/ratings"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="125dp"
-            android:background="@drawable/layout_for_edit"
-            android:fontFamily="@font/salsa"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="@string/ratings"
-            android:textColor="#fff"
-            android:textSize="20sp" />
-
-        <TextView
             android:id="@+id/orderNow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_above="@id/reviewsLoad"
-            android:drawableRight="@drawable/ic_arrow"
+            android:layout_below="@id/phoneNumbers"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/salsa"
             android:gravity="center_vertical"
             android:orientation="vertical"
@@ -109,9 +110,11 @@
             android:text="@string/order_now"
             android:textSize="20sp"
             android:textColor="#000"
+            android:drawableEnd="@drawable/ic_arrow"
 
 
             />
+
 
         <TextView
             android:id="@+id/reviewsLoad"
@@ -120,17 +123,35 @@
             android:paddingVertical="10dp"
             android:paddingHorizontal="10dp"
             android:textColor="#000"
-            android:drawableRight="@drawable/ic_arrow"
+            android:layout_below="@id/orderNow"
             android:fontFamily="@font/salsa"
             android:orientation="vertical"
             android:text="@string/reviews"
             android:textSize="20sp"
-            android:layout_alignParentBottom="true"
+            android:drawableEnd="@drawable/ic_arrow"
 
 
             />
 
+        <TextView
+            android:id="@+id/reviewNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@id/reviewsLoad"
+            android:drawableEnd="@drawable/ic_arrow"
+            android:fontFamily="@font/salsa"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:text="@string/add_a_review"
+            android:textColor="#000"
+            android:textSize="20sp"
+
+
+            />
 
     </RelativeLayout>
-</RelativeLayout>
+</ScrollView>
 

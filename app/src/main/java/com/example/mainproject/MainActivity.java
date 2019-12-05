@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
         firebaseUser=mAuth.getCurrentUser();
         databaseRef = FirebaseFirestore.getInstance();
         if(firebaseUser!=null)
-            databaseReference=FirebaseDatabase.getInstance().getReference(firebaseUser.getUid());
+            databaseReference = FirebaseDatabase.getInstance().getReference("users").child(firebaseUser.getUid());
         sharePreferencesHelper = new SharePreferencesHelper(this);
         context=getApplicationContext();
         homeFragment = new HomeFragment();
@@ -128,23 +128,25 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
         if(databaseReference!=null){
 
             databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UserData userData=dataSnapshot.getValue(UserData.class);
-                assert userData != null;
-                sharePreferencesHelper.addToPreference("FirstName",userData.getFirstName());
-                sharePreferencesHelper.addToPreference("LastName",userData.getLastName());
-                sharePreferencesHelper.addToPreference("MobileNumber",userData.getMobileNo()+"");
-                UserAccountBalance.USER_BALANCE=userData.getBalance();
-                Log.d(TAG, "onDataChange: Data loaded");
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    UserData userData = dataSnapshot.getValue(UserData.class);
+                    if (userData != null) {
+                        sharePreferencesHelper.addToPreference("FirstName", userData.getFirstName());
+                        sharePreferencesHelper.addToPreference("LastName", userData.getLastName());
+                        sharePreferencesHelper.addToPreference("MobileNumber", userData.getMobileNo() + "");
+                        UserAccountBalance.USER_BALANCE = userData.getBalance();
+                    }
+                    Log.d(TAG, "onDataChange: Data loaded");
 
-            }
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: Data could not be loaded");
-            }
-        });}
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.d(TAG, "onCancelled: Data could not be loaded");
+                }
+            });
+        }
 
 
     }
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements  MapFragment.MapF
         manager.popBackStack("ConnectionError", FragmentManager.POP_BACK_STACK_INCLUSIVE);
         assert selectedFragment != null;
         manager.beginTransaction().replace(R.id.fragment_container,selectedFragment)
-                                                        .commit();
+                .commit();
         return true;
     }
     public boolean isServicesOK(){

@@ -4,7 +4,10 @@ public class ReviewData {
     private String customerName,photo_url,reviewText;
     double rating;
 
-    public ReviewData(String customerName, String photo_url, String reviewText,double rating) {
+    public ReviewData() {
+    }
+
+    public ReviewData(String customerName, String photo_url, String reviewText, double rating) {
         this.customerName = customerName;
         this.photo_url = photo_url;
         this.reviewText = reviewText;
@@ -27,5 +30,21 @@ public class ReviewData {
 
     public double getRating() {
         return rating;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
+    }
+
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

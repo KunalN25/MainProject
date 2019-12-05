@@ -14,6 +14,7 @@ import com.example.mainproject.RestaurantOperations.RestaurantMenu.ConfirmFragme
 import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuFragment;
 import com.example.mainproject.RestaurantOperations.RestaurantMenu.MenuItem;
 import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
+import com.example.mainproject.RestaurantOperations.Reviews.AddReviewFragment;
 import com.example.mainproject.RestaurantOperations.Reviews.ReviewFragment;
 import com.example.mainproject.UtilityClasses.ConnectionTimedOut;
 
@@ -61,14 +62,25 @@ public class RestaurantActivity extends AppCompatActivity implements RestaurantF
 
 
     @Override
-    public void startReviewFragment(String reviews) {
-        Log.d(TAG, "loadReviews: Restaurant activty "+reviews);
+    public void startReviewFragment(String resId, String resName) {
+        Log.d(TAG, "loadReviews: Restaurant activty " + resId);
         ReviewFragment reviewFragment=new ReviewFragment();
 
         fragmentTransaction=fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.restaurantLAyout,reviewFragment).addToBackStack("Reviews");
         fragmentTransaction.commit();
-        reviewFragment.getJsonData(reviews);
+        reviewFragment.getJsonData(resId, resName);
+
+    }
+
+    @Override
+    public void startAddReviewFragment(String n) {
+        AddReviewFragment addReviewFragment = new AddReviewFragment();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.restaurantLAyout, addReviewFragment).addToBackStack("ADD Review");
+        fragmentTransaction.commit();
+        addReviewFragment.getResName(n);
+
 
     }
 

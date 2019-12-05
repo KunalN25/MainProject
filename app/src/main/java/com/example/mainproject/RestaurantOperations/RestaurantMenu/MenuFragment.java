@@ -79,9 +79,9 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
     private void initialize(View v){
         progressBar=v.findViewById(R.id.menuProgressBar);
         menuList=v.findViewById(R.id.menuList);
-      //  Log.d(TAG, "initialize: "+menuItems.get(0).getName());
+        //  Log.d(TAG, "initialize: "+menuItems.get(0).getNAME());
 
-       // Log.d(TAG, "initialize: "+menuItemForListViews.get(0).getName());
+        // Log.d(TAG, "initialize: "+menuItemForListViews.get(0).getNAME());
 
     }
 
@@ -129,7 +129,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
         int total=0;
         for(int i=0;i<addToCart.size();i++)
         {
-            total+=Integer.parseInt(addToCart.get(i).getPrice()+"");
+            total += Integer.parseInt(addToCart.get(i).getPRICE() + "");
         }
         return total;
     }
@@ -153,11 +153,11 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
             if (!checked) {
                 menuItemForListViews.get(i).setSelected(true);
 
-//                spinnerList.add(menuItemForListViews.get(i).getName());
+//                spinnerList.add(menuItemForListViews.get(i).getNAME());
 
             } else {
                 menuItemForListViews.get(i).setSelected(false);
-               // spinnerList.remove(menuItemForListViews.get(i).getName());
+                // spinnerList.remove(menuItemForListViews.get(i).getNAME());
             }
         }
 /*
@@ -244,16 +244,16 @@ public class MenuFragment extends Fragment implements View.OnClickListener, Adap
                     for(DocumentSnapshot snapshot: task.getResult())
                     {
                         MenuItem menuItem=snapshot.toObject(MenuItem.class);
-                        Log.d(TAG, "onComplete: \n" + menuItem.getName());
+                        Log.d(TAG, "onComplete: \n" + menuItem.getNAME());
                         menuItems.add(menuItem);
 
 
                     }
                     if (!menuItems.isEmpty()) {
                         for (int i = prevItem; i < menuItems.size(); i++) {
-                            menuItemForListViews.add(new MenuItemForListView(menuItems.get(i).getName(),
-                                    menuItems.get(i).getPrice(),
-                                    menuItems.get(i).isType()));
+                            menuItemForListViews.add(new MenuItemForListView(menuItems.get(i).getNAME(),
+                                    menuItems.get(i).getPRICE(),
+                                    menuItems.get(i).getTYPE()));
                         }
                     }
                     if (getActivity() != null) {

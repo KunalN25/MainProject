@@ -1,4 +1,10 @@
 package com.example.mainproject.LoginAndRegistration;
+
+import android.content.Context;
+
+import com.example.mainproject.PaymentsAndBalance.UserAccountBalance;
+import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
@@ -51,5 +57,17 @@ public class UserData {
 
     public void setBalance(double balance) {
         Balance = balance;
+    }
+
+    public static UserData getCurrentUserObject(Context context, FirebaseUser user) {
+
+        SharePreferencesHelper helper = new SharePreferencesHelper(context);
+        UserData userData = new UserData();
+        userData.setBalance(UserAccountBalance.USER_BALANCE);
+        userData.setEmail(user.getEmail());
+        userData.setFirstName(helper.loadPreferences("FirstName"));
+        userData.setLastName(helper.loadPreferences("LastName"));
+        userData.setMobileNo(Long.parseLong(helper.loadPreferences("MobileNumber")));
+        return userData;
     }
 }

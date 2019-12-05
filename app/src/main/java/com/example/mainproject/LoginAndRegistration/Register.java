@@ -1,10 +1,5 @@
 package com.example.mainproject.LoginAndRegistration;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -17,14 +12,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.example.mainproject.UtilityClasses.Message;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mainproject.R;
+import com.example.mainproject.UtilityClasses.Message;
 import com.example.mainproject.UtilityClasses.SharePreferencesHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -83,7 +83,7 @@ public class Register extends AppCompatActivity implements OnCompleteListener {
         /*******FIREBASE VARIABLES*****/
         mAuth = FirebaseAuth.getInstance();
         mfirebaseDatabase=FirebaseDatabase.getInstance();
-        dRef=mfirebaseDatabase.getReference();
+        dRef = mfirebaseDatabase.getReference("users");
         /*****OTHER VARIABLES*****/
         actionBar=getSupportActionBar();
         helper=new SharePreferencesHelper(this);
@@ -207,6 +207,9 @@ public class Register extends AppCompatActivity implements OnCompleteListener {
 
             //Add a dialog box displaying this message
             if(isGmailAddress(email)){
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName("Jane Q. User").build();
+
                 UserData userData=new UserData();
                 userData.setFirstName(first);
                 userData.setLastName(last);

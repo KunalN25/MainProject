@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c1ffc1"
+    tools:context=".RestaurantOperations.Reviews.AddReviewFragment">
+    <!--<androidx.appcompat.widget.Toolbar
+        android:id="@+id/addReviewToolbarr"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:textAlignment="center"
+        android:background="?attr/actionBarTheme"
+        />-->
+    <EditText
+        android:id="@+id/userRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="205dp"
+        android:hint="Rating"
+        android:inputType="numberDecimal"
+        android:maxLength="3"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/userReviewText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userRating"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/write_a_review" />
+
+    <Button
+        android:id="@+id/submitReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userReviewText"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border_edit_for_addbtn"
+        android:enabled="false"
+        android:text="@string/submit" />
+
+
+</RelativeLayout>

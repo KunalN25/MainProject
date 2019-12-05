@@ -116,7 +116,7 @@ public class HomeFragment extends Fragment  {
                         restaurantData.getString("cuisines"),
                         restaurantData.getString("phone_numbers"),
                         restaurantData.getJSONObject("user_rating").getString("aggregate_rating"),
-                        restaurantData.getJSONObject("all_reviews").getJSONArray("reviews").toString()));
+                        restaurantData.getString("id")));
 
 
 

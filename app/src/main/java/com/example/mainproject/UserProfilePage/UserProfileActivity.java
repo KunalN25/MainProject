@@ -54,7 +54,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
         mAuth=FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
 
-        reference=FirebaseDatabase.getInstance().getReference(user.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("users");
         actionBar=getSupportActionBar();
 
 
@@ -132,7 +132,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
         userData.setEmail(user.getEmail());
         userData.setBalance(UserAccountBalance.USER_BALANCE);
 
-        reference.setValue(userData);
+        reference.child(user.getUid()).setValue(userData);
         Log.d(TAG, "saveDetails: Details saved");
         Message.message(this,"Details saved");
         editFlag=false;

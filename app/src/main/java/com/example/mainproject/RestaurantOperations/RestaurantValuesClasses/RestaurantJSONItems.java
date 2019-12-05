@@ -1,18 +1,16 @@
 package com.example.mainproject.RestaurantOperations.RestaurantValuesClasses;
 
-import org.json.JSONArray;
-
 import java.io.Serializable;
 
 //This class has the type od data you want to put in the recycler view
 public class RestaurantJSONItems implements Serializable {
     private String name,photos_url,cuisines,phone_numbers,ratings;
-    private String reviews;
+    private String resId;
     private int average_cost_for_two;
     private RestaurantLocation location;
 
     public RestaurantJSONItems(String name, String photos_url, int average_cost_for_two
-            , RestaurantLocation location, String cuisines, String phone_numbers, String ratings, String reviews) {
+            , RestaurantLocation location, String cuisines, String phone_numbers, String ratings, String resId) {
         this.name = name;
         this.photos_url = photos_url;
         this.average_cost_for_two=average_cost_for_two;
@@ -20,7 +18,7 @@ public class RestaurantJSONItems implements Serializable {
         this.cuisines=cuisines;
         this.phone_numbers = phone_numbers;
         this.ratings = ratings;
-        this.reviews = reviews;
+        this.resId = resId;
     }
 
     public RestaurantLocation getLocation() {
@@ -52,8 +50,8 @@ public class RestaurantJSONItems implements Serializable {
         return ratings;
     }
 
-    public String getReviews() {
-        return reviews;
+    public String getResId() {
+        return resId;
     }
 }
 

@@ -41,6 +41,10 @@
     <string name="reviews">Reviews</string>
     <string name="crave_nbetter">Crave Better</string>
     <string name="this_place_has_no_reviews">This place has no reviews</string>
+    <string name="cuisine">Cuisine</string>
+    <string name="todo">TODO</string>
+    <string name="add_a_review">Add a review</string>
+    <string name="write_a_review">Write a review</string>
 
 
 </resources>
