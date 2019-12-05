@@ -2,13 +2,11 @@ package com.example.mainproject.RestaurantOperations.Reviews;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,8 +16,6 @@ import com.borjabravo.readmoretextview.ReadMoreTextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
 import com.example.mainproject.R;
-import com.example.mainproject.RestaurantOperations.RestaurantActivity;
-import com.example.mainproject.RestaurantOperations.RestaurantValuesClasses.RestaurantJSONItems;
 
 import java.util.List;
 

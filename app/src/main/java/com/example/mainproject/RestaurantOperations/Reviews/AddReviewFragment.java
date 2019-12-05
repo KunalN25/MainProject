@@ -82,7 +82,8 @@ public class AddReviewFragment extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         String rat = rating.getText().toString(), rev = revText.getText().toString();
         UserData userData = UserData.getCurrentUserObject(getActivity(), user);
-        reference.child(user.getUid()).child(resName).
+        resName = resName.replace(".", " ");
+        reference.child(resName).child(user.getUid()).
                 setValue(new ReviewData(userData.getFirstName() + " " + userData.getLastName(),
                         "", rev,
                         Double.parseDouble(rat)));
