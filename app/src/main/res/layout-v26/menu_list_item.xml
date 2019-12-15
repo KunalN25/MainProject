@@ -1,75 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/listItem"
     android:clickable="false"
     android:descendantFocusability="blocksDescendants"
-    android:layout_marginVertical="10dp"
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="10dp"
+    android:elevation="5dp"
     android:background="@drawable/highlight">
     <!--DescendantFocusability attribute is used to set the focusable for all the child views
         so that the listView can be clickable.-->
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:clickable="false"
-        android:contentDescription="TODO"
-        android:src="@drawable/ic_home" />
-    <TextView
-        android:id="@+id/menuItemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Item"
-        android:textColor="#000"
-        android:textSize="20sp"
-        android:layout_marginStart="20dp"
-        android:layout_toEndOf="@id/icon"
-        android:clickable="false"
-        android:gravity="left"
-        android:fontFamily="@font/salsa"
-        />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="2dp">
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:clickable="false"
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_home" />
+        <TextView
+            android:id="@+id/menuItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Item"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@id/icon"
+            android:clickable="false"
+            android:gravity="left"
+            android:fontFamily="@font/salsa"
+            />
 
-    <TextView
-        android:id="@+id/itemPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_below="@id/menuItemName"
-        android:text="Rs.100"
-        android:fontFamily="@font/salsa"
-        android:gravity="center"
-        android:textSize="15sp"
-        android:clickable="false"/>
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_below="@id/menuItemName"
+            android:text="Rs.100"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/salsa"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:clickable="false"/>
 
-    <CheckBox
-        android:id="@+id/checkItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_alignParentEnd="true"
-        android:checked="false"
-        android:clickable="false"
-        android:gravity="center"
-        android:backgroundTint="@color/indicator"
-        android:visibility="gone"/>
-    <Button
-        android:id="@+id/MenuAddBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_below="@id/checkItem"
-        android:layout_marginStart="290dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/border_edit_for_addbtn"
-        android:textColor="#32cd32"
-        android:text="ADD  +"
-        android:textSize="11dp"
-        android:clickable="false" />
+        <CheckBox
+            android:id="@+id/checkItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentEnd="true"
+            android:checked="false"
+            android:clickable="false"
+            android:gravity="center"
+            android:backgroundTint="@color/indicator"
+            android:visibility="gone"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/MenuAddBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_below="@id/checkItem"
+            android:layout_marginStart="290dp"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#fff"
+            android:background="@color/quantum_white_100"
+            android:textColor="@color/colorPrimaryDark"
+            android:elevation="5dp"
+            android:shadowColor="#fff"
+            android:text="ADD  +"
+            app:elevation="10dp"
+            android:textSize="14sp"
+            android:clickable="false" />
+    </com.google.android.material.card.MaterialCardView>
+
 
 
 </RelativeLayout>

@@ -6,16 +6,18 @@
     tools:context=".UserProfilePage.GetCredentials"
     android:background="#fff">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/enterCredentials"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="5dp"
         android:text="Please enter your credentials"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/salsa"
         android:layout_above="@id/profileChangeEmail"
         android:textSize="30sp"/>
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/profileChangeEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +30,7 @@
 
 
         />
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/profileChangePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
-        android:background="@drawable/border_edit_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_below="@id/profileChangePassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"/>

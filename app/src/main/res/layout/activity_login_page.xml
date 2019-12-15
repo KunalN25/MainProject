@@ -44,7 +44,7 @@
             android:background="@drawable/border_edit"
             android:drawableStart="@drawable/username"
             android:fontFamily="@font/salsa"
-
+            style="@style/AppTextField"
             android:drawablePadding="13dp"
             android:hint="@string/username"
             android:inputType="textEmailAddress"
@@ -66,7 +66,7 @@
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="12dp"
-
+        style="@style/AppTextField"
         android:layout_below="@id/usernameLayout"
         app:passwordToggleEnabled="true"
         app:passwordToggleDrawable="@drawable/icon_selector"
@@ -107,11 +107,11 @@
         />
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_edit_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_below="@id/passwordLayout"
         android:layout_marginTop="28dp"
         android:layout_marginLeft="40dp"

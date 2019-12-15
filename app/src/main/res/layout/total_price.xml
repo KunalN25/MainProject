@@ -7,6 +7,7 @@
         android:layout_height="wrap_content"
         android:text="Total Amount"
         android:layout_centerHorizontal="true"
+        android:elevation="5dp"
         android:layout_marginTop="60dp"
         android:textSize="25sp"
         android:fontFamily="@font/salsa"
@@ -40,9 +41,9 @@
         android:id="@+id/confirmYourOrderButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="250dp"
-        android:text="Confirm"
-        android:background="@drawable/border_edit_btn"/>
+        android:text="Confirm" />
 
 </RelativeLayout>

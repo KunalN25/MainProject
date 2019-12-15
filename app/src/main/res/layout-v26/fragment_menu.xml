@@ -23,10 +23,12 @@
       android:orientation="vertical"
       android:weightSum="1"
       android:background="@drawable/gradient_3">
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Menu"
+        android:textStyle="bold"
+        android:elevation="5dp"
         android:paddingTop="15dp"
         android:paddingBottom="20dp"
         android:includeFontPadding="true"
@@ -39,17 +41,16 @@
         android:id="@+id/menuList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@drawable/gradient_3"
-        android:dividerHeight="10dp"
-        android:background="@drawable/border_edit_for_menu"
         android:layout_weight="1"/>
 
     <Button
         android:id="@+id/show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_edit_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:text="ADD TO CART"
+        android:textSize="15sp"
+        android:padding="5dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="0"
         android:visibility="gone"

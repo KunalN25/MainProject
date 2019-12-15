@@ -13,16 +13,17 @@
         android:indeterminate="true"
         android:visibility="gone"
         />
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/addBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My Wallet"
         android:textColor="#000"
+        android:elevation="5dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:fontFamily="@font/salsa"
-        android:textSize="24sp"/>
+        android:textSize="30sp"/>
 
     <EditText
         android:id="@+id/baclanceInPut"
@@ -35,17 +36,17 @@
         android:inputType="number"
         android:fontFamily="@font/salsa"
         />
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/addBalanceButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_balance"
-        android:background="@drawable/border_edit_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:layout_below="@id/baclanceInPut"
         android:layout_marginHorizontal="60dp"
         android:layout_marginTop="20dp"/>
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/yourBalanceinAddBalanceFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +54,7 @@
         android:layout_marginTop="125dp"
         android:layout_marginBottom="-44dp"
         android:layout_centerHorizontal="true"
-
+        android:elevation="5dp"
         android:text="Your Balance:"
         android:textSize="40sp"
         android:fontFamily="@font/salsa"/>

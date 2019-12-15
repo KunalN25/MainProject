@@ -9,18 +9,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         >
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Your Bill"
             android:textSize="25sp"
+            android:elevation="5dp"
             android:textStyle="bold"
             android:textColor="#000"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/salsa"/>
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/subTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
             android:fontFamily="@font/salsa"
             />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/subTotalValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,7 +44,7 @@
             android:fontFamily="@font/salsa"
             />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/gst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +56,7 @@
             android:fontFamily="@font/salsa"/>
 
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/gstValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,7 +71,7 @@
             />
 
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/grandTotalText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +82,7 @@
             android:textSize="19sp"
             android:fontFamily="@font/salsa"/>
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/grandTotalValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,7 +92,7 @@
             android:layout_marginTop="52dp"
             android:textSize="19sp"
             android:fontFamily="@font/salsa"/>
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/balanceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,7 +102,7 @@
             android:text="Balance"
             android:textSize="19sp"
             android:fontFamily="@font/salsa"/>
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/balanceValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,7 +115,7 @@
             android:fontFamily="@font/salsa"
             />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/payButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,16 +124,16 @@
             android:layout_marginTop="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="40dp"
-            android:background="@drawable/border_edit_btn"
+            android:backgroundTint="@color/colorPrimaryDark"
 
 
             />
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/cancelPaymentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
-            android:background="@drawable/border_edit_btn"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:layout_below="@id/payButton"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"/>

@@ -8,7 +8,7 @@
     android:layout_width="match_parent">
 <RelativeLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f0fff0"
+    android:background="#fff"
     android:id="@+id/registerLayout">
 
     <androidx.appcompat.widget.Toolbar
@@ -40,10 +40,12 @@
                 android:id="@+id/newfname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                style="@style/AppTextField"
                 android:background="@drawable/border_edit"
                 android:hint="@string/first"
+                android:fontFamily="@font/salsa"
                 android:inputType="textPersonName"
+                android:textSize="15sp"
                 android:maxLines="1"
                 android:maxLength="15"
                 android:padding="14dp"
@@ -58,7 +60,6 @@
             android:layout_marginStart="15dp"
             android:layout_weight="2"
             app:hintTextAppearance="@style/hintStyle"
-
             >
             <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/newlname"
@@ -66,9 +67,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/last"
             android:padding="14dp"
+                android:textSize="15sp"
             android:background="@drawable/border_edit"
-
-
+            android:fontFamily="@font/salsa"
+            style="@style/AppTextField"
             android:maxLines="1"
             android:maxLength="15"
             />
@@ -92,8 +94,10 @@
         android:id="@+id/mobileNo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        style="@style/AppTextField"
+        android:textSize="15sp"
         android:padding="14dp"
+        android:fontFamily="@font/salsa"
         android:background="@drawable/border_edit"
         android:hint="@string/mobile_number"
         android:inputType="number"
@@ -117,9 +121,10 @@
             android:id="@+id/newuser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-
+            style="@style/AppTextField"
+            android:fontFamily="@font/salsa"
             android:hint="@string/username"
+            android:textSize="15sp"
             android:padding="14dp"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -148,9 +153,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/pass"
             android:background="@drawable/border_edit"
-
-
+            style="@style/AppTextField"
+            android:fontFamily="@font/salsa"
             android:padding="14dp"
+            android:textSize="15sp"
             android:inputType="textPassword"
             android:maxLines="1"
             android:maxLength="20"
@@ -174,8 +180,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/confirm"
+            android:textSize="15sp"
+            android:fontFamily="@font/salsa"
             android:background="@drawable/border_edit"
-
+            style="@style/AppTextField"
             android:padding="14dp"
             android:inputType="textPassword"
             android:maxLines="1"
@@ -192,7 +200,7 @@
         android:layout_below="@id/conPassLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginVertical="25dp"
-        android:background="@drawable/border_edit_btn"
+        android:backgroundTint="@color/colorPrimaryDark"
         android:onClick="signUp"
 
 

@@ -10,12 +10,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_3">
+        android:background="@drawable/gradient_5">
 
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/ratings"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
@@ -25,6 +25,7 @@
             android:padding="8dp"
             android:text="@string/ratings"
             android:textColor="#fff"
+            android:elevation="10dp"
             android:textSize="20sp" />
 
         <ImageView
@@ -51,6 +52,7 @@
             android:fontFamily="@font/salsa"
             android:text="@string/name"
             android:textSize="35sp"
+            android:textColor="#fff"
             android:textStyle="bold" />
 
         <TextView
@@ -64,9 +66,10 @@
             android:layout_marginHorizontal="20dp"
             android:fontFamily="@font/salsa"
             android:text="@string/cuisine"
+            android:textColor="#fff"
             android:textSize="25sp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/phoneNumbers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,11 +79,12 @@
             android:background="@drawable/border_edit_for_address"
             android:fontFamily="@font/salsa"
             android:paddingVertical="20dp"
+            android:elevation="5dp"
             android:paddingHorizontal="20dp"
             android:text="@string/phone"
             android:textSize="15sp" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/fragmentRestaurantAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,6 +97,7 @@
             android:paddingVertical="20dp"
             android:paddingHorizontal="20dp"
             android:text="@string/address"
+            android:elevation="5dp"
             android:textSize="15sp" />
 
         <TextView
@@ -109,7 +114,7 @@
             android:paddingVertical="10dp"
             android:text="@string/order_now"
             android:textSize="20sp"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:drawableEnd="@drawable/ic_arrow"
 
 
@@ -122,7 +127,7 @@
             android:layout_height="wrap_content"
             android:paddingVertical="10dp"
             android:paddingHorizontal="10dp"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:layout_below="@id/orderNow"
             android:fontFamily="@font/salsa"
             android:orientation="vertical"
@@ -146,7 +151,7 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
             android:text="@string/add_a_review"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textSize="20sp"
 
 

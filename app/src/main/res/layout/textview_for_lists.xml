@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.textview.MaterialTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/textForListViews"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:elevation="5dp"
 
     android:fontFamily="@font/salsa"
     android:gravity="center_vertical"

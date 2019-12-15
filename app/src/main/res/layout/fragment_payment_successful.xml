@@ -10,6 +10,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="200dp"
+        android:elevation="5dp"
         android:background="@drawable/ic_success"
         android:layout_centerHorizontal="true"/>
     <TextView
@@ -17,8 +18,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:elevation="4dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="370dp"
+        android:layout_marginTop="380dp"
         android:text="Payment Successful"
         android:textColor="#000"
         android:textSize="25sp"
@@ -28,7 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
-        android:layout_marginTop="450dp"
+        android:elevation="4dp"
+        android:layout_marginTop="460dp"
         android:text="Your order is on its way !!!"
         android:fontFamily="@font/salsa"/>
 

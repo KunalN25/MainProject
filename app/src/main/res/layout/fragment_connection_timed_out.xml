@@ -6,9 +6,10 @@
     tools:context=".UtilityClasses.ConnectionTimedOut">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:elevation="5dp"
         android:background="@drawable/ic_warning"
         android:layout_marginTop="300dp"
         android:layout_centerHorizontal="true"/>

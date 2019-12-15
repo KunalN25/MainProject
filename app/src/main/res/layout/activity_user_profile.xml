@@ -14,6 +14,7 @@
         android:layout_marginTop="134dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/cocktail"
+        android:elevation="20dp"
         android:layout_centerHorizontal="true"/>
 
     <TextView

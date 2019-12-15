@@ -44,6 +44,7 @@ public class UserProfileActivity extends AppCompatActivity implements GetCredent
         initialize();
         setEditTextValues();
         actionBar.setTitle("Profile");
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.gradient_5));
     }
     private void initialize() {
         editFirstName=findViewById(R.id.EditFirstNameInProfile);

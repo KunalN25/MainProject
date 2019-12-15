@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".RestaurantOperations.Reviews.ReviewFragment"
     android:id="@+id/reviewPage">
     <ImageView
@@ -28,6 +29,6 @@
         android:id="@+id/reviewList"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:background="#c1ffc1"/>
+        android:background="#fff"/>
 
 </RelativeLayout>
