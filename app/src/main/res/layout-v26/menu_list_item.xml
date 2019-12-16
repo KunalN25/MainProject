@@ -8,14 +8,14 @@
     android:clickable="false"
     android:descendantFocusability="blocksDescendants"
     android:elevation="5dp"
-    android:background="@drawable/highlight">
+    android:background="@color/white">
     <!--DescendantFocusability attribute is used to set the focusable for all the child views
         so that the listView can be clickable.-->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardUseCompatPadding="true"
-        app:cardElevation="2dp">
+        app:cardElevation="1dp">
         <ImageView
             android:id="@+id/icon"
             android:layout_width="20dp"
@@ -24,6 +24,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="5dp"
             android:clickable="false"
+            android:padding="5dp"
             android:contentDescription="TODO"
             android:src="@drawable/ic_home" />
         <TextView
@@ -31,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Item"
+            android:padding="10dp"
             android:textColor="#000"
             android:textSize="20sp"
             android:layout_marginStart="40dp"
@@ -47,6 +49,7 @@
             android:layout_marginStart="40dp"
             android:layout_below="@id/menuItemName"
             android:text="Rs.100"
+            android:padding="10dp"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/salsa"
             android:gravity="center"
@@ -70,8 +73,8 @@
             android:layout_height="35dp"
             android:layout_below="@id/checkItem"
             android:layout_marginStart="290dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="#fff"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/colorPrimary"
             android:background="@color/quantum_white_100"
             android:textColor="@color/colorPrimaryDark"
             android:elevation="5dp"

@@ -64,7 +64,7 @@ public class MenuListAdapter extends ArrayAdapter<MenuItemForListView> {
 
 
         } else {
-            holder.listItem.setBackgroundColor(android.R.color.background_light);
+            holder.listItem.setBackgroundColor(R.color.white);
             holder.checkBox.setChecked(false);
             holder.addBtn.setBackground(ContextCompat.getDrawable(context, R.drawable.border_edit_for_addbtn));
             holder.addBtn.setText("Add   +");
@@ -79,7 +79,7 @@ public class MenuListAdapter extends ArrayAdapter<MenuItemForListView> {
             holder.icon.setImageResource(R.drawable.veg_icon);
         }
         else{
-            Log.d(TAG, "getView: item is nonveg");
+            Log.d(TAG, "getView: item is non veg");
             holder.icon.setImageResource(R.drawable.non_veg_icon);
         }
 
